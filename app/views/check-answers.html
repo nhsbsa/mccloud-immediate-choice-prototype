@@ -47,10 +47,27 @@
           },
           {
             key: {
-              text: "Benefit crystalisation event date"
+              text: "Legacy deemed date"
             },
             value: {
-              html: "XXXXX"
+              text: data['legacy-deemed-date']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "2015 payable date"
+            },
+            value: {
+              text: data['payable-date-of-benefits']
             },
             actions: {
               items: [

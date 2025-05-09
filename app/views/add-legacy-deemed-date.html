@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="missing-data" novalidate method="post">
+
+      <h1 class="nhsuk-heading-l">
+        Add Legacy deemed date
+      </h1>
+
+      {{ input({
+        label: {
+          text: "Legacy deemed date"
+        },
+        id: "legacy-deemed-date",
+        name: "legacy-deemed-date"
+      }) }}
+
+      {{ button({
+        text: "Confirm"
+      }) }}
+
+      
+    </form>
+    </div>
+  </div>
+{% endblock %}
