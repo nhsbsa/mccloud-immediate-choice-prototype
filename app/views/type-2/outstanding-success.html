@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -22,7 +22,7 @@
         </div>
         <div class="govuk-notification-banner__content">
           <h3 class="govuk-notification-banner__heading">
-              The letter has been sent to be generated
+              The record has been approved
             </h3>
         </div>
       </div>
@@ -47,6 +47,22 @@
           }
         ],
         rows: [
+        [
+            {
+              header: "Name",
+              html: '<a href="person-details">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>'
+            }
+          ],
           [
             {
               header: "Name",
@@ -58,10 +74,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -75,10 +90,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -92,10 +106,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -109,9 +122,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -125,9 +138,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -141,10 +154,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -158,10 +170,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           [
@@ -175,10 +186,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
+            </strong>'
             }
           ],
           {
@@ -191,8 +201,8 @@
           },
           {
             header: "Legacy scheme",
-            html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-              Complete data
+            html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+              Awaiting approval
             </strong>'
           }
         ]

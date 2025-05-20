@@ -1,0 +1,115 @@
+{% extends 'layout-type-2.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Review the figures that will be sent to the pensioner
+      </h1>
+
+      <h2 class="nhsuk-heading-m">Option A - 1995 Section benefits</h2>
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Annual pension"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "Lump sum"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "One off payment"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "Pension paid to spouse"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="nhsuk-heading-m">Option B - 2015 Section benefits</h2>
+
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Annual pension"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "Lump sum"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "One off payment"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          },
+          {
+            key: {
+              text: "Pension paid to spouse"
+            },
+            value: {
+              text: "£XXXXX"
+            }
+          }
+        ]
+      }) }}
+
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit" style="margin-right: 10px;">
+        Confirm calculations
+      </button>
+
+      <p><a href="">Something is wrong with this calculation</a></p>
+
+    </div>
+  </div>
+{% endblock %}

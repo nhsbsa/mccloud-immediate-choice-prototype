@@ -22,7 +22,7 @@
 
       <span class="nhsuk-caption-l">Jane Doe</span>
       <h1 class="nhsuk-heading-l">
-        Current benefits
+        Personal details
       </h1>
 
       {% from "summary-list/macro.njk" import summaryList %}
@@ -31,44 +31,59 @@
         rows: [
           {
             key: {
-              text: "Lifetime allowance"
+              text: "Name"
             },
             value: {
-              text: "£2,019"
+              text: "Mrs Jane Doe"
+            } 
+          },
+          
+          {
+            key: {
+              text: "Address"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Review",
-                  visuallyHiddenText: "name"
-                }
-              ]
+            value: {
+              html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
             }
           },
           {
             key: {
-              text: "Benefit crystalisation event date"
+              text: "Membership number"
             },
             value: {
-              html: "29 June 2019"
+              text: "12345678"
+            } 
+          },
+          {
+            key: {
+              text: "Legacy scheme"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Review",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
+            value: {
+              text: "1995 scheme"
+            } 
+          },
+          {
+            key: {
+              text: "Protection type"
+            },
+            value: {
+              text: "Full protection"
+            } 
+          },
+          {
+            key: {
+              text: "Retirement type"
+            },
+            value: {
+              text: "Age"
+            } 
           }
         ]
       }) }}
 
       {{ button({
         text: "Continue",
-        href: "options"
+        href: 'current-benefits-read'
       }) }}
 
       

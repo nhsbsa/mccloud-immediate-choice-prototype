@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends 'layout.html' %}
 
 {% set questionPage = "true" %}
 
@@ -21,14 +21,16 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Approve and generate letter
+        Updating [label name A] will also update [label name B]
       </h1>
 
-    <p>If the data you have reviewed is correct, select confirm to generate a letter that will be sent to the citizen.</p>
+      <p>[label name A] and [label name b] must be the same value.</p> 
+      
+      <p>Do you want to update [label name b]?</p>
 
       {{ button({
         text: "Confirm",
-        href: 'outstanding-success'
+        href: "completed-batches-success"
       }) }}
 
       

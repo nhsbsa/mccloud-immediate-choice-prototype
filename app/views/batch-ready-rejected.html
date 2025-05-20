@@ -1,6 +1,6 @@
-{% extends 'layout-type-2.html' %}
+{% extends 'layout.html' %}
 
-{% set questionPage = "false" %}
+{% set questionPage = "true" %}
 
 {% block pageTitle %}
   {{ serviceName }}
@@ -8,6 +8,12 @@
 
 
 {% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
 {% endblock %}
 
 {% block content %}
@@ -15,17 +21,14 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Batch 11 records
+        This batch is ready to submit for review
       </h1>
 
-
-      <h2 class="nhsuk-heading-m">Records that have been completed</h2>
-
-      <p>There are 1,263 records that have had letters generated.</p>
+      <p>All the records have been updated.</p>
 
       {{ button({
-        text: "View all complete records",
-        href: "completed-2"
+        text: "Submit updates",
+        href: "awaiting-review-success"
       }) }}
       
 
