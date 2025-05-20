@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -21,12 +21,19 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Records with complete data
+        All records
       </h1>
 
-      {{ button({
-        text: "Approve all complete records"
-      }) }}
+      <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <h2 class="nhsuk-heading-s">Generate letters for this batch</h2>
+
+        <p>If the information in the batch is correct, submit the batch and letters will be generated</p>
+
+        {{ button({
+          text: "Submit all records for letter generation",
+          href: "approve-all"
+        }) }}      </div>
 
       <p>Showing 10 of 1,263 complete records.</p>
 

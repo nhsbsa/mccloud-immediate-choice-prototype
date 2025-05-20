@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -17,17 +17,10 @@
       <h1 class="nhsuk-heading-l">
         Batch 1 records
       </h1>
-      
-      <div class="nhsuk-inset-text">
-        <span class="nhsuk-u-visually-hidden">Information: </span>
 
-        <h2 class="nhsuk-heading-m">There are 1,298 records in this batch</h2>
-      
-      </div>
+      <h2 class="nhsuk-heading-m">Records that have been amended</h2>
 
-      <h2 class="nhsuk-heading-m">Records with amended data</h2>
-
-      <p>There are 36 records that need reviewing.</p>
+      <p>There are 36 records that need reviewing because they've been amended.</p>
 
       {{ button({
         text: "View all amended records",
@@ -36,12 +29,12 @@
 
       <div class="nhsuk-u-padding-bottom-4"></div>
 
-      <h2 class="nhsuk-heading-m">Records with complete data that don't need reviewing</h2>
+      <h2 class="nhsuk-heading-m">All records in this batch</h2>
 
-      <p>There are 1,263 records that you can review.</p>
+      <p>There are 1,298 records that can be reviewed.</p>
 
       {{ button({
-        text: "View all complete records",
+        text: "View all records",
         href: "completed"
       }) }}
       

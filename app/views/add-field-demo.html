@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends 'layout.html' %}
 
 {% set questionPage = "true" %}
 
@@ -20,19 +20,26 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
+      <form action="missing-data" novalidate method="post">
+
       <h1 class="nhsuk-heading-l">
-        Approve and generate letter
+        Add [label name a]
       </h1>
 
-    <p>If the data you have reviewed is correct, select confirm to generate a letter that will be sent to the citizen.</p>
+      {{ input({
+        label: {
+          text: "[label name a]"
+        },
+        id: "lifetime-allowance",
+        name: "lifetime-allowance"
+      }) }}
 
       {{ button({
-        text: "Confirm",
-        href: 'outstanding-success'
+        text: "Confirm"
       }) }}
 
       
-
+    </form>
     </div>
   </div>
 {% endblock %}

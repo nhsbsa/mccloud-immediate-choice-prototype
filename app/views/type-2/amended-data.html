@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <span class="nhsuk-caption-l">Jane Doe</span>
+      <h1 class="nhsuk-heading-l">
+        Information that's been amended
+      </h1>
+
+      <h2 class="nhsuk-heading-m">Current benefits</h2>
+
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Lifetime allowance
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £2,019
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="add-lifetime-allowance">
+              Review<span class="nhsuk-u-visually-hidden"> lifetime allowane</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="nhsuk-heading-m">Option A</h2>
+
+     
+
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Legacy deemed date
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            25 April 2019
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="add-legacy-deemed-date">
+              Review<span class="nhsuk-u-visually-hidden"> lifetime allowane</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+     
+
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            2015 payable date
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            25 April 2019
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="add-payable-date-of-benefits">
+              Review<span class="nhsuk-u-visually-hidden"> lifetime allowane</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      
+
+      {{ button({
+        text: "Continue",
+        href: 'person-details'
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

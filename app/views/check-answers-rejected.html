@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends 'layout.html' %}
 
 {% set questionPage = "true" %}
 
@@ -20,9 +20,8 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <span class="nhsuk-caption-l">Jane Doe</span>
       <h1 class="nhsuk-heading-l">
-        Current benefits
+        Check your changes before submitting
       </h1>
 
       {% from "summary-list/macro.njk" import summaryList %}
@@ -34,13 +33,13 @@
               text: "Lifetime allowance"
             },
             value: {
-              text: "£2,019"
+              text: data['lifetime-allowance']
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -48,16 +47,16 @@
           },
           {
             key: {
-              text: "Benefit crystalisation event date"
+              text: "Legacy deemed date"
             },
             value: {
-              html: "29 June 2019"
+              text: data['legacy-deemed-date']
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -67,8 +66,8 @@
       }) }}
 
       {{ button({
-        text: "Continue",
-        href: "options"
+        text: "Submit",
+        href: "rejected-batch-success"
       }) }}
 
       

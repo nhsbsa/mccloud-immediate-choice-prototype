@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends 'layout.html' %}
 
 {% set questionPage = "true" %}
 
@@ -21,16 +21,17 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Approve and generate letter
+        This batch is ready to submit for review
       </h1>
 
-    <p>If the data you have reviewed is correct, select confirm to generate a letter that will be sent to the citizen.</p>
+      <p>All the records have been updated.</p>
+
+      <p>Before submitting, you can <a href="completed">review all the records</a> that are in this batch.</p>
 
       {{ button({
-        text: "Confirm",
-        href: 'outstanding-success'
+        text: "Submit batch",
+        href: "awaiting-review-success"
       }) }}
-
       
 
     </div>
