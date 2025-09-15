@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -8,24 +8,17 @@
 
 
 {% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
 {% endblock %}
 
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-
-      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-        <div class="govuk-notification-banner__header">
-          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Success
-          </h2>
-        </div>
-        <div class="govuk-notification-banner__content">
-          <h3 class="govuk-notification-banner__heading">
-              The record has been rejected and will be reviewed by the team who submitted it
-            </h3>
-        </div>
-      </div>
 
       <h1 class="nhsuk-heading-l">
         Amended records ready for review
@@ -47,10 +40,10 @@
           }
         ],
         rows: [
-        [
+          [
             {
               header: "Name",
-              html: '<a href="person-details">Mrs Jane Doe</a>'
+              html: '<a href="amended-data">Mrs Jane Doe</a>'
             },
             {
               header: "Membership number",
@@ -58,8 +51,8 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--red">
-                Rejected
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
               </strong>'
             }
           ],
@@ -75,8 +68,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -91,8 +84,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -107,8 +100,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -123,8 +116,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -139,8 +132,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -155,8 +148,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -171,8 +164,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           [
@@ -187,8 +180,8 @@
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+                Awaiting approval
+              </strong>'
             }
           ],
           {

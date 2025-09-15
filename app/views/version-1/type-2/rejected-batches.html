@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -8,12 +8,6 @@
 
 
 {% block beforeContent %}
-
-{{ backLink({
-  href: "javascript:history.back()",
-  text: "Go back"
-}) }}
-
 {% endblock %}
 
 {% block content %}
@@ -21,10 +15,8 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Records with complete data
+        Rejected batches of records
       </h1>
-
-      <p>Showing 10 of 1,263 complete records.</p>
 
       {{ table({
         responsive: true,
@@ -32,10 +24,10 @@
         firstCellIsHeader: true,
         head: [
           {
-            text: "Name"
+            text: "Batch name"
           },
           {
-            text: "Membership number"
+            text: "Number of rejected records"
           },
           {
             text: "Status"
@@ -45,168 +37,163 @@
           [
             {
               header: "Name",
-              html: '<a href="">Mrs Amy Smith</a>'
+              html: '<a href="rejected">Batch 1</a>'
             },
             {
-              header: "Membership number",
-              text: "64264887"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Leo Gomez</a>'
-            },
-            {
-              header: "Membership number",
-              text: "53943130"
+              header: "Number of records",
+              text: "3"
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Hussein Little</a>'
-            },
-            {
-              header: "Membership number",
-              text: "18037739"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Dennis Hendricks</a>'
-            },
-            {
-              header: "Membership number",
-              text: "07556080"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mrs Abi Hogan</a>'
-            },
-            {
-              header: "Membership number",
-              text: "19534886"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
               </strong>'
             }
           ],
           [
             {
               header: "Name",
-              html: '<a href="">Mrs Catherine Bean</a>'
+              html: '<a href="">Batch 2</a>'
             },
             {
-              header: "Membership number",
-              text: "95750161"
+              header: "Number of records",
+              text: "11"
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
               </strong>'
             }
           ],
           [
             {
               header: "Name",
-              html: '<a href="person-details">Mrs Nettie Odom</a>'
+              html: '<a href="">Batch 3</a>'
             },
             {
-              header: "Membership number",
-              text: "25999402"
+              header: "Number of records",
+              text: "24"
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
             }
           ],
           [
             {
               header: "Name",
-              html: '<a href="">Mr Troy Jacobson</a>'
+              html: '<a href="">Batch 4</a>'
             },
             {
-              header: "Membership number",
-              text: "42303885"
+              header: "Number of records",
+              text: "9"
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
             }
           ],
           [
             {
               header: "Name",
-              html: '<a href="">Mr Harold Haynes</a>'
+              html: '<a href="">Batch 5</a>'
             },
             {
-              header: "Membership number",
-              text: "21689784"
+              header: "Number of records",
+              text: "1"
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-                Complete data
-              </strong>
-              '
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
             }
           ],
-          {
-            header: "Name",
-            html: '<a href="missing-data">Mrs Sarah Smith</a>'
-          },
-          {
-            header: "Membership number",
-            text: "12345678"
-          },
-          {
-            header: "Legacy scheme",
-            html: '<strong class="nhsuk-tag nhsuk-tag--blue">
-              Complete data
-            </strong>'
-          }
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 6</a>'
+            },
+            {
+              header: "Number of records",
+              text: "21"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 7</a>'
+            },
+            {
+              header: "Number of records",
+              text: "82"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Batch 8</a>'
+            },
+            {
+              header: "Number of records",
+              text: "15"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 9</a>'
+            },
+            {
+              header: "Number of records",
+              text: "4"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 10</a>'
+            },
+            {
+              header: "Number of records",
+              text: "35"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ]
         ]
       }) }}
 
@@ -227,14 +214,6 @@
           <li class="govuk-pagination__item">
             <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
               3
-            </a>
-          </li>
-          <li class="govuk-pagination__item govuk-pagination__item--ellipses">
-            &ctdot;
-          </li>
-          <li class="govuk-pagination__item">
-            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 42">
-              110
             </a>
           </li>
         </ul>

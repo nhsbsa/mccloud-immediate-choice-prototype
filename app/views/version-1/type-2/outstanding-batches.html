@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -8,12 +8,6 @@
 
 
 {% block beforeContent %}
-
-{{ backLink({
-  href: "javascript:history.back()",
-  text: "Go back"
-}) }}
-
 {% endblock %}
 
 {% block content %}
@@ -21,7 +15,7 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Amended records ready for review
+        Outstanding batches of records
       </h1>
 
       {{ table({
@@ -30,10 +24,10 @@
         firstCellIsHeader: true,
         head: [
           {
-            text: "Name"
+            text: "Batch name"
           },
           {
-            text: "Membership number"
+            text: "Number of records"
           },
           {
             text: "Status"
@@ -43,27 +37,11 @@
           [
             {
               header: "Name",
-              html: '<a href="amended-data">Mrs Jane Doe</a>'
+              html: '<a href="batch-1">Batch 1</a>'
             },
             {
-              header: "Membership number",
-              text: "12345678"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-                Awaiting approval
-              </strong>'
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Leo Gomez</a>'
-            },
-            {
-              header: "Membership number",
-              text: "53943130"
+              header: "Number of records",
+              text: "1,298"
             },
             {
               header: "Legacy scheme",
@@ -75,27 +53,11 @@
           [
             {
               header: "Name",
-              html: '<a href="">Mr Hussein Little</a>'
+              html: '<a href="">Batch 2</a>'
             },
             {
-              header: "Membership number",
-              text: "18037739"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-                Awaiting approval
-              </strong>'
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Dennis Hendricks</a>'
-            },
-            {
-              header: "Membership number",
-              text: "07556080"
+              header: "Number of records",
+              text: "2,182"
             },
             {
               header: "Legacy scheme",
@@ -107,27 +69,11 @@
           [
             {
               header: "Name",
-              html: '<a href="">Mrs Abi Hogan</a>'
+              html: '<a href="">Batch 3</a>'
             },
             {
-              header: "Membership number",
-              text: "19534886"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-                Awaiting approval
-              </strong>'
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mrs Catherine Bean</a>'
-            },
-            {
-              header: "Membership number",
-              text: "95750161"
+              header: "Number of records",
+              text: "1,983"
             },
             {
               header: "Legacy scheme",
@@ -139,27 +85,11 @@
           [
             {
               header: "Name",
-              html: '<a href="person-details">Mrs Nettie Odom</a>'
+              html: '<a href="">Batch 4</a>'
             },
             {
-              header: "Membership number",
-              text: "25999402"
-            },
-            {
-              header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-                Awaiting approval
-              </strong>'
-            }
-          ],
-          [
-            {
-              header: "Name",
-              html: '<a href="">Mr Troy Jacobson</a>'
-            },
-            {
-              header: "Membership number",
-              text: "42303885"
+              header: "Number of records",
+              text: "2,825"
             },
             {
               header: "Legacy scheme",
@@ -171,11 +101,11 @@
           [
             {
               header: "Name",
-              html: '<a href="">Mr Harold Haynes</a>'
+              html: '<a href="">Batch 5</a>'
             },
             {
-              header: "Membership number",
-              text: "21689784"
+              header: "Number of records",
+              text: "1,923"
             },
             {
               header: "Legacy scheme",
@@ -184,20 +114,86 @@
               </strong>'
             }
           ],
-          {
-            header: "Name",
-            html: '<a href="missing-data">Mrs Sarah Smith</a>'
-          },
-          {
-            header: "Membership number",
-            text: "12345678"
-          },
-          {
-            header: "Legacy scheme",
-            html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
-          }
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 6</a>'
+            },
+            {
+              header: "Number of records",
+              text: "1,420"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 7</a>'
+            },
+            {
+              header: "Number of records",
+              text: "1,315"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Batch 8</a>'
+            },
+            {
+              header: "Number of records",
+              text: "2,019"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 9</a>'
+            },
+            {
+              header: "Number of records",
+              text: "2,221"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 10</a>'
+            },
+            {
+              header: "Number of records",
+              text: "3,001"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
+                Awaiting approval
+              </strong>'
+            }
+          ]
         ]
       }) }}
 
@@ -232,6 +228,8 @@
           </a>
         </div>
       </nav>
+
+      
 
     </div>
   </div>

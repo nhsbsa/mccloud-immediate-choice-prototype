@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -15,14 +15,17 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Batch 1 rejected records
+        Batch 11 records
       </h1>
 
-      <p>There are 4 records that have been rejected and are waiting to be reviewed by another team.</p>
+
+      <h2 class="nhsuk-heading-m">Records that have been completed</h2>
+
+      <p>There are 1,263 records that have had letters generated.</p>
 
       {{ button({
-        text: "View rejected records",
-        href: "outstanding"
+        text: "View all complete records",
+        href: "completed-2"
       }) }}
       
 

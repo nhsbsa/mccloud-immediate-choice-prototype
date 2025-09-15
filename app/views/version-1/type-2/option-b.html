@@ -1,5 +1,4 @@
-{% extends 'layout-type-2.html' %}
-
+{% extends '../layout-type-2.html' %}
 {% set questionPage = "true" %}
 
 {% block pageTitle %}
@@ -20,45 +19,25 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <span class="nhsuk-caption-l">Jane Doe</span>
+ <span class="nhsuk-caption-l">Jane Doe</span>
       <h1 class="nhsuk-heading-l">
-        Personal details
+        Option B
       </h1>
-
-      {% from "summary-list/macro.njk" import summaryList %}
 
       {{ summaryList({
         rows: [
           {
             key: {
-              text: "Name"
+              text: "Legacy pension"
             },
             value: {
-              text: "Mrs Jane Doe"
+              text: "£2051.34"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          
-          {
-            key: {
-              text: "Address"
-            },
-            value: {
-              html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -66,16 +45,16 @@
           },
           {
             key: {
-              text: "Membership number"
+              text: "Legacy lump sum"
             },
             value: {
-              text: "12345678"
+              html: "£2,208"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -83,16 +62,16 @@
           },
           {
             key: {
-              text: "Legacy scheme"
+              text: "Legacy deemed date"
             },
             value: {
-              text: "1995 scheme"
+              html: "29 June 2019"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -100,16 +79,16 @@
           },
           {
             key: {
-              text: "Protection type"
+              text: "Legacy payable date"
             },
             value: {
-              text: "Full protection"
+              html: "29 June 2019"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
@@ -117,27 +96,96 @@
           },
           {
             key: {
-              text: "Retirement type"
+              text: "2015 pension"
             },
             value: {
-              text: "Age"
+              html: "£6,091"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Review",
+                  text: "Change",
                   visuallyHiddenText: "name"
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "2015 lump sum"
+            },
+            value: {
+              html: "£3,091"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "2015 payable date"
+            },
+            value: {
+              html: "25 April 2019"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+            {
+              key: {
+                text: "2015 deemed date"
+              },
+              value: {
+                html: "25 April 2019"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+              {
+                key: {
+                  text: "LTA"
+                },
+                value: {
+                  html: "£1,201"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "name"
+                    }
+                  ]
+                }
+              
           }
         ]
       }) }}
 
       {{ button({
         text: "Continue",
-        href: 'current-benefits'
+        href: "approve"
       }) }}
 
       

@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "false" %}
 
@@ -8,28 +8,34 @@
 
 
 {% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
 {% endblock %}
 
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-        <div class="govuk-notification-banner__header">
-          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Success
-          </h2>
-        </div>
-        <div class="govuk-notification-banner__content">
-          <h3 class="govuk-notification-banner__heading">
-              The record has been approved
-            </h3>
-        </div>
-      </div>
-
       <h1 class="nhsuk-heading-l">
-        Amended records ready for review
+        All records
       </h1>
+
+      <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <h2 class="nhsuk-heading-s">Generate letters for this batch</h2>
+
+        <p>If the information in the batch is correct, submit the batch and letters will be generated</p>
+
+        {{ button({
+          text: "Submit all records for letter generation",
+          href: "approve-all"
+        }) }}      </div>
+
+      <p>Showing 10 of 1,263 complete records.</p>
 
       {{ table({
         responsive: true,
@@ -47,20 +53,21 @@
           }
         ],
         rows: [
-        [
+          [
             {
               header: "Name",
-              html: '<a href="person-details">Mrs Jane Doe</a>'
+              html: '<a href="">Mrs Amy Smith</a>'
             },
             {
               header: "Membership number",
-              text: "12345678"
+              text: "64264887"
             },
             {
               header: "Legacy scheme",
               html: '<strong class="nhsuk-tag nhsuk-tag--blue">
                 Complete data
-              </strong>'
+              </strong>
+              '
             }
           ],
           [
@@ -74,9 +81,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           [
@@ -90,9 +98,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           [
@@ -106,9 +115,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           [
@@ -122,9 +132,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>'
             }
           ],
           [
@@ -138,9 +148,9 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>'
             }
           ],
           [
@@ -154,9 +164,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           [
@@ -170,9 +181,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           [
@@ -186,9 +198,10 @@
             },
             {
               header: "Legacy scheme",
-              html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
-            </strong>'
+              html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+                Complete data
+              </strong>
+              '
             }
           ],
           {
@@ -201,8 +214,8 @@
           },
           {
             header: "Legacy scheme",
-            html: '<strong class="nhsuk-tag nhsuk-tag--yellow">
-              Awaiting approval
+            html: '<strong class="nhsuk-tag nhsuk-tag--blue">
+              Complete data
             </strong>'
           }
         ]
@@ -227,6 +240,14 @@
               3
             </a>
           </li>
+          <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+            &ctdot;
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 42">
+              110
+            </a>
+          </li>
         </ul>
         <div class="govuk-pagination__next">
           <a class="govuk-link govuk-pagination__link" href="#" rel="next">
@@ -239,6 +260,8 @@
           </a>
         </div>
       </nav>
+
+      
 
     </div>
   </div>

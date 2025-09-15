@@ -1,4 +1,4 @@
-{% extends 'layout-type-2.html' %}
+{% extends '../layout-type-2.html' %}
 
 {% set questionPage = "true" %}
 
@@ -21,14 +21,14 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
-        Submit and generate letters
+        Approve and generate letter
       </h1>
 
-    <p>If the data you have reviewed is correct, select confirm to generate the letters that will be sent to the relevant pensioners.</p>
+    <p>If the data you have reviewed is correct, select confirm to generate a letter that will be sent to the citizen.</p>
 
       {{ button({
         text: "Confirm",
-        href: 'completed-batches-success'
+        href: 'outstanding-success'
       }) }}
 
       
