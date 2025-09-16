@@ -1,19 +1,7 @@
-<!-- Use this page as the index for your project -->
+{% set pageName = "Prototype home" %}
+{% set loggedIn = "false" %}
+{% extends 'layout.html' %}
 
-<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
-
-<!-- Extends the layout from /app/views/layout.html -->
-{% extends 'version-1/layout.html' %}
-<!--
-  In /app/views/layout.html you can:
-    - change the header and footer
-    - add custom CSS and JavaScript
--->
-
-<!-- Set the page title -->
-{% block pageTitle %}
-  {{ serviceName }}
-{% endblock %}
 
 <!-- For adding a breadcrumb or back link -->
 <!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
@@ -25,19 +13,11 @@
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-
-      <h1 class="nhsuk-heading-xl">
-        McCloud Immediate Choice prototype
-      </h1>
-
-      <h2 class="nhsuk-heading-l">Original version, May 2025</h2>
-
+      <h2 class="nhsuk-heading-l">May 2025 testing versions</h2>
       <ul class="nhsuk-list nhsuk-list--bullet">
-        <li><a href="/outstanding-batches">User type 1 (Pension Administrator) flows</a></li>
-        <li><a href="/type-2/outstanding-batches">User type 2 (Quality Coaches) flows</a></li>
+        <li><a href="/version-1/outstanding-batches">User type 1 (Pension Administrator) flows</a></li>
+        <li><a href="/version-1/type-2/outstanding-batches">User type 2 (Quality Coaches) flows</a></li>
       </ul>
-
-  
     </div>
   </div>
 {% endblock %}
