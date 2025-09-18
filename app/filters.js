@@ -1,39 +1,47 @@
 /**
  * @param {Environment} env
  */
+
+const { DateTime } = require('luxon')
+
 module.exports = function (env) {
   const filters = {}
 
-  /* ------------------------------------------------------------------
-    add your methods to the filters obj below this comment block:
-    @example:
+  filters.niceDate = (dateString) => {
+    if (!dateString) return ''
 
-    filters.sayHi = function(name) {
-        return 'Hi ' + name + '!'
+    const dt = DateTime.fromISO(dateString)
+    if (!dt.isValid) return dateString
+
+    // If time is midnight (00:00), assume no time element was provided
+    if (dt.hour === 0 && dt.minute === 0) {
+      return dt.toFormat('dd/LL/yyyy')
     }
 
-    Which in your templates would be used as:
+    return dt.toFormat("dd/LL/yyyy 'at' HH:mm")
+  }
 
-    {{ 'Paul' | sayHi }} => 'Hi Paul'
-
-    Notice the first argument of your filters method is whatever
-    gets 'piped' via '|' to the filter.
-
-    Filters can take additional arguments, for example:
-
-    filters.sayHi = function(name,tone) {
-      return (tone == 'formal' ? 'Greetings' : 'Hi') + ' ' + name + '!'
+  filters.formatRecord = (value, type) => {
+    switch (type) {
+      case 'currency': {
+        const num = parseFloat(value)
+        if (isNaN(num)) return value
+        return num.toLocaleString('en-GB', {
+          style: 'currency',
+          currency: 'GBP',
+          minimumFractionDigits: 2
+        })
+      }
+      case 'date':
+        return filters.niceDate(value)
+      case 'text':
+      default:
+        return value
     }
+  }
+  
 
-    Which would be used like this:
 
-    {{ 'Joel' | sayHi('formal') }} => 'Greetings Joel!'
-    {{ 'Gemma' | sayHi }} => 'Hi Gemma!'
-
-    For more on filters and how to write them see the Nunjucks
-    documentation.
-
-  ------------------------------------------------------------------ */
 
   /* keep the following line to return your filters to the app  */
   return filters

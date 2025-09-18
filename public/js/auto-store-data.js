@@ -1,3 +1,5 @@
+"use strict";
+
 // On form submit, add hidden inputs for checkboxes so the server knows if
 // they've been unchecked. This means we can automatically store and update
 // all form data on the server, including checkboxes that are checked, then

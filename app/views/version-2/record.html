@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+{% set pageName = data.v2.pensioners[record].name %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "/version-2/search-results"
+  }) }}
+{% endblock %}
+
+
+
+{% block content %}
+
+{% macro recordSummary(records) %}
+  <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+    {% for id, record in records %}
+    {% set error = false %}
+    {% if record.required and (record.value == "" or record.value == "n/a") %}{% set error = true %}{% endif %}
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
+      <dd class="nhsuk-summary-list__value">{{ record.value | formatRecord(record.type) }} ({{ error }})</dd>
+    </div>
+    {% endfor %}
+  </dl>
+{% endmacro %}
+
+{% set personalDetailsHtml %}
+{{ summaryList({
+  classes: 'nhsuk-summary-list--no-border',
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: data.v2.pensioners[record].name
+      }
+    },
+    {
+      key: {
+        text: "Membership number"
+      },
+      value: {
+        html: data.v2.pensioners[record].membershipNumber
+      }
+    },
+    {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        text: data.v2.pensioners[record].dob | niceDate
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
+      }
+    }
+  ]
+}) }}
+{% endset %}
+
+{% set dataRecord = data.v2.record %}
+
+{% set currentSchemeHtml %}
+<h2 class="nhsuk-heading-m">Scheme details</h2>
+{{ summaryList({
+  classes: 'nhsuk-summary-list--no-border',
+  rows: [
+    {
+      key: {
+        text: "Legacy scheme"
+      },
+      value: {
+        text: dataRecord.schemeDetails.legacyScheme.value
+      }
+    },
+    {
+      key: {
+        text: "Protection type"
+      },
+      value: {
+        html: dataRecord.schemeDetails.protectionType.value
+      }
+    }
+  ]
+}) }}
+<h2 class="nhsuk-heading-m">Current legacy scheme benefit</h2>
+{{ recordSummary(dataRecord.currentLegacySchemeBenefit) }}
+{% endset %}
+
+<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+{{ tabs({ 
+  items: [ 
+    { 
+      label: "Personal details", 
+      id: "personal-details", 
+      panel: { 
+        html: personalDetailsHtml
+      } 
+    },
+    { 
+      label: "Current scheme", 
+      id: "current-scheme", 
+      panel: { 
+        html: currentSchemeHtml
+      } 
+    },
+    { 
+      label: "Option A", 
+      id: "options-a", 
+      panel: { 
+        html: "<p>Test</p>"
+      } 
+    },
+    { 
+      label: "Option B", 
+      id: "options-b", 
+      panel: { 
+        html: "<p>Test</p>"
+      } 
+    }
+  ] 
+}) }}
+{% endblock %}

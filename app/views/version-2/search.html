@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% set pageName = "Find a pensioner" %}
+
+{% block content %}
+
+<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+
+<form method="post" action="/version-2/search-results" class="nhsuk-form">
+{{ input({
+  label: {
+    text: "Find a pensioner by name or ID number"
+  },
+  id: "search",
+  name: "search"
+}) }}
+{{ button({
+  text: "Search pensioners"
+}) }}
+</form>
+
+{# <table class="nhsuk-table">
+  <caption class="nhsuk-table__caption">Pensioners</caption>
+  <thead class="nhsuk-table__head">
+    <tr>
+      <th scope="col" class="nhsuk-table__header">Name</th>
+      <th scope="col" class="nhsuk-table__header">Membership number</th>
+      <th scope="col" class="nhsuk-table__header">Status</th>
+      <th scope="col" class="nhsuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="nhsuk-table__body">
+    {% for id, pensioner in data.v2.pensioners %}
+    <tr class="nhsuk-table__row">
+      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">
+        <a class="nhsuk-link" href="/version-2/record/{{ id }}?batch={{ batch }}">Review record</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> #}
+{% endblock %}
