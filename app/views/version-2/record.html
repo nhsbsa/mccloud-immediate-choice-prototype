@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set pageName = data.v2.pensioners[record].name %}
+{% set pageName = 'Pension record for ' + data.v2.pensioners[record].name %}
 
 {% block beforeContent %}
   {{ backLink({
@@ -7,38 +7,58 @@
   }) }}
 {% endblock %}
 
+{% macro recordSummary(recordSet, tab) %}
+{# Calculate how many missing values there are in this record set #}
+{% set missingValues = 0 %}
+{% for id, record in recordSet.items %}
+  {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+{% endfor %}
 
-
-{% block content %}
-
-{% macro recordSummary(records, tab) %}
-
-  {# first, work out how many missing values there are in this record set #}
-  {% set missingValues = 0 %}
-  {% for id, record in records.items %}
-    {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
-  {% endfor %}
-
-  <div class="mccloud-record">
-    <h2 class="nhsuk-heading-m">{{ records.title }}</h2>
+<div class="mccloud-summary-card">
+  <div class="mccloud-summary-card__title-wrapper">
     {% if missingValues > 0 %}
-    <p><a href="/version-2/edit-record-set/{{ records.id }}?record_id={{ record }}&tab_id={{ tab }}">Correct {{ missingValues }} values for {{ records.title }}</a></p>
+      <h2 class="mccloud-summary-card__title">{{ recordSet.title }} ({{ missingValues }} invalid records)</h2>
+      <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}?record_id={{ record }}&tab_id={{ tab }}">Fix <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
+    {% else %}
+      <h2 class="mccloud-summary-card__title">{{ recordSet.title }}</h2>
     {% endif %}
-  <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-    {% for id, record in records.items %}
-    <div class="nhsuk-summary-list__row">
-      <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-      <dd class="nhsuk-summary-list__value">
-        {{ record.value | formatRecord(record.type) }}
-        {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
-        {% if record.valid == false %}<br><span class="mccloud-record-error">{{ record.error }}</span>{% endif %}
-      </dd>
-    </div>
-    {% endfor %}
-  </dl>
   </div>
+
+  <div class="mccloud-summary-card__content">
+    
+    <dl class="nhsuk-summary-list">
+      {% for id, record in recordSet.items %}
+      {% if record.valid == false %}
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ record.value | formatRecord(record.type) }}
+          {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
+          <br><span class="mccloud-record-error">{{ record.error }}</span>
+        </dd>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      {% for id, record in recordSet.items %}
+      {% if record.valid != false %}
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ record.value | formatRecord(record.type) }}
+          {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
+        </dd>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+    </dl>
+
+  </div>
+</div>
 {% endmacro %}
 
+{% block content %}
 {% set personalDetailsHtml %}
 {{ summaryList({
   classes: 'nhsuk-summary-list--no-border',
@@ -79,33 +99,6 @@
 }) }}
 {% endset %}
 
-{% set dataRecord = data.v2.record %}
-
-{% set currentSchemeHtml %}
-<h2 class="nhsuk-heading-m">Scheme details</h2>
-{{ summaryList({
-  classes: 'nhsuk-summary-list--no-border',
-  rows: [
-    {
-      key: {
-        text: "Legacy scheme"
-      },
-      value: {
-        text: dataRecord.schemeDetails.legacyScheme.value
-      }
-    },
-    {
-      key: {
-        text: "Protection type"
-      },
-      value: {
-        html: dataRecord.schemeDetails.protectionType.value
-      }
-    }
-  ]
-}) }}
-{% endset %}
-
 <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 {{ tabs({ 
   items: [ 
@@ -121,15 +114,15 @@
       id: "current-scheme", 
       panel: { 
         html:
-          recordSummary(dataRecord.schemeDetails, 'current-scheme') +
-          recordSummary(dataRecord.currentLegacySchemeBenefit, 'current-scheme')
+          recordSummary(data.v2.record.schemeDetails, 'current-scheme') +
+          recordSummary(data.v2.record.currentLegacySchemeBenefit, 'current-scheme')
       } 
     },
     { 
       label: "Option A", 
       id: "options-a", 
       panel: { 
-        html: "<p>Test</p>"
+        html: recordSummary(data.v2.record.optionALegacySchemeBenefit, 'options-a')
       } 
     },
     { 

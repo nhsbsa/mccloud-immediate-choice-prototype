@@ -147,6 +147,94 @@ module.exports = {
             type: 'number'
           }
         }
+      },
+      optionALegacySchemeBenefit: {
+        title: 'Option A legacy scheme benefit',
+        id: 'optionALegacySchemeBenefit',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: 'Age',
+            required: true,
+            type: 'text'
+          },
+          pension: {
+            title: 'Pension',
+            value: '19837.98',
+            required: true,
+            type: 'currency'
+          },
+          lumpSum: {
+            title: 'Lump sum',
+            value: '198373.98',
+            required: false,
+            type: 'currency'
+          },
+          adultDependantPension: {
+            title: 'Adult dependant pension',
+            value: '0.00',
+            required: false,
+            type: 'currency',
+            valid: false,
+            error: 'Dependant pension should be greater than 50% of lump sum'
+          },
+          payableDate: {
+            title: 'Payable date',
+            value: '2025-09-27',
+            required: true,
+            type: 'date'
+          },
+          deemedDate: {
+            title: 'Deemed date',
+            value: '2025-09-27',
+            required: false,
+            type: 'date'
+          },
+          benefitScheme: {
+            title: 'Benefit scheme',
+            value: '1955',
+            required: true,
+            type: 'text'
+          },
+          commutationType: {
+            title: 'LTA BCE date',
+            value: '2018-04-05',
+            required: false,
+            type: 'date'
+          },
+          pensionablePay: {
+            title: 'Pensionable pay',
+            value: '550000000',
+            required: false,
+            type: 'currency',
+            error: 'Pensionable pay should be between £10,000 and £120,000',
+            valid: false
+          },
+          ageAtPayable: {
+            title: 'Age at payable date',
+            value: '70',
+            required: true,
+            type: 'number'
+          },
+          reckonableMembership: {
+            title: 'Reckonable membership',
+            value: '35',
+            required: false,
+            type: 'number'
+          },
+          dynamisingPay: {
+            title: 'Dynamising pay',
+            value: '60500',
+            required: false,
+            type: 'currency'
+          },
+          splitBenefitPay: {
+            title: 'Split benefit pay',
+            value: '0.00',
+            required: false,
+            type: 'currency'
+          }
+        }
       }
     }
   }

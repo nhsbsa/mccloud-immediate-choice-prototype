@@ -30,3 +30,27 @@
     color: map-get($nhsuk-colours, "grey-2");
   }
 }
+
+.mccloud-summary-card {
+  border: 1px solid map-get($nhsuk-colours, "grey-4");
+  @include nhsuk-responsive-margin(5, bottom);
+
+  &__title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    @include nhsuk-responsive-padding(3, all);
+    background-color: map-get($nhsuk-colours, "grey-5");
+  }
+
+  &__content {
+    @include nhsuk-responsive-padding(3, all);
+  }
+
+  &__title,
+  &__action {
+    @include nhsuk-font-size(19);
+    margin: 0;
+  }
+
+}

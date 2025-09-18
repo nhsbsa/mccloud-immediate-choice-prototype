@@ -10867,4 +10867,59 @@ b {
 }
 .mccloud-record-no-value {
   color: #768692;
+}
+
+.mccloud-summary-card {
+  border: 1px solid #d8dde0;
+}
+.mccloud-summary-card {
+  margin-bottom: 24px;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-summary-card {
+    margin-bottom: 32px;
+  }
+}
+.mccloud-summary-card__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  background-color: #f0f4f5;
+}
+.mccloud-summary-card__title-wrapper {
+  padding: 8px;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-summary-card__title-wrapper {
+    padding: 16px;
+  }
+}
+.mccloud-summary-card__content {
+  padding: 8px;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-summary-card__content {
+    padding: 16px;
+  }
+}
+.mccloud-summary-card__title, .mccloud-summary-card__action {
+  margin: 0;
+}
+.mccloud-summary-card__title, .mccloud-summary-card__action {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-summary-card__title, .mccloud-summary-card__action {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.47368;
+  }
+}
+@media print {
+  .mccloud-summary-card__title, .mccloud-summary-card__action {
+    font-size: 13pt;
+    line-height: 1.25;
+  }
 }/*# sourceMappingURL=main.css.map */
