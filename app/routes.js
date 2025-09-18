@@ -20,7 +20,7 @@ router.get('/version-2/edit-record-set/:id', function (req, res) {
   const recordSetId = req.params.id;
   res.render('version-2/edit-record-set', { 
     recordSet: recordSetId,
-    ...res.query
+    ...req.query
   });
 });
 

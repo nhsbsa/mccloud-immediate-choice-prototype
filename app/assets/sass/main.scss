@@ -9,3 +9,29 @@
 @import 'components/sub-navigation';
 @import 'components/app-count';
 @import 'components/card';
+
+//custom styes or extensions to NHS.UK frontend library
+.nhsuk-date-input {
+  &__label {
+    @include nhsuk-font(16);
+  }
+}
+
+.mccloud-record + .mccloud-record {
+  @include nhsuk-responsive-padding(5, top);
+  border-top: 1px solid map-get($nhsuk-colours, "grey-4");;
+}
+
+.mccloud-record-header {
+  display: flex;
+  gap: nhsuk-spacing(2);
+  justify-content: space-between;
+  align-items: center;
+  @include nhsuk-responsive-margin(3, bottom);
+  &__title {
+    margin: 0;
+  }
+  &__action {
+    @include nhsuk-font(19);
+  }
+}

@@ -31,101 +31,111 @@ module.exports = {
     },
     record: {
       schemeDetails: {
-        legacyScheme: {
-          value: '1955',
-          required: true,
-          type: 'text'
-        },
-        protectionType: {
-          value: 'full',
-          required: false, 
-          type: 'text'
-        },
+        title: 'Scheme details',
+        id: 'schemeDetails',
+        items: {
+          legacyScheme: {
+            title: 'Legacy scheme',
+            value: '1955',
+            required: true,
+            type: 'text'
+          },
+          protectionType: {
+            title: 'Protection type',
+            value: 'full',
+            required: false, 
+            type: 'text'
+          }
+        }
       },
       currentLegacySchemeBenefit: {
-        reasonForRetirement: {
-          title: 'Reason for retirement',
-          value: 'n/a',
-          required: false,
-          type: 'text'
-        },
-        pension: {
-          title: 'Pension',
-          value: '',
-          required: true,
-          type: 'currency'
-        },
-        lumpSum: {
-          title: 'Lump sum',
-          value: '198373.98',
-          required: false,
-          type: 'currency'
-        },
-        adultDependantPension: {
-          title: 'Adult dependant pension',
-          value: '0.00',
-          required: false,
-          type: 'currency'
-        },
-        payableDate: {
-          title: 'Payable date',
-          value: '2025-10-01',
-          required: false,
-          type: 'date'
-        },
-        deemedDate: {
-          title: 'Deemed date',
-          value: '2025-09-27',
-          required: false,
-          type: 'date'
-        },
-        benefitScheme: {
-          title: 'Benefit scheme',
-          value: 'n/a',
-          required: false,
-          type: 'text'
-        },
-        commutationType: {
-          title: 'Commutation type',
-          value: 'maximum',
-          required: false,
-          type: 'text'
-        },
-        commutationAmount: {
-          title: 'Commutation amount',
-          value: '198373.98',
-          required: false,
-          type: 'currency'
-        },
-        LTABCEDate: {
-          title: 'LTA BCE date',
-          value: '2025-09-27',
-          required: false,
-          type: 'date'
-        },
-        LTA: {
-          title: 'LTA',
-          value: '1073100',
-          required: false,
-          type: 'currency'
-        },
-        trivialLumpSumTaxable: {
-          title: 'Trivial lump sum taxable',
-          value: '0.00',
-          required: false,
-          type: 'currency'
-        },
-        trivialLumpSumTaxFree: {
-          title: 'Trivial lump sum non-taxable',
-          value: '0.00',
-          required: false,
-          type: 'currency'
-        },
-        ageAtPayable: {
-          title: 'Age at payable date',
-          value: '70',
-          required: false,
-          type: 'number'
+        title: 'Current legacy scheme benefit',
+        id: 'currentLegacySchemeBenefit',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: '',
+            required: true,
+            type: 'text'
+          },
+          pension: {
+            title: 'Pension',
+            value: '',
+            required: true,
+            type: 'currency'
+          },
+          lumpSum: {
+            title: 'Lump sum',
+            value: '198373.98',
+            required: false,
+            type: 'currency'
+          },
+          adultDependantPension: {
+            title: 'Adult dependant pension',
+            value: '0.00',
+            required: false,
+            type: 'currency'
+          },
+          payableDate: {
+            title: 'Payable date',
+            value: '',
+            required: true,
+            type: 'date'
+          },
+          deemedDate: {
+            title: 'Deemed date',
+            value: '2025-09-27',
+            required: false,
+            type: 'date'
+          },
+          benefitScheme: {
+            title: 'Benefit scheme',
+            value: '',
+            required: true,
+            type: 'text'
+          },
+          commutationType: {
+            title: 'Commutation type',
+            value: 'maximum',
+            required: false,
+            type: 'text'
+          },
+          commutationAmount: {
+            title: 'Commutation amount',
+            value: '198373.98',
+            required: false,
+            type: 'currency'
+          },
+          LTABCEDate: {
+            title: 'LTA BCE date',
+            value: '2025-09-27',
+            required: false,
+            type: 'date'
+          },
+          LTA: {
+            title: 'LTA',
+            value: '1073100',
+            required: false,
+            type: 'currency'
+          },
+          trivialLumpSumTaxable: {
+            title: 'Trivial lump sum taxable',
+            value: '0.00',
+            required: false,
+            type: 'currency'
+          },
+          trivialLumpSumTaxFree: {
+            title: 'Trivial lump sum non-taxable',
+            value: '0.00',
+            required: false,
+            type: 'currency'
+          },
+          ageAtPayable: {
+            title: 'Age at payable date',
+            value: '',
+            required: true,
+            type: 'number'
+          }
         }
       }
     }

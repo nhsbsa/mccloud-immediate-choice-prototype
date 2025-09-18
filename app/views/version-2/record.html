@@ -11,17 +11,36 @@
 
 {% block content %}
 
-{% macro recordSummary(records) %}
+{% macro recordSummary(records, tab) %}
+
+  {# first, work out how many missing values there are in this record set #}
+  {% set missingValues = 0 %}
+  {% for id, record in records.items %}
+    {% if record.required and (record.value == "" or record.value == "n/a") %}{% set missingValues = missingValues + 1 %}{% endif %}
+  {% endfor %}
+
+  <div class="mccloud-record">
+  <header class="mccloud-record-header">
+    <h2 class="nhsuk-heading-m mccloud-record-header__title">{{ records.title }}</h2>
+    {% if missingValues > 0 %}
+    <a class="mccloud-record-header__action" href="/version-2/edit-record-set/{{ records.id }}?record_id={{ record }}&tab_id={{ tab }}">Add {{ missingValues }} missing values<span class="nhsuk-u-visually-hidden"> for {{ records.title }}</span></a>
+    {% endif %}
+  </header>
   <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-    {% for id, record in records %}
-    {% set error = false %}
-    {% if record.required and (record.value == "" or record.value == "n/a") %}{% set error = true %}{% endif %}
+    {% for id, record in records.items %}
+    {% set missing = record.required and (record.value == "" or record.value == "n/a") %}
+    {% if missing %}
+      {% set recordValue %}<strong class="nhsuk-tag nhsuk-tag--grey">Missing value</strong>{% endset %}
+    {% else %}
+      {% set recordValue = record.value | formatRecord(record.type) %}
+    {% endif %}
     <div class="nhsuk-summary-list__row">
       <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-      <dd class="nhsuk-summary-list__value">{{ record.value | formatRecord(record.type) }} ({{ error }})</dd>
+      <dd class="nhsuk-summary-list__value">{{ recordValue | safe }}</dd>
     </div>
     {% endfor %}
   </dl>
+  </div>
 {% endmacro %}
 
 {% set personalDetailsHtml %}
@@ -89,8 +108,6 @@
     }
   ]
 }) }}
-<h2 class="nhsuk-heading-m">Current legacy scheme benefit</h2>
-{{ recordSummary(dataRecord.currentLegacySchemeBenefit) }}
 {% endset %}
 
 <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
@@ -107,7 +124,9 @@
       label: "Current scheme", 
       id: "current-scheme", 
       panel: { 
-        html: currentSchemeHtml
+        html:
+          recordSummary(dataRecord.schemeDetails, 'current-scheme') +
+          recordSummary(dataRecord.currentLegacySchemeBenefit, 'current-scheme')
       } 
     },
     { 

@@ -1,1 +1,81 @@
 {% extends 'layout.html' %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "/version-2/record/" + record_id + "#" + tab_id
+  }) }}
+{% endblock %}
+
+{% set pageName = "Add missing values for " + data.v2.record[recordSet].title | lower %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-xl">{{ data.v2.record[recordSet].title }}</span>
+      <h1 class="nhsuk-heading-xl">Add missing values</h1>
+      <form method="post" action="/version-2/process-record-set">
+        <input type="hidden" value="{{ recordSet }}">
+        {% for recordId, record in data.v2.record[recordSet].items %}
+          {% if record.required and (record.value == "" or record.value == "n/a") %}
+            
+            {# This is verbose, but is at least easy to read... #}
+            {% if record.type == "text" %}
+              {{ input({
+                  label: {
+                    text: record.title
+                  },
+                  name: recordId
+                }) }}
+            {% elif record.type == "number" %}
+              {{ input({
+                label: {
+                  text: record.title
+                },
+                name: recordId,
+                classes: "nhsuk-input--width-5",
+                inputmode: "numeric"
+              }) }}
+            {% elif record.type == "currency" %}
+              {{ input({
+                label: {
+                    text: record.title
+                },
+                name: recordId,
+                prefix: "£",
+                classes: "nhsuk-input--width-5"
+              }) }}
+            {% elif record.type == "date" %}
+              {{ dateInput({
+                fieldset: {
+                  legend: {
+                    text: record.title
+                  }
+                },
+                items: [
+                  {
+                    name: "day",
+                    classes: "nhsuk-input--width-2"
+                  },
+                  {
+                    name: "month",
+                    classes: "nhsuk-input--width-2"
+                  },
+                  {
+                    name: "year",
+                    classes: "nhsuk-input--width-4"
+                  }
+                ]
+              }) }}
+            {% endif %}
+            {# End: inputs #}
+
+          {% endif %}
+        {% endfor %}
+        {{ button({
+          text: "Save and continue"
+        }) }}
+      </form>
+  </div>
+</div>
+{% endblock %}

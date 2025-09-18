@@ -10826,4 +10826,77 @@ b {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
+}
+
+.nhsuk-date-input__label {
+  font-weight: 400;
+}
+.nhsuk-date-input__label {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+}
+@media (min-width: 40.0625em) {
+  .nhsuk-date-input__label {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+@media print {
+  .nhsuk-date-input__label {
+    font-size: 12pt;
+    line-height: 1.3;
+  }
+}
+
+.mccloud-record + .mccloud-record {
+  border-top: 1px solid #d8dde0;
+}
+.mccloud-record + .mccloud-record {
+  padding-top: 24px;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-record + .mccloud-record {
+    padding-top: 32px;
+  }
+}
+
+.mccloud-record-header {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+.mccloud-record-header {
+  margin-bottom: 8px;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-record-header {
+    margin-bottom: 16px;
+  }
+}
+.mccloud-record-header__title {
+  margin: 0;
+}
+.mccloud-record-header__action {
+  font-weight: 400;
+}
+.mccloud-record-header__action {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+@media (min-width: 40.0625em) {
+  .mccloud-record-header__action {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.47368;
+  }
+}
+@media print {
+  .mccloud-record-header__action {
+    font-size: 13pt;
+    line-height: 1.25;
+  }
 }/*# sourceMappingURL=main.css.map */
