@@ -16,27 +16,23 @@
   {# first, work out how many missing values there are in this record set #}
   {% set missingValues = 0 %}
   {% for id, record in records.items %}
-    {% if record.required and (record.value == "" or record.value == "n/a") %}{% set missingValues = missingValues + 1 %}{% endif %}
+    {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
   {% endfor %}
 
   <div class="mccloud-record">
-  <header class="mccloud-record-header">
-    <h2 class="nhsuk-heading-m mccloud-record-header__title">{{ records.title }}</h2>
+    <h2 class="nhsuk-heading-m">{{ records.title }}</h2>
     {% if missingValues > 0 %}
-    <a class="mccloud-record-header__action" href="/version-2/edit-record-set/{{ records.id }}?record_id={{ record }}&tab_id={{ tab }}">Add {{ missingValues }} missing values<span class="nhsuk-u-visually-hidden"> for {{ records.title }}</span></a>
+    <p><a href="/version-2/edit-record-set/{{ records.id }}?record_id={{ record }}&tab_id={{ tab }}">Correct {{ missingValues }} values for {{ records.title }}</a></p>
     {% endif %}
-  </header>
   <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
     {% for id, record in records.items %}
-    {% set missing = record.required and (record.value == "" or record.value == "n/a") %}
-    {% if missing %}
-      {% set recordValue %}<strong class="nhsuk-tag nhsuk-tag--grey">Missing value</strong>{% endset %}
-    {% else %}
-      {% set recordValue = record.value | formatRecord(record.type) %}
-    {% endif %}
     <div class="nhsuk-summary-list__row">
       <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-      <dd class="nhsuk-summary-list__value">{{ recordValue | safe }}</dd>
+      <dd class="nhsuk-summary-list__value">
+        {{ record.value | formatRecord(record.type) }}
+        {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
+        {% if record.valid == false %}<br><span class="mccloud-record-error">{{ record.error }}</span>{% endif %}
+      </dd>
     </div>
     {% endfor %}
   </dl>

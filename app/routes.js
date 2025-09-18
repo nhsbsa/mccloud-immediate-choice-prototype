@@ -24,4 +24,13 @@ router.get('/version-2/edit-record-set/:id', function (req, res) {
   });
 });
 
+
+router.get('/version-2/warn-about-record-set/:id', function (req, res) {
+  const recordSetId = req.params.id;
+  res.render('version-2/warn-about-record-set', { 
+    recordSet: recordSetId,
+    ...req.query
+  });
+});
+
 module.exports = router

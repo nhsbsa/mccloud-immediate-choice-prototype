@@ -27,7 +27,7 @@
     account: {
       items: [
         {
-          text: data.v2.user.name,
+          text: data.v2.users.type1.name,
           icon: true
         },
         {
@@ -35,27 +35,7 @@
           href: "#"
         }
       ]
-    } if loggedIn != "false",
-    navigation: {
-      items: [
-        {
-          text: "Outstanding batches",
-          href: "/version-2/landing-page"
-        },
-        {
-          text: "Awaiting review",
-          href: "/version-2/landing-page"
-        },
-        {
-          text: "Rejected batches",
-          href: "/version-2/landing-page"
-        },
-        {
-          text: "Completed batches",
-          href: "/version-2/landing-page"
-        }
-      ]
-    }
+    } if loggedIn != "false"
   }) }}
 {% endblock %}
 

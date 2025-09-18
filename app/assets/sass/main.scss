@@ -22,16 +22,11 @@
   border-top: 1px solid map-get($nhsuk-colours, "grey-4");;
 }
 
-.mccloud-record-header {
-  display: flex;
-  gap: nhsuk-spacing(2);
-  justify-content: space-between;
-  align-items: center;
-  @include nhsuk-responsive-margin(3, bottom);
-  &__title {
-    margin: 0;
+.mccloud-record {
+  &-error {
+    color: map-get($nhsuk-colours, "red");
   }
-  &__action {
-    @include nhsuk-font(19);
+  &-no-value {
+    color: map-get($nhsuk-colours, "grey-2");
   }
 }

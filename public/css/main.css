@@ -10862,41 +10862,9 @@ b {
   }
 }
 
-.mccloud-record-header {
-  display: flex;
-  gap: 8px;
-  justify-content: space-between;
-  align-items: center;
+.mccloud-record-error {
+  color: #d5281b;
 }
-.mccloud-record-header {
-  margin-bottom: 8px;
-}
-@media (min-width: 40.0625em) {
-  .mccloud-record-header {
-    margin-bottom: 16px;
-  }
-}
-.mccloud-record-header__title {
-  margin: 0;
-}
-.mccloud-record-header__action {
-  font-weight: 400;
-}
-.mccloud-record-header__action {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-@media (min-width: 40.0625em) {
-  .mccloud-record-header__action {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.47368;
-  }
-}
-@media print {
-  .mccloud-record-header__action {
-    font-size: 13pt;
-    line-height: 1.25;
-  }
+.mccloud-record-no-value {
+  color: #768692;
 }/*# sourceMappingURL=main.css.map */

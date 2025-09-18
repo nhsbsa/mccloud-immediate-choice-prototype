@@ -1,3 +1,5 @@
+const { FALSE } = require("sass-embedded");
+
 module.exports = {
   v2: {
     users: {
@@ -56,19 +58,25 @@ module.exports = {
             title: 'Reason for retirement',
             value: '',
             required: true,
-            type: 'text'
+            type: 'text',
+            valid: false,
+            error: 'Reason for retirement cannot be blank'
           },
           pension: {
             title: 'Pension',
             value: '',
             required: true,
-            type: 'currency'
+            type: 'currency',
+            valid: false,
+            error: 'Pension must be a valid amount'
           },
           lumpSum: {
             title: 'Lump sum',
             value: '198373.98',
             required: false,
-            type: 'currency'
+            type: 'currency',
+            valid: false,
+            error: 'Lump sum should be less than £120,000'
           },
           adultDependantPension: {
             title: 'Adult dependant pension',
@@ -80,7 +88,9 @@ module.exports = {
             title: 'Payable date',
             value: '',
             required: true,
-            type: 'date'
+            type: 'date',
+            valid: false,
+            error: 'Payable date must be a valid date'
           },
           deemedDate: {
             title: 'Deemed date',
