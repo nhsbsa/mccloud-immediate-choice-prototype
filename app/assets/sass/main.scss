@@ -17,17 +17,13 @@
   }
 }
 
-.mccloud-record + .mccloud-record {
-  @include nhsuk-responsive-padding(5, top);
-  border-top: 1px solid map-get($nhsuk-colours, "grey-4");;
-}
-
 .mccloud-record {
   &-error {
-    color: map-get($nhsuk-colours, "red");
+    color: $nhsuk-error-colour;
   }
-  &-no-value {
-    color: map-get($nhsuk-colours, "grey-2");
+  &-no-value,
+  &-warning {
+    color: nhsuk-colour("grey-1");
   }
 }
 
@@ -45,6 +41,14 @@
 
   &__content {
     @include nhsuk-responsive-padding(3, all);
+
+    //special overrides for the summary list
+    >.nhsuk-summary-list {
+      margin-bottom: 0;
+    }
+    >.nhsuk-summary-list .nhsuk-summary-list__row:last-child {
+      border-bottom: none;
+    }
   }
 
   &__title,

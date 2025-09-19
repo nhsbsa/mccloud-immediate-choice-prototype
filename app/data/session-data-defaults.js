@@ -76,7 +76,7 @@ module.exports = {
             required: false,
             type: 'currency',
             valid: false,
-            error: 'Lump sum should be less than £120,000'
+            warning: 'Lump sum should be less than £120,000'
           },
           adultDependantPension: {
             title: 'Adult dependant pension',
@@ -207,7 +207,7 @@ module.exports = {
             value: '550000000',
             required: false,
             type: 'currency',
-            error: 'Pensionable pay should be between £10,000 and £120,000',
+            warning: 'Pensionable pay should be between £10,000 and £120,000',
             valid: false
           },
           ageAtPayable: {

@@ -10850,23 +10850,11 @@ b {
   }
 }
 
-.mccloud-record + .mccloud-record {
-  border-top: 1px solid #d8dde0;
-}
-.mccloud-record + .mccloud-record {
-  padding-top: 24px;
-}
-@media (min-width: 40.0625em) {
-  .mccloud-record + .mccloud-record {
-    padding-top: 32px;
-  }
-}
-
 .mccloud-record-error {
   color: #d5281b;
 }
-.mccloud-record-no-value {
-  color: #768692;
+.mccloud-record-no-value, .mccloud-record-warning {
+  color: #4c6272;
 }
 
 .mccloud-summary-card {
@@ -10901,6 +10889,12 @@ b {
   .mccloud-summary-card__content {
     padding: 16px;
   }
+}
+.mccloud-summary-card__content > .nhsuk-summary-list {
+  margin-bottom: 0;
+}
+.mccloud-summary-card__content > .nhsuk-summary-list .nhsuk-summary-list__row:last-child {
+  border-bottom: none;
 }
 .mccloud-summary-card__title, .mccloud-summary-card__action {
   margin: 0;

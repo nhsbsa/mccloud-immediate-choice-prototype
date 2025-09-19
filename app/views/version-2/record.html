@@ -17,7 +17,7 @@
 <div class="mccloud-summary-card">
   <div class="mccloud-summary-card__title-wrapper">
     {% if missingValues > 0 %}
-      <h2 class="mccloud-summary-card__title">{{ recordSet.title }} ({{ missingValues }} invalid records)</h2>
+      <h2 class="mccloud-summary-card__title">{{ recordSet.title }} ({{ missingValues }} records need review)</h2>
       <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}?record_id={{ record }}&tab_id={{ tab }}">Fix <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
     {% else %}
       <h2 class="mccloud-summary-card__title">{{ recordSet.title }}</h2>
@@ -34,7 +34,9 @@
         <dd class="nhsuk-summary-list__value">
           {{ record.value | formatRecord(record.type) }}
           {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
-          <br><span class="mccloud-record-error">{{ record.error }}</span>
+          {% if record.error %}<br><span class="mccloud-record-error">Error: {{ record.error }}</span>{% endif %}
+          {% if record.warning %}<br><span class="mccloud-record-warning">Warning: {{ record.warning }}</span>{% endif %}
+
         </dd>
       </div>
       {% endif %}
