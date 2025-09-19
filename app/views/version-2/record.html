@@ -14,14 +14,10 @@
   {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
 {% endfor %}
 
-<div class="mccloud-summary-card">
+<div class="mccloud-summary-card" id="{{ recordSet.id }}">
   <div class="mccloud-summary-card__title-wrapper">
-    {% if missingValues > 0 %}
-      <h2 class="mccloud-summary-card__title">{{ recordSet.title }} ({{ missingValues }} records need review)</h2>
-      <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}?record_id={{ record }}&tab_id={{ tab }}">Fix <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
-    {% else %}
-      <h2 class="mccloud-summary-card__title">{{ recordSet.title }}</h2>
-    {% endif %}
+    <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if missingValues > 0 %} ({{ missingValues }} records need review){% endif %}</h2>
+      <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}?record_id={{ record }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
   </div>
 
   <div class="mccloud-summary-card__content">
@@ -88,21 +84,34 @@
       value: {
         text: data.v2.pensioners[record].dob | niceDate
       }
-    },
-    {
-      key: {
-        text: "Address"
-      },
-      value: {
-        html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
-      }
     }
   ]
 }) }}
 {% endset %}
 
 <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
-{{ tabs({ 
+{{ personalDetailsHtml | safe }}
+
+<nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
+  <h2 class="nhsuk-u-visually-hidden">Record sections</h2>
+  <ol class="nhsuk-contents-list__list">
+    {% for recordId, recordSet in data.v2.record %}
+    {% set missingValues = 0 %}
+    {% for id, record in recordSet.items %}
+      {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+    {% endfor %}
+    <li class="nhsuk-contents-list__item">
+      <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}{% if missingValues > 0 %} ({{ missingValues }} records need editing{% endif %})</a>
+    </li>
+    {% endfor %}
+  </ol>
+</nav>
+
+{% for recordId, recordSet in data.v2.record %}
+{{ recordSummary(recordSet, '') }}
+{% endfor %}
+
+{# {{ tabs({ 
   items: [ 
     { 
       label: "Personal details", 
@@ -135,5 +144,5 @@
       } 
     }
   ] 
-}) }}
+}) }} #}
 {% endblock %}

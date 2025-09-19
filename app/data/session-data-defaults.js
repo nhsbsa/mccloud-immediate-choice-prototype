@@ -32,6 +32,60 @@ module.exports = {
       Gh1sGlw38Es1SBYlXno4y0: { name: 'Mrs L Martin', membershipNumber: '77889900', dob: '1963-05-21' }
     },
     record: {
+      address: {
+        title: 'Address',
+        id: 'address',
+        items: {
+          line1: {
+            title: 'Line 1',
+            value: '123 Example Street',
+            required: true,
+            type: 'text'
+          },
+          line2: {
+            title: 'Line 2',
+            value: 'Example District',
+            required: false,
+            type: 'text'
+          },
+          line3: {
+            title: 'Line 3',
+            value: '',
+            required: false,
+            type: 'text'
+          },
+          line4: {
+            title: 'Line 4',
+            value: 'Exampletown',
+            required: false,
+            type: 'text'
+          },
+          line5: {
+            title: 'Line 5',
+            value: '',
+            required: false,
+            type: 'text'
+          },
+          addresseeName: {
+            title: 'Addressee name',
+            value: 'Mr J Smith',
+            required: true,
+            type: 'text'
+          },
+          postcode: {
+            title: 'Postcode',
+            value: 'EX4 3PL',
+            required: true,
+            type: 'text'
+          },
+          country: {
+            title: 'Country',
+            value: 'United Kingdom',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
       schemeDetails: {
         title: 'Scheme details',
         id: 'schemeDetails',

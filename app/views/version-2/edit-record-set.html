@@ -2,7 +2,7 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/record/" + record_id + "#" + tab_id
+    href: "/version-2/record/" + record_id
   }) }}
 {% endblock %}
 
@@ -12,28 +12,11 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-xl">{{ data.v2.record[recordSet].title }}</span>
-      <h1 class="nhsuk-heading-xl">Correct values</h1>
-
-      {% call details({
-          summaryText: "View all valid values for " + data.v2.record[recordSet].title | lower
-        }) %}
-      <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-        {% for recordId, record in data.v2.record[recordSet].items %}
-        {% if record.valid != false %}
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-          <dd class="nhsuk-summary-list__value">{{ record.value | formatRecord(record.type) }}</dd>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </dl>
-      {% endcall %}
+      <span class="nhsuk-caption-xl">{{ data.v2.pensioners[record_id].name }}, {{ data.v2.pensioners[record_id].dob | formatRecord('date') }}</span>
+      <h1 class="nhsuk-heading-xl">{{ data.v2.record[recordSet].title }}</h1>
 
       <form method="get" action="/version-2/warn-about-record-set/{{ recordSet }}?record_id={{ record_id }}&tab_id={{ tab_id }}" class="nhsuk-form">
-        {# Loop through the records in this record set, and display inputs for any that are missing #}
         {% for recordId, record in data.v2.record[recordSet].items %}
-          {% if record.valid == false %}
             
             {# This is verbose, but is at least easy to read... #}
             {% if record.type == "text" %}
@@ -41,6 +24,9 @@
                   label: {
                     text: record.title
                   },
+                  hint: {
+                    text: record.error or record.warning
+                  } if (record.error or record.warning),
                   name: recordId,
                   value: record.value
                 }) }}
@@ -49,6 +35,9 @@
                 label: {
                   text: record.title
                 },
+                hint: {
+                  text: record.error or record.warning
+                } if (record.error or record.warning),
                 value: record.value,
                 name: recordId,
                 classes: "nhsuk-input--width-5",
@@ -59,6 +48,9 @@
                 label: {
                     text: record.title
                 },
+                hint: {
+                  text: record.error or record.warning
+                } if (record.error or record.warning),
                 name: recordId,
                 prefix: "£",
                 value: record.value,
@@ -71,6 +63,9 @@
                     text: record.title
                   }
                 },
+                hint: {
+                  text: record.error or record.warning
+                } if (record.error or record.warning),
                 items: [
                   {
                     name: "day",
@@ -89,7 +84,6 @@
             {% endif %}
             {# End: inputs #}
 
-          {% endif %}
         {% endfor %}
         
         {{ button({
