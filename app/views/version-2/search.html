@@ -1,20 +1,21 @@
 {% extends 'layout.html' %}
-{% set pageName = "Find a pensioner" %}
+{% set pageName = "Find a pensioner by membership number" %}
 
 {% block content %}
 
-<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
-
-<form method="post" action="/version-2/search-results" class="nhsuk-form">
+<form method="post" action="/version-2/record" class="nhsuk-form">
 {{ input({
   label: {
-    text: "Find a pensioner by name or ID number"
+    text: pageName,
+    classes: "nhsuk-label--l",
+    isPageHeading: true
   },
   id: "search",
-  name: "search"
+  name: "search",
+  classes: "nhsuk-input--width-20"
 }) }}
 {{ button({
-  text: "Search pensioners"
+  text: "View pensioner record"
 }) }}
 </form>
 

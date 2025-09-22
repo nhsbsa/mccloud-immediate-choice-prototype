@@ -2,7 +2,7 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/record/" + record_id
+    href: "/version-2/record"
   }) }}
 {% endblock %}
 
@@ -12,11 +12,24 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-xl">{{ data.v2.pensioners[record_id].name }}, {{ data.v2.pensioners[record_id].dob | formatRecord('date') }}</span>
+      {% if errorsList %}
+      {{ errorSummary({
+          titleText: "There is a problem",
+          errorList: errorsList
+        }) }}
+      {% endif %}
+
+      <span class="nhsuk-caption-xl">{{ data.v2.pensioner.name }}, {{ data.v2.pensioner.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ data.v2.record[recordSet].title }}</h1>
 
-      <form method="get" action="/version-2/warn-about-record-set/{{ recordSet }}?record_id={{ record_id }}&tab_id={{ tab_id }}" class="nhsuk-form">
+      
+      <form method="post" action="/version-2/edit-record-set/{{ recordSet }}" class="nhsuk-form">
+        <input type="hidden" name="recordSet" value="{{ recordSet }}">
+        
+        {# Loop over each record in this record set #}
         {% for recordId, record in data.v2.record[recordSet].items %}
+
+          {% if record.required %}<input type="hidden" name="{{ recordId }}-required" value="true">{% endif %}
             
             {# This is verbose, but is at least easy to read... #}
             {% if record.type == "text" %}
@@ -26,9 +39,12 @@
                   },
                   hint: {
                     text: record.error or record.warning
-                  } if (record.error or record.warning),
+                  } if (not errors or not errors[recordId]) and (record.error or record.warning),
                   name: recordId,
-                  value: record.value
+                  value: record.value,
+                  errorMessage: {
+                    text: errors[recordId]
+                  } if errors[recordId]
                 }) }}
             {% elif record.type == "number" %}
               {{ input({
@@ -37,11 +53,14 @@
                 },
                 hint: {
                   text: record.error or record.warning
-                } if (record.error or record.warning),
+                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 value: record.value,
                 name: recordId,
                 classes: "nhsuk-input--width-5",
-                inputmode: "numeric"
+                inputmode: "numeric",
+                errorMessage: {
+                  text: errors[recordId]
+                } if errors[recordId]
               }) }}
             {% elif record.type == "currency" %}
               {{ input({
@@ -50,11 +69,14 @@
                 },
                 hint: {
                   text: record.error or record.warning
-                } if (record.error or record.warning),
+                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 name: recordId,
                 prefix: "£",
                 value: record.value,
-                classes: "nhsuk-input--width-5"
+                classes: "nhsuk-input--width-5",
+                errorMessage: {
+                  text: errors[recordId]
+                } if errors[recordId]
               }) }}
             {% elif record.type == "date" %}
               {{ dateInput({
@@ -63,21 +85,29 @@
                     text: record.title
                   }
                 },
+                id: recordId,
+                name: recordId,
                 hint: {
                   text: record.error or record.warning
-                } if (record.error or record.warning),
+                } if (not errors or not errors[recordId]) and (record.error or record.warning),
+                errorMessage: {
+                  text: errors[recordId]
+                } if errors[recordId],
                 items: [
                   {
                     name: "day",
-                    classes: "nhsuk-input--width-2"
+                    classes: "nhsuk-input--width-2",
+                    value: record.value | inputDatePart('day')
                   },
                   {
                     name: "month",
-                    classes: "nhsuk-input--width-2"
+                    classes: "nhsuk-input--width-2",
+                    value: record.value | inputDatePart('month')
                   },
                   {
                     name: "year",
-                    classes: "nhsuk-input--width-4"
+                    classes: "nhsuk-input--width-4",
+                    value: record.value | inputDatePart('year')
                   }
                 ]
               }) }}

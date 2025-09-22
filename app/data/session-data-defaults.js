@@ -31,6 +31,11 @@ module.exports = {
       Fg0rFkv27Dr0RAXkWmn3xZ: { name: 'Mr G Harris', membershipNumber: '44556677', dob: '1959-10-03' },
       Gh1sGlw38Es1SBYlXno4y0: { name: 'Mrs L Martin', membershipNumber: '77889900', dob: '1963-05-21' }
     },
+    pensioner: {
+      name: 'Mr J Smith',
+      membershipNumber: '12345678',
+      dob: '1955-06-15'
+    },
     record: {
       address: {
         title: 'Address',
@@ -129,7 +134,6 @@ module.exports = {
             value: '198373.98',
             required: false,
             type: 'currency',
-            valid: false,
             warning: 'Lump sum should be less than £120,000'
           },
           adultDependantPension: {
@@ -140,10 +144,9 @@ module.exports = {
           },
           payableDate: {
             title: 'Payable date',
-            value: '',
-            required: true,
+            value: '2025-09-27',
+            required: false,
             type: 'date',
-            valid: false,
             error: 'Payable date must be a valid date'
           },
           deemedDate: {
@@ -198,7 +201,9 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            type: 'number'
+            valid: false,
+            type: 'number',
+            error: 'Age at payable date must be a number between 55 and 75'
           }
         }
       },
@@ -226,8 +231,8 @@ module.exports = {
           },
           adultDependantPension: {
             title: 'Adult dependant pension',
-            value: '0.00',
-            required: false,
+            value: '',
+            required: true,
             type: 'currency',
             valid: false,
             error: 'Dependant pension should be greater than 50% of lump sum'
@@ -235,7 +240,7 @@ module.exports = {
           payableDate: {
             title: 'Payable date',
             value: '2025-09-27',
-            required: true,
+            required: false,
             type: 'date'
           },
           deemedDate: {
@@ -261,8 +266,7 @@ module.exports = {
             value: '550000000',
             required: false,
             type: 'currency',
-            warning: 'Pensionable pay should be between £10,000 and £120,000',
-            valid: false
+            warning: 'Pensionable pay should be between £10,000 and £120,000'
           },
           ageAtPayable: {
             title: 'Age at payable date',

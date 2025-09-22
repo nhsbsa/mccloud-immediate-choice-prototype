@@ -2,99 +2,35 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/edit-record-set/" + recordSey
-     q + "#" + tab_id
+    href: "/version-2/edit-record-set/" + recordSet
   }) }}
 {% endblock %}
 
-{% set pageName = "Check the values you entered for " + data.v2.record[recordSet].title | lower %}
+{% set pageName = "Warnings for " + data.v2.record[recordSet].title | lower %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-xl">{{ data.v2.record[recordSet].title }}</span>
-      <h1 class="nhsuk-heading-xl">Add missing values</h1>
+      <span class="nhsuk-caption-xl">{{ data.v2.pensioner.name }}, {{ data.v2.pensioner.dob | formatRecord('date') }}</span>
+      <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
-      {% call details({
-          summaryText: "View all valid values for " + data.v2.record[recordSet].title | lower
-        }) %}
-      <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-        {% for recordId, record in data.v2.record[recordSet].items %}
-        {% if not(record.required) and (record.value != "" or record.value != "n/a") %}
+      <p>Some entries in this record fall outside of expected values. You should check the values are correct before you continue.</p>
+      <dl class="nhsuk-summary-list">
+        {% for id, record in data.v2.record[recordSet].items %}
+        {% if record.warning %}
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-          <dd class="nhsuk-summary-list__value">{{ record.value | formatRecord(record.type) }}</dd>
+          <dd class="nhsuk-summary-list__value">{{ record.value | formatRecord(record.type) }}<br><span class="mccloud-record-warning">{{ record.warning }}</span></dd>
         </div>
         {% endif %}
         {% endfor %}
       </dl>
-      {% endcall %}
-
-      <form method="get" action="/version-2/warn-about-record-set/{{ recordSet }}?record_id={{ record_id }}&tab_id={{ tab_id }}" class="nhsuk-form">
-        {# Loop through the records in this record set, and display inputs for any that are missing #}
-        {% for recordId, record in data.v2.record[recordSet].items %}
-          {% if record.required and (record.value == "" or record.value == "n/a") %}
-            
-            {# This is verbose, but is at least easy to read... #}
-            {% if record.type == "text" %}
-              {{ input({
-                  label: {
-                    text: record.title
-                  },
-                  name: recordId
-                }) }}
-            {% elif record.type == "number" %}
-              {{ input({
-                label: {
-                  text: record.title
-                },
-                name: recordId,
-                classes: "nhsuk-input--width-5",
-                inputmode: "numeric"
-              }) }}
-            {% elif record.type == "currency" %}
-              {{ input({
-                label: {
-                    text: record.title
-                },
-                name: recordId,
-                prefix: "£",
-                classes: "nhsuk-input--width-5"
-              }) }}
-            {% elif record.type == "date" %}
-              {{ dateInput({
-                fieldset: {
-                  legend: {
-                    text: record.title
-                  }
-                },
-                items: [
-                  {
-                    name: "day",
-                    classes: "nhsuk-input--width-2"
-                  },
-                  {
-                    name: "month",
-                    classes: "nhsuk-input--width-2"
-                  },
-                  {
-                    name: "year",
-                    classes: "nhsuk-input--width-4"
-                  }
-                ]
-              }) }}
-            {% endif %}
-            {# End: inputs #}
-
-          {% endif %}
-        {% endfor %}
-        
-        {{ button({
-          text: "Save and continue"
-        }) }}
-      </form>
-
+      {{ button({
+        text: "Continue",
+        href: "/version-2/record?complete=" + recordSet
+      }) }}
+      
       
   </div>
 </div>

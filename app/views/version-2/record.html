@@ -1,55 +1,41 @@
 {% extends 'layout.html' %}
-{% set pageName = 'Pension record for ' + data.v2.pensioners[record].name %}
+{% set pageName = 'Pension record for ' + data.v2.pensioner.name %}
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/search-results"
+    href: "/version-2/search"
   }) }}
 {% endblock %}
 
 {% macro recordSummary(recordSet, tab) %}
 {# Calculate how many missing values there are in this record set #}
-{% set missingValues = 0 %}
+{% set totalErrors = 0 %}
+{% set totalWarnings = 0 %}
 {% for id, record in recordSet.items %}
-  {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+  {% if record.valid == false %}{% set totalErrors = totalErrors + 1 %}{% endif %}
+  {% if record.warning %}{% set totalWarnings = totalWarnings + 1 %}{% endif %}
 {% endfor %}
 
 <div class="mccloud-summary-card" id="{{ recordSet.id }}">
   <div class="mccloud-summary-card__title-wrapper">
-    <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if missingValues > 0 %} ({{ missingValues }} records need review){% endif %}</h2>
-      <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}?record_id={{ record }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
+    <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if totalErrors > 0 %} ({{ totalErrors }} {{ 'error' | plural(totalErrors) }}{% if totalWarnings > 0 %}, {{ totalWarnings }} {{ 'warning' | plural(totalWarnings) }}{% endif %}){% endif %}</h2>
+      <a class="mccloud-summary-card__action" href="/version-2/edit-record-set/{{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
   </div>
 
   <div class="mccloud-summary-card__content">
     
     <dl class="nhsuk-summary-list">
       {% for id, record in recordSet.items %}
-      {% if record.valid == false %}
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
         <dd class="nhsuk-summary-list__value">
           {{ record.value | formatRecord(record.type) }}
           {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
-          {% if record.error %}<br><span class="mccloud-record-error">Error: {{ record.error }}</span>{% endif %}
+          {% if (record.error and record.valid == false) %}<br><span class="mccloud-record-error">Error: {{ record.error }}</span>{% endif %}
           {% if record.warning %}<br><span class="mccloud-record-warning">Warning: {{ record.warning }}</span>{% endif %}
-
         </dd>
       </div>
-      {% endif %}
       {% endfor %}
-
-      {% for id, record in recordSet.items %}
-      {% if record.valid != false %}
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-        <dd class="nhsuk-summary-list__value">
-          {{ record.value | formatRecord(record.type) }}
-          {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
-        </dd>
-      </div>
-      {% endif %}
-      {% endfor %}
-
     </dl>
 
   </div>
@@ -58,6 +44,29 @@
 
 {% block content %}
 {% set personalDetailsHtml %}
+{% set invalidRecords = 0 %}
+{% for recordId, recordSet in data.v2.record %}
+  {% for id, record in recordSet.items %}
+    {% if record.valid == false %}
+      {% set invalidRecords = invalidRecords + 1 %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% set tagHtml %}
+{% if invalidRecords == 0 %}
+{{ tag({
+  text: "Ready for review",
+  classes: "nhsuk-tag--yellow"
+})}}
+{% else %}
+{{ tag({
+  text: "Invaid records",
+  classes: "nhsuk-tag--red"
+})}}
+{% endif %}
+{% endset %}
+
 {{ summaryList({
   classes: 'nhsuk-summary-list--no-border',
   rows: [
@@ -66,7 +75,7 @@
         text: "Name"
       },
       value: {
-        text: data.v2.pensioners[record].name
+        text: data.v2.pensioner.name
       }
     },
     {
@@ -74,7 +83,7 @@
         text: "Membership number"
       },
       value: {
-        html: data.v2.pensioners[record].membershipNumber
+        html: data.v2.pensioner.membershipNumber
       }
     },
     {
@@ -82,12 +91,41 @@
         text: "Date of birth"
       },
       value: {
-        text: data.v2.pensioners[record].dob | niceDate
+        text: data.v2.pensioner.dob | niceDate
+      }
+    },
+    {
+      key: {
+        text: "Record status"
+      },
+      value: {
+        html: tagHtml | safe
       }
     }
   ]
 }) }}
 {% endset %}
+
+{% if (complete and invalidRecords > 0) %}
+{% set html %}
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in the section “{{ data.v2.record[complete].title }}” are complete.</p>
+{% endset %}
+
+{{ notificationBanner({
+  html: html,
+  type: "success"
+}) }}
+{% endif %}
+
+{% if invalidRecords == 0 %}
+{% set html %}
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete. <a href="/version-2/search">Find another record.</a></p>
+{% endset %}
+
+{{ notificationBanner({
+  html: html
+}) }}
+{% endif %}
 
 <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 {{ personalDetailsHtml | safe }}
@@ -97,11 +135,17 @@
   <ol class="nhsuk-contents-list__list">
     {% for recordId, recordSet in data.v2.record %}
     {% set missingValues = 0 %}
+    {% set errorValues = 0 %}
+    {% set warningValues = 0 %}
     {% for id, record in recordSet.items %}
-      {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+      {% if record.valid == false %}
+      {% set missingValues = missingValues + 1 %}
+        {% if record.error %}{% set errorValues = errorValues + 1 %}{% endif %}
+        {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+      {% endif %}
     {% endfor %}
     <li class="nhsuk-contents-list__item">
-      <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}{% if missingValues > 0 %} ({{ missingValues }} records need editing{% endif %})</a>
+      <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}{% if missingValues > 0 %} ({{ errorValues }} records need reviewing){% endif %}</a>
     </li>
     {% endfor %}
   </ol>

@@ -39,7 +39,29 @@ module.exports = function (env) {
         return value
     }
   }
+
+  filters.inputDatePart = (dateString, part) => {
+    if (!dateString) return ''
+
+    const dt = DateTime.fromISO(dateString)
+    if (!dt.isValid) return ''
+
+    switch (part) {
+      case 'day':
+        return dt.toFormat('dd')
+      case 'month':
+        return dt.toFormat('LL')
+      case 'year':
+        return dt.toFormat('yyyy')
+      default:
+        return ''
+    }
+
+  }
   
+  filters.plural = (string, count, singular = '', plural = 's') => {
+    return (count === 1) ? string + singular : string + plural 
+  }
 
 
 
