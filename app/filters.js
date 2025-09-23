@@ -58,7 +58,12 @@ module.exports = function (env) {
     }
 
   }
-  
+
+  filters.splitString = (string, position = 0, delimiter = '-') => {
+    const parts = string.split(delimiter)
+    return parts[position] || ''
+  }
+
   filters.plural = (string, count, singular = '', plural = 's') => {
     return (count === 1) ? string + singular : string + plural 
   }
