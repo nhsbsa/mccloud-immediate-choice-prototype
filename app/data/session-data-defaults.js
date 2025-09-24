@@ -2,12 +2,9 @@ const { FALSE } = require("sass-embedded");
 
 module.exports = {
   v2: {
-    users: {
-      type1: {
-        name: 'Alex Pearson (Pension Administrator)',
-        navigation: null
-      }
-      
+    user: {
+      name: 'Alex Pearson (Pension Administrator)',
+      navigation: null 
     },
     batches: {
       outstanding: {
@@ -118,7 +115,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'text',
-            
+            valid: false,
             error: 'Reason for retirement cannot be blank'
           },
           pension: {
@@ -126,7 +123,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+            valid: false,
             error: 'Pension must be a valid amount'
           },
           lumpSum: {
@@ -201,7 +198,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            
+            valid: false,
             type: 'number',
             error: 'Age at payable date must be a number between 55 and 75'
           }
@@ -234,7 +231,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+            valid: false,
             error: 'Dependant pension should be greater than 50% of lump sum'
           },
           payableDate: {
@@ -297,12 +294,9 @@ module.exports = {
     }
   },
   v3: {
-    users: {
-      type1: {
-        name: 'Simone DeLuca (Quality Coach)',
-        navigation: null
-      }
-      
+    user: {
+      name: 'Jamie Lee (Quality Coach)',
+      navigation: null 
     },
     batches: {
       outstanding: {

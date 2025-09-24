@@ -97,11 +97,12 @@
 
 {% if invalidRecords == 0 %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete. <a href="/version-2/search">Find another record.</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/version-2/search">Find another record.</a></p>
 {% endset %}
 
 {{ notificationBanner({
-  html: html
+  html: html,
+  titleText: "Record status"
 }) }}
 {% endif %}
 
@@ -111,7 +112,8 @@
 {% endset %}
 
 {{ notificationBanner({
-  html: html
+  html: html,
+  titleText: "Record status"
 }) }}
 {% endif %}
 

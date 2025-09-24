@@ -3,7 +3,18 @@ const express = require('express')
 
 const router = express.Router()
 
-// Add your routes here - above the module.exports line
+
+// Starting point - choose version
+router.get('/start/:version', function (req, res) {
+  const version = req.params.version;
+  // put version in session so we can use it later
+  req.session.data.version = version;
+
+  //translate between version and url, eg `v2` === `version-2`
+  const versionNumber = version.split('');
+
+  res.redirect(`/version-${versionNumber[1]}/login`);
+});
 
 //import routes from /version-2/routes.js
 const version2Routes = require('./views/version-2/routes');
