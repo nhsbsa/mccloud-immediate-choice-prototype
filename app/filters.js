@@ -34,7 +34,24 @@ module.exports = function (env) {
       }
       case 'date':
         return filters.niceDate(value)
-      case 'text':
+      case 'daysAndYears': {
+        const parts = value.split('-')
+        if (parts.length !== 2) return value
+        const days = parseInt(parts[0], 10)
+        const years = parseInt(parts[1], 10)
+        if (isNaN(days) || isNaN(years)) return value
+        const dayPart = days === 1 ? 'day' : 'days'
+        const yearPart = years === 1 ? 'year' : 'years'
+        if (days > 0 && years > 0) {
+          return `${years} ${yearPart} and ${days} ${dayPart}`
+        } else if (days > 0) {
+          return `${days} ${dayPart}`
+        } else if (years > 0) {
+          return `${years} ${yearPart}`
+        } else {
+          return '0'
+        }
+      }
       default:
         return value
     }

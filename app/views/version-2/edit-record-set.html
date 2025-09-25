@@ -97,17 +97,17 @@
                   {
                     name: "day",
                     classes: "nhsuk-input--width-2",
-                    value: record.value | inputDatePart('day')
+                    value: record.value | splitString(2)
                   },
                   {
                     name: "month",
                     classes: "nhsuk-input--width-2",
-                    value: record.value | inputDatePart('month')
+                    value: record.value | splitString(1)
                   },
                   {
                     name: "year",
                     classes: "nhsuk-input--width-4",
-                    value: record.value | inputDatePart('year')
+                    value: record.value | splitString(0)
                   }
                 ]
               }) }}
@@ -128,14 +128,14 @@
                 } if errors[recordId],
                 items: [
                   {
-                    name: "days",
-                    classes: "nhsuk-input--width-3",
-                    value: record.value | splitString(0)
-                  },
-                  {
                     name: "years",
                     classes: "nhsuk-input--width-2",
                     value: record.value | splitString(1)
+                  },
+                  {
+                    name: "days",
+                    classes: "nhsuk-input--width-3",
+                    value: record.value | splitString(0)
                   }
                 ]
               }) }}

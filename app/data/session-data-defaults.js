@@ -273,9 +273,9 @@ module.exports = {
           },
           reckonableMembership: {
             title: 'Reckonable membership',
-            value: '35',
+            value: '101-10',
             required: false,
-            type: 'number'
+            type: 'daysAndYears'
           },
           dynamisingPay: {
             title: 'Dynamising pay',
@@ -565,9 +565,9 @@ module.exports = {
           },
           reckonableMembership: {
             title: 'Reckonable membership',
-            value: '35',
+            value: '109-10',
             required: false,
-            type: 'number'
+            type: 'daysAndYears'
           },
           dynamisingPay: {
             title: 'Dynamising pay',

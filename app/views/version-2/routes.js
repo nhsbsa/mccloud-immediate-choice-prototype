@@ -127,8 +127,8 @@ router.post(`/${version}/split-benefit`, function (req, res) {
 
   newSplitBenefit.items['protectedPayDate'] = {
     title: 'Protected Pay Date',
-    value: `${submitted['protected-pay-date']['days']}-${submitted['protected-pay-date']['years']}`,
-    type: 'daysAndYears'
+    value: `${submitted['protected-pay-date']['year']}-${submitted['protected-pay-date']['month']}-${submitted['protected-pay-date']['day']}`,
+    type: 'date'
   };
 
   newSplitBenefit.items['pension'] = {
@@ -145,8 +145,8 @@ router.post(`/${version}/split-benefit`, function (req, res) {
 
   newSplitBenefit.items['deemedDate'] = {
     title: 'Deemed Date',
-    value: `${submitted['deemed-date']['days']}-${submitted['deemed-date']['years']}`,
-    type: 'daysAndYears'
+    value: `${submitted['deemed-date']['year']}-${submitted['deemed-date']['month']}-${submitted['deemed-date']['day']}`,
+    type: 'date'
   };
 
   //store the new record set in the session data
