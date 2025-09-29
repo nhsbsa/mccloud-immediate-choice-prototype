@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% set pageName = "Records that need reviewing for " + data.v2.batches.outstanding[batch].name %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "./outstanding"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<span class="nhsuk-caption-xl">{{ data.v2.batches.outstanding[batch].name }}</span>
+<h1 class="nhsuk-heading-xl">Records that need reviewing</h1>
+<table class="nhsuk-table">
+  <thead class="nhsuk-table__head">
+    <tr>
+      <th scope="col" class="nhsuk-table__header">Name</th>
+      <th scope="col" class="nhsuk-table__header">Membership number</th>
+      <th scope="col" class="nhsuk-table__header">Status</th>
+      <th scope="col" class="nhsuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="nhsuk-table__body">
+    {% for id, pensioner in data.v2.pensioners %}
+    <tr class="nhsuk-table__row">
+      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">
+        <a class="nhsuk-link" href="./record/{{ id }}?batch={{ batch }}">Review record</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% set pageName = "Pensioner search results" %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "./search"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+
+<p>Search results for: [search term]</p>
+
+<table class="nhsuk-table">
+  <caption class="nhsuk-table__caption">Found pensioners matching your search</caption>
+  <thead class="nhsuk-table__head">
+    <tr>
+      <th scope="col" class="nhsuk-table__header">Name</th>
+      <th scope="col" class="nhsuk-table__header">Membership number</th>
+      <th scope="col" class="nhsuk-table__header">Status</th>
+      <th scope="col" class="nhsuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="nhsuk-table__body">
+    {% for id, pensioner in data.v2.pensioners %}
+    <tr class="nhsuk-table__row">
+      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">
+        <a class="nhsuk-link" href="./record/{{ id }}">Review record</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
