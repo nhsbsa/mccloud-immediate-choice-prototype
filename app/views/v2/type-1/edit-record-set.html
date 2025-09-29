@@ -23,7 +23,7 @@
       <h1 class="nhsuk-heading-xl">{{ data.v2.record[recordSet].title }}</h1>
 
 
-      <form method="post" action="./edit-record-set/{{ recordSet }}" class="nhsuk-form">
+      <form method="post" action="./{{ recordSet }}" class="nhsuk-form">
         <input type="hidden" name="recordSet" value="{{ recordSet }}">
 
         {# Loop over each record in this record set #}
