@@ -1,0 +1,264 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "false" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Records in Batch 1
+      </h1>
+      
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+        <ul class="moj-sub-navigation__list">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Incomplete records</a>
+          </li>
+      
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="#2">Complete records</a>
+          </li>
+      
+        </ul>
+      
+      </nav>
+
+      <h2 class="nhsuk-heading-m">
+        Incomplete records
+      </h2>
+
+      <p>Showing 10 of 36 incomplete records.</p>
+
+      {{ table({
+        responsive: true,
+        panel: false,
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Membership number"
+          },
+          {
+            text: "Status"
+          }
+        ],
+        rows: [
+          [
+            {
+              header: "Name",
+              html: '<a href="missing-data">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Amy Smith</a>'
+            },
+            {
+              header: "Membership number",
+              text: "64264887"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Leo Gomez</a>'
+            },
+            {
+              header: "Membership number",
+              text: "53943130"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Hussein Little</a>'
+            },
+            {
+              header: "Membership number",
+              text: "18037739"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Dennis Hendricks</a>'
+            },
+            {
+              header: "Membership number",
+              text: "07556080"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Abi Hogan</a>'
+            },
+            {
+              header: "Membership number",
+              text: "19534886"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Catherine Bean</a>'
+            },
+            {
+              header: "Membership number",
+              text: "95750161"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Mrs Nettie Odom</a>'
+            },
+            {
+              header: "Membership number",
+              text: "25999402"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Troy Jacobson</a>'
+            },
+            {
+              header: "Membership number",
+              text: "42303885"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Harold Haynes</a>'
+            },
+            {
+              header: "Membership number",
+              text: "21689784"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Missing data
+              </strong>
+              '
+            }
+          ]
+        ]
+      }) }}
+
+      <div class="nhsuk-u-padding-bottom-4"></div>
+
+      <nav class="govuk-pagination" aria-label="Pagination">
+        <ul class="govuk-pagination__list">
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">
+              1
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+              3
+            </a>
+          </li>
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">
+              Next<span class="govuk-visually-hidden"> page</span>
+            </span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      
+
+    </div>
+  </div>
+{% endblock %}

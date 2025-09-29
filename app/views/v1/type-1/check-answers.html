@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Check your changes before submitting
+      </h1>
+
+      {% from "summary-list/macro.njk" import summaryList %}
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Lifetime allowance"
+            },
+            value: {
+              text: data['lifetime-allowance']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy deemed date"
+            },
+            value: {
+              text: data['legacy-deemed-date']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "2015 payable date"
+            },
+            value: {
+              text: data['payable-date-of-benefits']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ button({
+        text: "Submit",
+        href: "outstanding-success"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

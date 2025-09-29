@@ -1,0 +1,188 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <span class="nhsuk-caption-l">Jane Doe</span>
+      <h1 class="nhsuk-heading-l">
+        Mismatched information
+      </h1>
+
+      <p>This information for each field needs to be the same.</p>
+
+      </div>
+      
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option A
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Legacy pension"
+            },
+            value: {
+              text: "£18,572"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy lump sum"
+            },
+            value: {
+              html: "£9,815"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy deemed date"
+            },
+            value: {
+              html: "11 April 2019"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+              
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option B
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Legacy pension"
+            },
+            value: {
+              text: "£4,051.34"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy lump sum"
+            },
+            value: {
+              html: "£1,208"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy deemed date"
+            },
+            value: {
+              html: "29 June 2019"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+              
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+
+     
+      <div class="nhsuk-grid-column-full">
+
+      {{ button({
+        text: "Continue",
+        href: 'person-details'
+      }) }}
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

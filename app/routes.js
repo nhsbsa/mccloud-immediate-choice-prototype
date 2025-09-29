@@ -12,21 +12,21 @@ router.get('/start/:version', function (req, res) {
 
   //translate between version and url, eg `v2` === `version-2`
   const versionNumber = version.split('');
-  req.session.data.versionUrl = `/version-${versionNumber[1]}`; 
+  req.session.data.versionUrl = `/v${versionNumber[1]}`;
 
-  res.redirect(`/version-${versionNumber[1]}/login`);
+  res.redirect(`/v${versionNumber[1]}/login`);
 });
 
 //import routes from /version-2/routes.js
-const version2Routes = require('./views/version-2/routes');
-router.use('/', version2Routes);
+const v2t1Routes = require('./views/v2/type-1/routes');
+router.use('/', v2t1Routes);
 
 //version-3 routes
-const version3Routes = require('./views/version-3/routes');
-router.use('/', version3Routes);
+const v2t2Routes = require('./views/v2/type-2/routes');
+router.use('/', v2t2Routes);
 
 //version-4 routes
-const version4Routes = require('./views/version-4/routes');
-router.use('/', version4Routes);
+const v2t3Routes = require('./views/v2/type-3/routes');
+router.use('/', v2t3Routes);
 
 module.exports = router

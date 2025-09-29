@@ -1,0 +1,286 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <span class="nhsuk-caption-l">Jane Doe</span>
+      <h1 class="nhsuk-heading-l">
+        Mismatched information
+      </h1>
+
+      <p>This information for each field needs to be the same.</p>
+
+      </div>
+      
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option A
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field A"
+            },
+            value: {
+              text: "£572"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option B
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field A"
+            },
+            value: {
+              text: "£1,051.34"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+      <div class="nhsuk-grid-column-full">
+
+        {{ radios({
+          idPrefix: "example-inline",
+          name: "example-inline",
+          classes: "nhsuk-radios--inline",
+          fieldset: {
+            legend: {
+              text: "Select the correct value",
+              classes: "nhsuk-fieldset__legend--s",
+              isPageHeading: false
+            }
+          },
+          items: [
+            {
+              value: "£572",
+              text: "£572"
+            },
+            {
+              value: "1,051.34",
+              text: "1,051.34"
+            }
+          ]
+        }) }}
+
+      <hr class="nhsuk-section-break nhsuk-section-break--s nhsuk-section-break--visible">
+    </div>
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Current benefits
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field B"
+            },
+            value: {
+              text: "£18,572"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option B
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field B"
+            },
+            value: {
+              text: "£4,051.34"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+<div class="nhsuk-grid-column-full">
+
+  {{ radios({
+    idPrefix: "example-inline",
+    name: "example-inline",
+    classes: "nhsuk-radios--inline",
+    fieldset: {
+      legend: {
+        text: "Select the correct value",
+        classes: "nhsuk-fieldset__legend--s",
+        isPageHeading: false
+      }
+    },
+    items: [
+      {
+        value: "£18,572",
+        text: "£18,572"
+      },
+      {
+        value: "£4,051.34",
+        text: "£4,051.34"
+      }
+    ]
+  }) }}
+
+      <hr class="nhsuk-section-break nhsuk-section-break--s nhsuk-section-break--visible">
+    </div>
+    
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Current benefits
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field C"
+            },
+            value: {
+              text: "£9,283"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+
+        <div class="nhsuk-card nhsuk-card--feature">
+          <div class="nhsuk-card__content nhsuk-card__content--feature">
+            <h2 class="nhsuk-card__heading nhsuk-card__heading--feature nhsuk-heading-m">
+              Option A
+              
+            </h2>
+          
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Field C"
+            },
+            value: {
+              text: "£8,051.34"
+            }
+          }
+        ]
+      }) }}
+        
+          
+          </div>
+        </div>
+      </div>
+
+
+     
+      <div class="nhsuk-grid-column-full">
+
+        {{ radios({
+          idPrefix: "example-inline",
+          name: "example-inline",
+          classes: "nhsuk-radios--inline",
+          fieldset: {
+            legend: {
+              text: "Select the correct value",
+              classes: "nhsuk-fieldset__legend--s",
+              isPageHeading: false
+            }
+          },
+          items: [
+            {
+              value: "£9,283",
+              text: "£9,283"
+            },
+            {
+              value: "£8,051.34",
+              text: "£8,051.34"
+            }
+          ]
+        }) }}
+
+      {{ button({
+        text: "Continue",
+        href: 'person-details'
+      }) }}
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

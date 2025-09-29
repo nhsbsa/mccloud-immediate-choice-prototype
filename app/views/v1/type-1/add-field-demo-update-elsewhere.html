@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Updating [label name A] will also update [label name B]
+      </h1>
+
+      <p>[label name A] and [label name b] must be the same value.</p> 
+      
+      <p>Do you want to update [label name b]?</p>
+
+      {{ button({
+        text: "Confirm",
+        href: "completed-batches-success"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

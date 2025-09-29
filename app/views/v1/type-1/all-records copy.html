@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Records that need correcting
+      </h1>
+
+      {{ table({
+        responsive: true,
+        panel: false,
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Membership number"
+          },
+          {
+            text: "Legacy scheme"
+          }
+        ],
+        rows: [
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              text: "	1995 scheme"
+            }
+          ]
+        ]
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

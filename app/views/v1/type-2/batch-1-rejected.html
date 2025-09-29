@@ -1,0 +1,31 @@
+{% extends "../../layout.html" %}
+
+{% set questionPage = "false" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Batch 1 rejected records
+      </h1>
+
+      <p>There are 4 records that have been rejected and are waiting to be reviewed by another team.</p>
+
+      {{ button({
+        text: "View rejected records",
+        href: "outstanding"
+      }) }}
+      
+
+    </div>
+  </div>
+{% endblock %}

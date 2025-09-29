@@ -1,0 +1,304 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "false" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block header %}
+
+<header class="nhsuk-header" role="banner">
+
+  <div class="nhsuk-header__container">
+    <div class="nhsuk-header__logo"><a class="nhsuk-header__link nhsuk-header__link--service " href="/" aria-label="NHS homepage">
+        <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16" height="40" width="100">
+          <path class="nhsuk-logo__background" fill="#005eb8" d="M0 0h40v16H0z"></path>
+          <path class="nhsuk-logo__text" fill="#fff" d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6"></path>
+        </svg>
+        <span class="nhsuk-header__service-name">
+          Digital service manual
+        </span> </a> </div>
+    <div class="nhsuk-header__content" id="content-header">
+      <div class="nhsuk-header__search">
+        <div class="nhsuk-header__search-wrap" id="wrap-search">
+          <form class="nhsuk-header__search-form" id="search" action=" " method="get" role="search">
+            <label class="nhsuk-u-visually-hidden" for="search-field">Search the NHS website</label>
+            <input class="nhsuk-search__input" id="search-field" name="search-field" type="search" placeholder="Search" autocomplete="off">
+            <button class="nhsuk-search__submit" type="submit">
+              <svg class="nhsuk-icon nhsuk-icon__search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M19.71 18.29l-4.11-4.1a7 7 0 1 0-1.41 1.41l4.1 4.11a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 10a5 5 0 1 1 5 5 5 5 0 0 1-5-5z"></path>
+              </svg>
+              <span class="nhsuk-u-visually-hidden">Search</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nhsuk-navigation-container">
+    <nav class="nhsuk-navigation" id="header-navigation" role="navigation" aria-label="Primary navigation">
+      <ul class="nhsuk-header__navigation-list">
+        <li class="nhsuk-header__navigation-item">
+          <a class="nhsuk-header__navigation-link" href="#">
+            NHS service standard
+          </a>
+        </li>
+        <li class="nhsuk-header__navigation-item">
+          <a class="nhsuk-header__navigation-link" href="#">
+            Design system
+          </a>
+        </li>
+        <li class="nhsuk-header__navigation-item">
+          <a class="nhsuk-header__navigation-link" href="#">
+            Content guide
+            <span class="app-count">
+              <span class="nhsuk-u-visually-hidden">(</span>21<span class="nhsuk-u-visually-hidden">)</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+{% endblock %}
+
+
+{% block beforeContent %}
+
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Outstanding batches of records
+      </h1>
+
+      {{ table({
+        responsive: true,
+        panel: false,
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Batch name"
+          },
+          {
+            text: "Records for review"
+          },
+          {
+            text: "Status"
+          }
+        ],
+        rows: [
+          [
+            {
+              header: "Name",
+              html: '<a href="outstanding">Batch 1</a>'
+            },
+            {
+              header: "Records for review",
+              text: "36"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 2</a>'
+            },
+            {
+              header: "Records for review",
+              text: "82"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 3</a>'
+            },
+            {
+              header: "Records for review",
+              text: "3"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 4</a>'
+            },
+            {
+              header: "Records for review",
+              text: "25"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 5</a>'
+            },
+            {
+              header: "Records for review",
+              text: "11"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 6</a>'
+            },
+            {
+              header: "Records for review",
+              text: "42"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 7</a>'
+            },
+            {
+              header: "Records for review",
+              text: "15"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details">Batch 8</a>'
+            },
+            {
+              header: "Records for review",
+              text: "19"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 9</a>'
+            },
+            {
+              header: "Records for review",
+              text: "21"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Batch 10</a>'
+            },
+            {
+              header: "Records for review",
+              text: "10"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Outstanding records
+              </strong>
+              '
+            }
+          ]
+        ]
+      }) }}
+
+      <div class="nhsuk-u-padding-bottom-4"></div>
+
+      <nav class="govuk-pagination" aria-label="Pagination">
+        <ul class="govuk-pagination__list">
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">
+              1
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+              3
+            </a>
+          </li>
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">
+              Next<span class="govuk-visually-hidden"> page</span>
+            </span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      
+
+    </div>
+  </div>
+{% endblock %}

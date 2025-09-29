@@ -1,0 +1,44 @@
+{% extends "../../layout.html" %}
+
+{% set questionPage = "false" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Batch 1 records
+      </h1>
+
+      <h2 class="nhsuk-heading-m">Records that have been amended</h2>
+
+      <p>There are 36 records that need reviewing because they've been amended.</p>
+
+      {{ button({
+        text: "View all amended records",
+        href: "outstanding"
+      }) }}
+
+      <div class="nhsuk-u-padding-bottom-4"></div>
+
+      <h2 class="nhsuk-heading-m">All records in this batch</h2>
+
+      <p>There are 1,298 records that can be reviewed.</p>
+
+      {{ button({
+        text: "View all records",
+        href: "completed"
+      }) }}
+      
+
+    </div>
+  </div>
+{% endblock %}

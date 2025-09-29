@@ -1,0 +1,96 @@
+{% extends "../../layout.html" %}
+
+{% set questionPage = "false" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        Rejected records
+      </h1>
+
+      {{ table({
+        responsive: true,
+        panel: false,
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Membership number"
+          },
+          {
+            text: "Status"
+          }
+        ],
+        rows: [
+          [
+            {
+              header: "Name",
+              html: '<a href="person-details-read">Mrs Jane Doe</a>'
+            },
+            {
+              header: "Membership number",
+              text: "12345678"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Leo Gomez</a>'
+            },
+            {
+              header: "Membership number",
+              text: "53943130"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ],
+          [
+            {
+              header: "Name",
+              html: '<a href="">Mr Hussein Little</a>'
+            },
+            {
+              header: "Membership number",
+              text: "18037739"
+            },
+            {
+              header: "Legacy scheme",
+              html: '<strong class="nhsuk-tag nhsuk-tag--red">
+                Rejected
+              </strong>'
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

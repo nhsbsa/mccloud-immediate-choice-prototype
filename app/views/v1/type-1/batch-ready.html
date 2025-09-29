@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">
+        This batch is ready to submit for approval
+      </h1>
+
+      <p>All the records have been updated.</p>
+
+      <p>Before submitting, you can <a href="completed">review all the records</a> that are in this batch.</p>
+
+      {{ button({
+        text: "Submit batch",
+        href: "awaiting-review-success"
+      }) }}
+      
+
+    </div>
+  </div>
+{% endblock %}

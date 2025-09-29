@@ -1,0 +1,147 @@
+{% extends "../../layout.html" %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <span class="nhsuk-caption-l">Jane Doe</span>
+      <h1 class="nhsuk-heading-l">
+        Personal details
+      </h1>
+
+      {% from "summary-list/macro.njk" import summaryList %}
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Mrs Jane Doe"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Membership number"
+            },
+            value: {
+              text: "12345678"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Legacy scheme"
+            },
+            value: {
+              text: "1995 scheme"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Protection type"
+            },
+            value: {
+              text: "Full protection"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Retirement type"
+            },
+            value: {
+              text: "Age"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ button({
+        text: "Continue",
+        href: 'current-benefits'
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

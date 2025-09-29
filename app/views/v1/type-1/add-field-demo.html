@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% set questionPage = "true" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+{{ backLink({
+  href: "javascript:history.back()",
+  text: "Go back"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="missing-data" novalidate method="post">
+
+      <h1 class="nhsuk-heading-l">
+        Add [label name a]
+      </h1>
+
+      {{ input({
+        label: {
+          text: "[label name a]"
+        },
+        id: "lifetime-allowance",
+        name: "lifetime-allowance"
+      }) }}
+
+      {{ button({
+        text: "Confirm"
+      }) }}
+
+      
+    </form>
+    </div>
+  </div>
+{% endblock %}
