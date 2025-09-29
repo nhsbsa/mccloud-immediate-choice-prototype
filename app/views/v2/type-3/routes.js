@@ -5,25 +5,26 @@ const express = require('express')
 const router = express.Router()
 
 //set version so I can use it this file
-const version = 'v2/type-3';
+const version = 'v2';
+const type = 'type-3';
 
 // Add your version 2 routes here - above the module.exports line
-router.get(`/${version}/batch/:id`, function (req, res) {
+router.get(`/${version}/${type}/batch/:id`, function (req, res) {
   const batchStatus = req.params.id;
-  res.render(`${version}/batch`, { batchStatus: batchStatus });
+  res.render(`${version}/${type}/batch`, { batchStatus: batchStatus });
 });
 
-router.get(`/${version}/batch-details/:id`, function (req, res) {
+router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   const batchId = req.params.id;
-  res.render(`${version}/batch-details`, {
+  res.render(`${version}/${type}/batch-details`, {
     batchId: batchId,
     ...req.query
   });
 });
 
-router.get(`/${version}/search`, function (req, res) {
+router.get(`/${version}/${type}/search`, function (req, res) {
   const query = req.query;
-  res.render(`${version}/search`, { ...query });
+  res.render(`${version}/${type}/search`, { ...query });
 });
 
 module.exports = router

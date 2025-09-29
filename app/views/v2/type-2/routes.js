@@ -5,25 +5,26 @@ const express = require('express')
 const router = express.Router()
 
 //set version so I can use it this file
-const version = 'v2/type-2';
+const version = 'v2';
+const type = 'type-2';
 
 // Add your version 2 routes here - above the module.exports line
-router.get(`/${version}/batch-details/:id`, function (req, res) {
+router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   const batchId = req.params.id;
-  res.render(`${version}/batch-details`, { batch: batchId });
+  res.render(`${version}/${type}/batch-details`, { batch: batchId });
 });
 
-router.get(`/${version}/search`, function (req, res) {
+router.get(`/${version}/${type}/search`, function (req, res) {
   const query = req.query;
-  res.render(`${version}/search`, { ...query });
+  res.render(`${version}/${type}/search`, { ...query });
 });
 
-router.get(`/${version}/record`, function (req, res) {
+router.get(`/${version}/${type}/record`, function (req, res) {
   const query = req.query;
-  res.render(`${version}/record`, { ...query });
+  res.render(`${version}/${type}/record`, { ...query });
 });
 
-router.get(`/${version}/edit-record-set/:id`, function (req, res) {
+router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
   console.log('Editing record set');
   const recordSetId = req.params.id;
 
@@ -41,14 +42,14 @@ router.get(`/${version}/edit-record-set/:id`, function (req, res) {
     }
   }
 
-  res.render(`${version}/edit-record-set`, {
+  res.render(`${version}/${type}/edit-record-set`, {
     recordSet: recordSetId,
     errors: errors,
     errorsList: (errorsList.length > 0) ? errorsList : null
   });
 });
 
-router.post(`/${version}/edit-record-set/:id`, (req, res) => {
+router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
   const submitted = req.body;
   const recordSetId = req.params.id;
 
@@ -75,7 +76,7 @@ router.post(`/${version}/edit-record-set/:id`, (req, res) => {
   }
 
   if (Object.keys(errors).length > 0) {
-    res.render(`${version}/edit-record-set`, {
+    res.render(`${version}/${type}/edit-record-set`, {
       recordSet: recordSetId,
       errors: errors,
       errorsList: errorsList
@@ -92,17 +93,17 @@ router.post(`/${version}/edit-record-set/:id`, (req, res) => {
 
     if (hasWarnings) {
       // redirect to a warning page
-      res.redirect(`/${version}/warn-about-record-set/${recordSetId}`);
+      res.redirect(`/${version}/${type}/warn-about-record-set/${recordSetId}`);
     } else {
       // no warnings, go back to the batch details page
-      res.redirect(`/${version}/record?complete=${recordSetId}`);
+      res.redirect(`/${version}/${type}/record?complete=${recordSetId}`);
     }
   }
 });
 
 
 
-router.post(`/${version}/split-benefit`, function (req, res) {
+router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   //process the form submission
   const submitted = req.body;
 
@@ -154,13 +155,13 @@ router.post(`/${version}/split-benefit`, function (req, res) {
   data.v3.record[newId] = newSplitBenefit;
 
   //redirect to the record page, indicating the new record set is complete
-  res.redirect(`/${version}/record?newSplit=${newId}`);
+  res.redirect(`/${version}/${type}/record?newSplit=${newId}`);
 
 });
 
-router.get(`/${version}/warn-about-record-set/:id`, function (req, res) {
+router.get(`/${version}/${type}/warn-about-record-set/:id`, function (req, res) {
   const recordSetId = req.params.id;
-  res.render(`${version}/warn-about-record-set`, {
+  res.render(`${version}/${type}/warn-about-record-set`, {
     recordSet: recordSetId,
     ...req.query
   });
