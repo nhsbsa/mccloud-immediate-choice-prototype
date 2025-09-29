@@ -1,17 +1,42 @@
 {% extends 'layout.html' %}
-{% set pageName = "Records that need reviewing for " + data.v3.batches.outstanding[batch].name %}
-
-{% block beforeContent %}
-  {{ backLink({
-    href: "/version-3/outstanding"
-  }) }}
-{% endblock %}
+{% set pageName = "Find a pensioner by membership number" %}
+{% set notFoundText = "The is no pensioner with membership number 976834" %}
 
 {% block content %}
 
-<span class="nhsuk-caption-xl">{{ data.v3.batches.outstanding[batch].name }}</span>
-<h1 class="nhsuk-heading-xl">Records that need reviewing</h1>
-<table class="nhsuk-table">
+{% if notfound %}
+{{ errorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: notFoundText,
+      href: "#search"
+    }
+  ]
+}) }}
+{% endif %}
+
+<form method="post" action="#" class="nhsuk-form">
+{{ input({
+  label: {
+    text: pageName,
+    classes: "nhsuk-label--xl",
+    isPageHeading: true
+  },
+  id: "search",
+  name: "search",
+  classes: "nhsuk-input--width-20",
+  errorMessage: {
+    text: notFoundText
+  } if notfound
+}) }}
+{{ button({
+  text: "View pensioner record"
+}) }}
+</form>
+
+{# <table class="nhsuk-table">
+  <caption class="nhsuk-table__caption">Pensioners</caption>
   <thead class="nhsuk-table__head">
     <tr>
       <th scope="col" class="nhsuk-table__header">Name</th>
@@ -32,5 +57,5 @@
     </tr>
     {% endfor %}
   </tbody>
-</table>
+</table> #}
 {% endblock %}

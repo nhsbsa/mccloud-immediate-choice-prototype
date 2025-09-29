@@ -2,7 +2,7 @@
 
 module.exports = {
   // Service name
-  serviceName: 'Pensions McCloud service',
+  serviceName: 'McCloud Immediate Choice',
 
   // Port to run nodemon on locally
   port: 2000,

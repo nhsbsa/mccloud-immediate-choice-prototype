@@ -37,9 +37,6 @@
                   label: {
                     text: record.title
                   },
-                  hint: {
-                    text: record.error or record.warning
-                  } if (not errors or not errors[recordId]) and (record.error or record.warning),
                   name: recordId,
                   value: record.value,
                   errorMessage: {
@@ -51,9 +48,6 @@
                 label: {
                   text: record.title
                 },
-                hint: {
-                  text: record.error or record.warning
-                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 value: record.value,
                 name: recordId,
                 classes: "nhsuk-input--width-5",
@@ -67,9 +61,6 @@
                 label: {
                     text: record.title
                 },
-                hint: {
-                  text: record.error or record.warning
-                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 name: recordId,
                 prefix: "£",
                 value: record.value,
@@ -87,9 +78,6 @@
                 },
                 id: recordId,
                 name: recordId,
-                hint: {
-                  text: record.error or record.warning
-                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 errorMessage: {
                   text: errors[recordId]
                 } if errors[recordId],
@@ -120,9 +108,6 @@
                 },
                 id: recordId,
                 namePrefix: recordId,
-                hint: {
-                  text: record.error or record.warning
-                } if (not errors or not errors[recordId]) and (record.error or record.warning),
                 errorMessage: {
                   text: errors[recordId]
                 } if errors[recordId],

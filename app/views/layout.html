@@ -32,10 +32,11 @@
         },
         {
           text: "Log out",
-          href: "#"
+          href: data.versionUrl + "/login"
         }
       ]
-    } if loggedIn != "false"
+    } if loggedIn != "false",
+    navigation: data[data.version].user.navigation if loggedIn != "false"
   }) }}
 {% endblock %}
 
@@ -56,6 +57,10 @@
         {
           href: "/prototype-admin/reset?returnPage=" + (currentPage | urlencode),
           text: "Reset data"
+        },
+        {
+          text: "Prototype homepage (version: " +  data.version + ")",
+          href: "/"
         }
       ]
     }
