@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set pageName = 'Pension record for ' + data.v3.pensioner.name %}
+{% set pageName = 'Pension record for ' + data.v2t2.pensioner.name %}
 
 {% block beforeContent %}
   {{ backLink({
@@ -22,7 +22,7 @@
   </div>
 
   <div class="mccloud-summary-card__content">
-    
+
     <dl class="nhsuk-summary-list">
       {% for id, record in recordSet.items %}
       <div class="nhsuk-summary-list__row">
@@ -44,7 +44,7 @@
 {% block content %}
 {% set personalDetailsHtml %}
 {% set invalidRecords = 0 %}
-{% for recordId, recordSet in data.v3.record %}
+{% for recordId, recordSet in data.v2t2.record %}
   {% for id, record in recordSet.items %}
     {% if record.valid == false %}
       {% set invalidRecords = invalidRecords + 1 %}
@@ -60,7 +60,7 @@
         text: "Name"
       },
       value: {
-        text: data.v3.pensioner.name
+        text: data.v2t2.pensioner.name
       }
     },
     {
@@ -68,7 +68,7 @@
         text: "Membership number"
       },
       value: {
-        html: data.v3.pensioner.membershipNumber
+        html: data.v2t2.pensioner.membershipNumber
       }
     },
     {
@@ -76,7 +76,7 @@
         text: "Date of birth"
       },
       value: {
-        text: data.v3.pensioner.dob | niceDate
+        text: data.v2t2.pensioner.dob | niceDate
       }
     }
   ]
@@ -85,7 +85,7 @@
 
 {% if (complete and invalidRecords > 0) %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in the section “{{ data.v3.record[complete].title }}” are complete.</p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in the section “{{ data.v2t2.record[complete].title }}” are complete.</p>
 {% endset %}
 
 {{ notificationBanner({
@@ -118,7 +118,7 @@
 
 {% if newSplit %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added <a href="#{{ newSplit }}">{{ data.v3.record[newSplit].title }}</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added <a href="#{{ newSplit }}">{{ data.v2t2.record[newSplit].title }}</a></p>
 {% endset %}
 
 {{ notificationBanner({
@@ -138,7 +138,7 @@
 <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
   <h2 class="nhsuk-heading-m">Sections in this record</h2>
   <ol class="nhsuk-contents-list__list">
-    {% for recordId, recordSet in data.v3.record %}
+    {% for recordId, recordSet in data.v2t2.record %}
     {% set missingValues = 0 %}
     {% set warningValues = 0 %}
     {% for id, record in recordSet.items %}
@@ -152,42 +152,42 @@
   </ol>
 </nav>
 
-{% for recordId, recordSet in data.v3.record %}
+{% for recordId, recordSet in data.v2t2.record %}
 {{ recordSummary(recordSet, '') }}
 {% endfor %}
 
-{# {{ tabs({ 
-  items: [ 
-    { 
-      label: "Personal details", 
-      id: "personal-details", 
-      panel: { 
+{# {{ tabs({
+  items: [
+    {
+      label: "Personal details",
+      id: "personal-details",
+      panel: {
         html: personalDetailsHtml
-      } 
+      }
     },
-    { 
-      label: "Current scheme", 
-      id: "current-scheme", 
-      panel: { 
+    {
+      label: "Current scheme",
+      id: "current-scheme",
+      panel: {
         html:
-          recordSummary(data.v3.record.schemeDetails, 'current-scheme') +
-          recordSummary(data.v3.record.currentLegacySchemeBenefit, 'current-scheme')
-      } 
+          recordSummary(data.v2t2.record.schemeDetails, 'current-scheme') +
+          recordSummary(data.v2t2.record.currentLegacySchemeBenefit, 'current-scheme')
+      }
     },
-    { 
-      label: "Option A", 
-      id: "options-a", 
-      panel: { 
-        html: recordSummary(data.v3.record.optionALegacySchemeBenefit, 'options-a')
-      } 
+    {
+      label: "Option A",
+      id: "options-a",
+      panel: {
+        html: recordSummary(data.v2t2.record.optionALegacySchemeBenefit, 'options-a')
+      }
     },
-    { 
-      label: "Option B", 
-      id: "options-b", 
-      panel: { 
+    {
+      label: "Option B",
+      id: "options-b",
+      panel: {
         html: "<p>Test</p>"
-      } 
+      }
     }
-  ] 
+  ]
 }) }} #}
 {% endblock %}

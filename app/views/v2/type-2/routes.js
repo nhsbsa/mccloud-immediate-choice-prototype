@@ -58,7 +58,7 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
 
   // look up the schema for the current record set
   const data = req.session.data;
-  const schema = data.v3.record[recordSetId].items;
+  const schema = data.v2t2.record[recordSetId].items;
 
   for (const [recordId, record] of Object.entries(schema)) {
 
@@ -152,7 +152,7 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
 
   //store the new record set in the session data
   const data = req.session.data;
-  data.v3.record[newId] = newSplitBenefit;
+  data.v2t2.record[newId] = newSplitBenefit;
 
   //redirect to the record page, indicating the new record set is complete
   res.redirect(`/${version}/${type}/record?newSplit=${newId}`);
