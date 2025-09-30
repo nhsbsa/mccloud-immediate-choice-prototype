@@ -62,7 +62,7 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
 
   for (const [recordId, record] of Object.entries(schema)) {
 
-    const userValue = (submitted[recordId] || '').trim();
+    const userValue = String(submitted[recordId] || '').trim();
 
     if (record.required && !userValue) {
       errorsList.push({ text: record.error || `${record.title} is required`, href: `#${recordId}` });
@@ -108,7 +108,7 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   const submitted = req.body;
 
   //generate a simple unique id for the new record set
-  const newId = `splitBenfit${Date.now()}`;
+  const newId = `splitBenefit${Date.now()}`;
 
   //log all submitted values
   console.log(submitted);
