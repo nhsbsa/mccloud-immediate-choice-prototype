@@ -1,10 +1,10 @@
 const { FALSE } = require("sass-embedded");
 
 module.exports = {
-  v2: {
+  v2t1: {
     user: {
       name: 'Alex Pearson (Pension Administrator)',
-      navigation: null 
+      navigation: null
     },
     batches: {
       outstanding: {
@@ -101,7 +101,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -293,10 +293,10 @@ module.exports = {
       }
     }
   },
-  v3: {
+  v2t2: {
     user: {
       name: 'Jamie Lee (Quality Coach)',
-      navigation: null 
+      navigation: null
     },
     batches: {
       outstanding: {
@@ -393,7 +393,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -407,7 +407,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'text',
-            
+
             error: 'Reason for retirement cannot be blank'
           },
           pension: {
@@ -415,7 +415,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Pension must be a valid amount'
           },
           lumpSum: {
@@ -490,7 +490,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            
+
             type: 'number',
             error: 'Age at payable date must be a number between 55 and 75'
           }
@@ -523,7 +523,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Dependant pension should be greater than 50% of lump sum'
           },
           payableDate: {
@@ -585,7 +585,7 @@ module.exports = {
       }
     }
   },
-  v4: {
+  v2t3: {
     user: {
       name: 'Sam Taylor (Manager)',
       navigation: {
@@ -596,7 +596,7 @@ module.exports = {
           { text: "Completed", href: "/version-4/batch/completed" },
           { text: "Find a pensioner", href: "/version-4/search" }
         ]
-      } 
+      }
     },
     tags: {
       // batch tags
@@ -733,7 +733,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -747,7 +747,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'text',
-            
+
             error: 'Reason for retirement cannot be blank'
           },
           pension: {
@@ -755,7 +755,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Pension must be a valid amount'
           },
           lumpSum: {
@@ -830,7 +830,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            
+
             type: 'number',
             error: 'Age at payable date must be a number between 55 and 75'
           }
@@ -863,7 +863,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Dependant pension should be greater than 50% of lump sum'
           },
           payableDate: {

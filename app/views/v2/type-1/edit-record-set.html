@@ -6,7 +6,7 @@
   }) }}
 {% endblock %}
 
-{% set pageName = "Correct values for " + data.v2.record[recordSet].title | lower %}
+{% set pageName = "Correct values for " + data.v2t1.record[recordSet].title | lower %}
 
 {% block content %}
 
@@ -19,15 +19,15 @@
         }) }}
       {% endif %}
 
-      <span class="nhsuk-caption-xl">{{ data.v2.pensioner.name }}, {{ data.v2.pensioner.dob | formatRecord('date') }}</span>
-      <h1 class="nhsuk-heading-xl">{{ data.v2.record[recordSet].title }}</h1>
+      <span class="nhsuk-caption-xl">{{ data.v2t1.pensioner.name }}, {{ data.v2t1.pensioner.dob | formatRecord('date') }}</span>
+      <h1 class="nhsuk-heading-xl">{{ data.v2t1.record[recordSet].title }}</h1>
 
 
       <form method="post" action="../record?{{ recordSet }}" class="nhsuk-form">
         <input type="hidden" name="recordSet" value="{{ recordSet }}">
 
         {# Loop over each record in this record set #}
-        {% for recordId, record in data.v2.record[recordSet].items %}
+        {% for recordId, record in data.v2t1.record[recordSet].items %}
 
           {% if record.required %}<input type="hidden" name="{{ recordId }}-required" value="true">{% endif %}
 
@@ -135,9 +135,9 @@
         {{ button({
           text: "Save and continue"
         }) }}
-        {% if data.v2.record[recordSet].canDelete %}
+        {% if data.v2t1.record[recordSet].canDelete %}
         {{ button({
-          text: "Delete " + data.v2.record[recordSet].title,
+          text: "Delete " + data.v2t1.record[recordSet].title,
           href: "#",
           classes: "nhsuk-button--warning"
         }) }}

@@ -30,7 +30,7 @@ router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
 
   //pre-validate the records in this set
   const data = req.session.data;
-  const schema = data.v3.record[recordSetId].items;
+  const schema = data.v2t2.record[recordSetId].items;
 
   const errors = {};
   const errorsList = [];

@@ -12,11 +12,11 @@
       <th scope="col" class="nhsuk-table__header">Invalid records</th>
       <th scope="col" class="nhsuk-table__header">Status</th>
       <th scope="col" class="nhsuk-table__header">Created</th>
-      <th scope="col" class="nhsuk-table__header">Action</th
+      <th scope="col" class="nhsuk-table__header">Action</th>
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, record in data.v2.batches.outstanding %}
+    {% for id, record in data.v2t1.batches.outstanding %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
