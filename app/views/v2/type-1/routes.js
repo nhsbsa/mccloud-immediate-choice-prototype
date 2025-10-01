@@ -4,9 +4,15 @@ const express = require('express')
 
 const router = express.Router()
 
-//set version so I can use it this file
+// Set version so I can use it in this file
 const version = 'v2';
 const type = 'type-1';
+
+router.all('/v2/type-1', function (req, res, next) {
+  const data = req.session.data;
+  data.username = data.v2t1.user.name;
+  next()
+});
 
 // Add your version 2 routes here - above the module.exports line
 router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {

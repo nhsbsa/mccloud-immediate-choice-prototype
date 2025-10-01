@@ -1,9 +1,7 @@
-{% extends 'layout.html' %}
-{% set pageName = data.v4.batches[batchStatus].title %}
-
+{% extends '../../layout.html' %}
+{% set pageName = data.v2t3.batches[batchStatus].title %}
 
 {% block content %}
-
 <table class="nhsuk-table">
   <caption class="nhsuk-table__caption"><h1 class="nhsuk-heading-xl">{{ pageName }}</h1></caption>
   <thead class="nhsuk-table__head">
@@ -16,14 +14,14 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, record in data.v4.batches[batchStatus].items %}
+    {% for id, record in data.v2t3.batches[batchStatus].items %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
-      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v4.tags[record.tag].colour }}">{{ data.v4.tags[record.tag].name }}</strong></td>
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v4.tags[record.tag].colour }}">{{ data.v2t3.tags[record.tag].name }}</strong></td>
       <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
       <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/version-4/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
+        <a class="nhsuk-link" href="/v2/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
       </td>
     </tr>
     {% endfor %}

@@ -27,7 +27,7 @@
     account: {
       items: [
         {
-          text: data[data.version].user.name or data.v2.user.name,
+          text: data[data.vt].user.name,
           icon: true
         },
         {
@@ -36,7 +36,7 @@
         }
       ]
     } if loggedIn != "false",
-    navigation: data[data.version].user.navigation if loggedIn != "false"
+    navigation: data[data.vt].user.navigation if loggedIn != "false"
   }) }}
 {% endblock %}
 

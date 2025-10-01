@@ -590,11 +590,11 @@ module.exports = {
       name: 'Sam Taylor (Manager)',
       navigation: {
         items: [
-          { text: "Outstanding", href: "/version-4/batch/outstanding" },
-          { text: "Awaiting approval", href: "/version-4/batch/awaitingApproval" },
-          { text: "Rejected", href: "/version-4/batch/rejected" },
-          { text: "Completed", href: "/version-4/batch/completed" },
-          { text: "Find a pensioner", href: "/version-4/search" }
+          { text: "Outstanding", href: "/v2/type-3/batch/outstanding" },
+          { text: "Awaiting approval", href: "/v2/type-3/batch/awaitingApproval" },
+          { text: "Rejected", href: "/v2/type-3/batch/rejected" },
+          { text: "Completed", href: "/v2/type-3/batch/completed" },
+          { text: "Find a pensioner", href: "/v2/type-3/search" }
         ]
       }
     },
