@@ -1,6 +1,18 @@
 const { FALSE } = require("sass-embedded");
 
 module.exports = {
+  v1t1: {
+    user: {
+      name: 'Alex Pearson (Pension Administrator)',
+      navigation: null
+    }
+  },
+  v1t2: {
+    user: {
+      name: 'Alex Pearson (Pension Administrator)',
+      navigation: null
+    }
+  },
   v2t1: {
     user: {
       name: 'Alex Pearson (Pension Administrator)',
@@ -600,16 +612,16 @@ module.exports = {
     },
     tags: {
       // batch tags
-      1: { name: 'Sent for approval', colour: 'grey' },
-      2: { name: 'Awaiting approval' },
-      3: { name: 'Outstanding records', colour: 'red' },
-      4: { name: 'Ready to submit'},
-      5: { name: 'Sent to print', colour: 'grey'},
-      6: { name: 'Rejected', colour: 'grey'},
+      1: { name: 'Sent for approval', colour: 'green' },
+      2: { name: 'Awaiting approval', colour: 'green' },
+      3: { name: 'Outstanding records', colour: 'orange' },
+      4: { name: 'Ready to submit', colour: 'blue'},
+      5: { name: 'Sent to print', colour: 'green'},
+      6: { name: 'Rejected', colour: 'red'},
       // record tags
-      7: { name: 'Invalid data', colour: 'red' },
-      8: { name: 'Data complete' },
-      9: { name: 'Rejected', colour: 'grey'},
+      7: { name: 'Invalid data', colour: 'orange' },
+      8: { name: 'Data complete', colour: 'blue' },
+      9: { name: 'Rejected', colour: 'red'},
       10: { name: 'Cannot be processed', colour: 'grey' },
     },
     batches: {

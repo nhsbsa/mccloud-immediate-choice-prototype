@@ -18,9 +18,14 @@ router.get('/start/:version/:type', function (req, res) {
   //translate between version and url, eg `v2` === `version-2`
   // const versionNumber = version.split('');
   // req.session.data.versionUrl = `/v${versionNumber[1]}`;
+  // req.session.data.versionUrl = `/${version}/${type}`;
 
   // res.redirect(`/v${versionNumber[1]}/login`);
-  res.redirect(`/${version}/${type}/login`);
+  if (version == 'v1') {
+    res.redirect(`/${version}/${type}/outstanding-batches`);
+  } else {
+    res.redirect(`/${version}/${type}/login`);
+  }
 });
 
 // Import routes from /v2/type-1/routes.js

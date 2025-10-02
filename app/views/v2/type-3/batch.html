@@ -18,7 +18,7 @@
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
-      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v4.tags[record.tag].colour }}">{{ data.v2t3.tags[record.tag].name }}</strong></td>
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v2t3.tags[record.tag].colour }}">{{ data.v2t3.tags[record.tag].name }}</strong></td>
       <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
       <td class="nhsuk-table__cell">
         <a class="nhsuk-link" href="/v2/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
