@@ -168,7 +168,9 @@ module.exports = {
             title: 'Benefit scheme',
             value: '',
             required: true,
-            type: 'text'
+            type: 'text',
+            valid: false,
+            error: 'Benefit scheme cannot be blank'
           },
           commutationType: {
             title: 'Commutation type',
