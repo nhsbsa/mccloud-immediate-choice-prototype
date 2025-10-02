@@ -8,12 +8,6 @@ const router = express.Router()
 const version = 'v2';
 const type = 'type-3';
 
-router.all('/v2/type-3', function (req, res, next) {
-  const data = req.session.data;
-  data.username = data.v2t3.user.name;
-  next()
-});
-
 // Add your version 2 routes here - above the module.exports line
 router.get(`/${version}/${type}/batch/:id`, function (req, res) {
   const batchStatus = req.params.id;
