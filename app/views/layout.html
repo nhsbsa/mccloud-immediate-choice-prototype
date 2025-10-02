@@ -27,7 +27,7 @@
     account: {
       items: [
         {
-          text: data[data.version].user.name or data.v2.user.name,
+          text: data[data.vt].user.name,
           icon: true
         },
         {
@@ -36,7 +36,7 @@
         }
       ]
     } if loggedIn != "false",
-    navigation: data[data.version].user.navigation if loggedIn != "false"
+    navigation: data[data.vt].user.navigation if loggedIn != "false"
   }) }}
 {% endblock %}
 
@@ -48,19 +48,11 @@
       items: [
         {
           href: "/",
-          text: "Home"
-        },
-        {
-          href: "/example-templates",
-          text: "Page templates"
+          text: "Prototype home (" +  data.version + "/" + data.type + ")"
         },
         {
           href: "/prototype-admin/reset?returnPage=" + (currentPage | urlencode),
           text: "Reset data"
-        },
-        {
-          text: "Prototype homepage (version: " +  data.version + ")",
-          href: "/"
         }
       ]
     }

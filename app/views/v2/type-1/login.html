@@ -1,4 +1,4 @@
-{% extends '../layout.html' %} 
+{% extends '../../layout.html' %}
 
 {% set loggedIn = "false" %}
 {% set pageName = serviceName %}
@@ -16,9 +16,8 @@
 
     {{ button({
       text: "Log in",
-      href: data.versionUrl + "/batch/outstanding"
+      href: "search"
     }) }}
   </div>
 </div>
-
 {% endblock %}

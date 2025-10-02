@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends '../../layout.html' %}
 {% set pageName = "Find a pensioner by membership number" %}
 {% set notFoundText = "The is no pensioner with membership number 976834" %}
 
@@ -16,7 +16,7 @@
 }) }}
 {% endif %}
 
-<form method="post" action="/version-3/record" class="nhsuk-form">
+<form method="post" action="record" class="nhsuk-form">
 {{ input({
   label: {
     text: pageName,
@@ -46,7 +46,7 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v3.pensioners %}
+    {% for id, pensioner in data.v2t2.pensioners %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>

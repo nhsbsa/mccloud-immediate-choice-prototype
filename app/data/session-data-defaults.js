@@ -1,10 +1,22 @@
 const { FALSE } = require("sass-embedded");
 
 module.exports = {
-  v2: {
+  v1t1: {
     user: {
       name: 'Alex Pearson (Pension Administrator)',
-      navigation: null 
+      navigation: null
+    }
+  },
+  v1t2: {
+    user: {
+      name: 'Alex Pearson (Pension Administrator)',
+      navigation: null
+    }
+  },
+  v2t1: {
+    user: {
+      name: 'Alex Pearson (Pension Administrator)',
+      navigation: null
     },
     batches: {
       outstanding: {
@@ -101,7 +113,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -293,10 +305,10 @@ module.exports = {
       }
     }
   },
-  v3: {
+  v2t2: {
     user: {
       name: 'Jamie Lee (Quality Coach)',
-      navigation: null 
+      navigation: null
     },
     batches: {
       outstanding: {
@@ -393,7 +405,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -407,7 +419,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'text',
-            
+
             error: 'Reason for retirement cannot be blank'
           },
           pension: {
@@ -415,7 +427,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Pension must be a valid amount'
           },
           lumpSum: {
@@ -490,7 +502,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            
+
             type: 'number',
             error: 'Age at payable date must be a number between 55 and 75'
           }
@@ -523,7 +535,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Dependant pension should be greater than 50% of lump sum'
           },
           payableDate: {
@@ -585,31 +597,31 @@ module.exports = {
       }
     }
   },
-  v4: {
+  v2t3: {
     user: {
       name: 'Sam Taylor (Manager)',
       navigation: {
         items: [
-          { text: "Outstanding", href: "/version-4/batch/outstanding" },
-          { text: "Awaiting approval", href: "/version-4/batch/awaitingApproval" },
-          { text: "Rejected", href: "/version-4/batch/rejected" },
-          { text: "Completed", href: "/version-4/batch/completed" },
-          { text: "Find a pensioner", href: "/version-4/search" }
+          { text: "Outstanding", href: "/v2/type-3/batch/outstanding" },
+          { text: "Awaiting approval", href: "/v2/type-3/batch/awaitingApproval" },
+          { text: "Rejected", href: "/v2/type-3/batch/rejected" },
+          { text: "Completed", href: "/v2/type-3/batch/completed" },
+          { text: "Find a pensioner", href: "/v2/type-3/search" }
         ]
-      } 
+      }
     },
     tags: {
       // batch tags
-      1: { name: 'Sent for approval', colour: 'grey' },
-      2: { name: 'Awaiting approval' },
-      3: { name: 'Outstanding records', colour: 'red' },
-      4: { name: 'Ready to submit'},
-      5: { name: 'Sent to print', colour: 'grey'},
-      6: { name: 'Rejected', colour: 'grey'},
+      1: { name: 'Sent for approval', colour: 'green' },
+      2: { name: 'Awaiting approval', colour: 'green' },
+      3: { name: 'Outstanding records', colour: 'orange' },
+      4: { name: 'Ready to submit', colour: 'blue'},
+      5: { name: 'Sent to print', colour: 'green'},
+      6: { name: 'Rejected', colour: 'red'},
       // record tags
-      7: { name: 'Invalid data', colour: 'red' },
-      8: { name: 'Data complete' },
-      9: { name: 'Rejected', colour: 'grey'},
+      7: { name: 'Invalid data', colour: 'orange' },
+      8: { name: 'Data complete', colour: 'blue' },
+      9: { name: 'Rejected', colour: 'red'},
       10: { name: 'Cannot be processed', colour: 'grey' },
     },
     batches: {
@@ -733,7 +745,7 @@ module.exports = {
           protectionType: {
             title: 'Protection type',
             value: 'full',
-            required: false, 
+            required: false,
             type: 'text'
           }
         }
@@ -747,7 +759,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'text',
-            
+
             error: 'Reason for retirement cannot be blank'
           },
           pension: {
@@ -755,7 +767,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Pension must be a valid amount'
           },
           lumpSum: {
@@ -830,7 +842,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            
+
             type: 'number',
             error: 'Age at payable date must be a number between 55 and 75'
           }
@@ -863,7 +875,7 @@ module.exports = {
             value: '',
             required: true,
             type: 'currency',
-            
+
             error: 'Dependant pension should be greater than 50% of lump sum'
           },
           payableDate: {

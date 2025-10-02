@@ -12,18 +12,18 @@
       <th scope="col" class="nhsuk-table__header">Invalid records</th>
       <th scope="col" class="nhsuk-table__header">Status</th>
       <th scope="col" class="nhsuk-table__header">Created</th>
-      <th scope="col" class="nhsuk-table__header">Action</th
+      <th scope="col" class="nhsuk-table__header">Action</th>
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, record in data.v2.batches.outstanding %}
+    {% for id, record in data.v2t1.batches.outstanding %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
       <td class="nhsuk-table__cell">Invalid records</td>
       <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
       <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/version-2/batch-details/{{ id }}">View batch</a>
+        <a class="nhsuk-link" href="./batch-details/{{ id }}">View batch</a>
       </td>
     </tr>
     {% endfor %}

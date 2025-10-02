@@ -1,0 +1,95 @@
+{% set pageName = "Prototype home" %}
+{% set loggedIn = "false" %}
+{% extends 'layout.html' %}
+
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1 class="nhsuk-heading-xl">Style guide</h1>
+      <p class="nhsuk-body-l">Guidance for implementing specific components</p>
+
+      <h2 class="nhsuk-heading-l">Tags</h2>
+      <table class="nhsuk-table">
+        <thead class="nhsuk-table__head">
+          <tr class="nhsuk-table__row">
+            <th class="nhsuk-table__header" scope="col">Label</th>
+            <th class="nhsuk-table__header" scope="col">Class</th>
+          </tr>
+        </thead>
+        <tbody class="nhsuk-table__body">
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--green">Sent for approval</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item has been actioned</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--green</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--green">Awaiting approval</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item has been actioned</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--green</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--green">Sent to print</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item has been actioned</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--green</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--blue">Data complete</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item is ready to be actioned</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--blue</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--blue">Ready to submit</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item is ready to be actioned</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--blue</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--orange">Outstanding records</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item needs attention</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--orange</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--orange">Invalid data</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item needs attention</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--orange</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item was rejected and can't be corrected</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--red</code></td>
+          </tr>
+          <tr class="nhsuk-table__row">
+            <td class="nhsuk-table__cell">
+              <strong class="nhsuk-tag nhsuk-tag--grey">Inactive</strong>
+              <p class="nhsuk-body-s nhsuk-u-padding-top-1 nhsuk-u-margin-bottom-0">Item is inactive or irrelevant and can't be corrected<br/>(Currently no use case for this)</p>
+            </td>
+            <td class="nhsuk-table__cell"><code>nhsuk-tag--grey</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

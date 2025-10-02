@@ -1,17 +1,20 @@
 {% extends 'layout.html' %}
-{% set pageName = "Records that need reviewing for " + data.v2.batches.outstanding[batch].name %}
+{% set pageName = "Pensioner search results" %}
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/outstanding"
+    href: "./search"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-<span class="nhsuk-caption-xl">{{ data.v2.batches.outstanding[batch].name }}</span>
-<h1 class="nhsuk-heading-xl">Records that need reviewing</h1>
+<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+
+<p>Search results for: [search term]</p>
+
 <table class="nhsuk-table">
+  <caption class="nhsuk-table__caption">Found pensioners matching your search</caption>
   <thead class="nhsuk-table__head">
     <tr>
       <th scope="col" class="nhsuk-table__header">Name</th>
@@ -21,13 +24,13 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v2.pensioners %}
+    {% for id, pensioner in data.v2t1.pensioners %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
       <td class="nhsuk-table__cell">???</td>
       <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/version-2/record/{{ id }}?batch={{ batch }}">Review record</a>
+        <a class="nhsuk-link" href="./record/{{ id }}">Review record</a>
       </td>
     </tr>
     {% endfor %}

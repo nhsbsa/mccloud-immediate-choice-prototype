@@ -2,22 +2,22 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/version-2/edit-record-set/" + recordSet
+    href: "/version-3/edit-record-set/" + recordSet
   }) }}
 {% endblock %}
 
-{% set pageName = "Warnings for " + data.v2.record[recordSet].title | lower %}
+{% set pageName = "Warnings for " + data.v2t2.record[recordSet].title | lower %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-xl">{{ data.v2.pensioner.name }}, {{ data.v2.pensioner.dob | formatRecord('date') }}</span>
+      <span class="nhsuk-caption-xl">{{ data.v2t2.pensioner.name }}, {{ data.v2t2.pensioner.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
       <p>Some entries in this record fall outside of expected values. You should check the values are correct before you continue.</p>
       <dl class="nhsuk-summary-list">
-        {% for id, record in data.v2.record[recordSet].items %}
+        {% for id, record in data.v2t2.record[recordSet].items %}
         {% if record.warning %}
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
@@ -28,10 +28,10 @@
       </dl>
       {{ button({
         text: "Continue",
-        href: "/version-2/record?complete=" + recordSet
+        href: "../record?complete=" + recordSet
       }) }}
-      
-      
+
+
   </div>
 </div>
 {% endblock %}
