@@ -48,19 +48,11 @@
       items: [
         {
           href: "/",
-          text: "Home"
-        },
-        {
-          href: "/example-templates",
-          text: "Page templates"
+          text: "Prototype home (active: " +  data.version + "/" + data.type + ")"
         },
         {
           href: "/prototype-admin/reset?returnPage=" + (currentPage | urlencode),
           text: "Reset data"
-        },
-        {
-          text: "Prototype homepage (version: " +  data.version + ")",
-          href: "/"
         }
       ]
     }
