@@ -5,10 +5,16 @@ const express = require('express')
 const router = express.Router()
 
 // Set version so I can use it in this file
-const version = 'v2';
-const type = 'type-2';
+const version = 'v3';
+const type = 'type-1';
 
-// Add your version 2 routes here - above the module.exports line
+router.use((req, res, next) => {
+  console.log(`--- VERSION: ${version} | USER TYPE: ${type} ---`);
+  next();
+});
+
+// Add your version 3 routes here - above the module.exports line
+
 router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   const batchId = req.params.id;
   res.render(`${version}/${type}/batch-details`, { batch: batchId });
@@ -30,7 +36,7 @@ router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
 
   //pre-validate the records in this set
   const data = req.session.data;
-  const schema = data.v2t2.record[recordSetId].items;
+  const schema = data.v3t1.record[recordSetId].items;
 
   const errors = {};
   const errorsList = [];
@@ -58,11 +64,11 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
 
   // look up the schema for the current record set
   const data = req.session.data;
-  const schema = data.v2t2.record[recordSetId].items;
+  const schema = data.v2t1.record[recordSetId].items;
 
   for (const [recordId, record] of Object.entries(schema)) {
 
-    const userValue = (submitted[recordId] || '').trim();
+    const userValue = String(submitted[recordId] || '').trim();
 
     if (record.required && !userValue) {
       errorsList.push({ text: record.error || `${record.title} is required`, href: `#${recordId}` });
@@ -101,14 +107,12 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
   }
 });
 
-
-
 router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   //process the form submission
   const submitted = req.body;
 
   //generate a simple unique id for the new record set
-  const newId = `splitBenfit${Date.now()}`;
+  const newId = `splitBenefit${Date.now()}`;
 
   //log all submitted values
   console.log(submitted);
@@ -128,8 +132,8 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
 
   newSplitBenefit.items['protectedPayDate'] = {
     title: 'Protected Pay Date',
-    value: `${submitted['protected-pay-date']['days']}-${submitted['protected-pay-date']['years']}`,
-    type: 'daysAndYears'
+    value: `${submitted['protected-pay-date']['year']}-${submitted['protected-pay-date']['month']}-${submitted['protected-pay-date']['day']}`,
+    type: 'date'
   };
 
   newSplitBenefit.items['pension'] = {
@@ -146,13 +150,13 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
 
   newSplitBenefit.items['deemedDate'] = {
     title: 'Deemed Date',
-    value: `${submitted['deemed-date']['days']}-${submitted['deemed-date']['years']}`,
-    type: 'daysAndYears'
+    value: `${submitted['deemed-date']['year']}-${submitted['deemed-date']['month']}-${submitted['deemed-date']['day']}`,
+    type: 'date'
   };
 
   //store the new record set in the session data
   const data = req.session.data;
-  data.v2t2.record[newId] = newSplitBenefit;
+  data.v2t1.record[newId] = newSplitBenefit;
 
   //redirect to the record page, indicating the new record set is complete
   res.redirect(`/${version}/${type}/record?newSplit=${newId}`);
