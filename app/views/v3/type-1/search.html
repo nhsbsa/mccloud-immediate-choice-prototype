@@ -1,0 +1,61 @@
+{% extends '../../layout.html' %}
+{% set pageName = "Find a pensioner by membership number" %}
+{% set notFoundText = "The is no pensioner with membership number 976834" %}
+
+{% block content %}
+
+{% if notfound %}
+{{ errorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: notFoundText,
+      href: "#search"
+    }
+  ]
+}) }}
+{% endif %}
+
+<form method="post" action="record" class="nhsuk-form">
+{{ input({
+  label: {
+    text: pageName,
+    classes: "nhsuk-label--xl",
+    isPageHeading: true
+  },
+  id: "search",
+  name: "search",
+  classes: "nhsuk-input--width-20",
+  errorMessage: {
+    text: notFoundText
+  } if notfound
+}) }}
+{{ button({
+  text: "View pensioner record"
+}) }}
+</form>
+
+{# <table class="nhsuk-table">
+  <caption class="nhsuk-table__caption">Pensioners</caption>
+  <thead class="nhsuk-table__head">
+    <tr>
+      <th scope="col" class="nhsuk-table__header">Name</th>
+      <th scope="col" class="nhsuk-table__header">Membership number</th>
+      <th scope="col" class="nhsuk-table__header">Status</th>
+      <th scope="col" class="nhsuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="nhsuk-table__body">
+    {% for id, pensioner in data.v2t1.pensioners %}
+    <tr class="nhsuk-table__row">
+      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">
+        <a class="nhsuk-link" href="./record/{{ id }}?batch={{ batch }}">Review record</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> #}
+{% endblock %}
