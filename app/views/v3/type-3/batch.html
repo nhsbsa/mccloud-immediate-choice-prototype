@@ -1,5 +1,5 @@
 {% extends '../../layout.html' %}
-{% set pageName = data.v2t3.batches[batchStatus].title %}
+{% set pageName = data.v3t3.batches[batchStatus].title %}
 
 {% block content %}
 <table class="nhsuk-table">
@@ -14,14 +14,14 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, record in data.v2t3.batches[batchStatus].items %}
+    {% for id, record in data.v3t3.batches[batchStatus].items %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
-      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v2t3.tags[record.tag].colour }}">{{ data.v2t3.tags[record.tag].name }}</strong></td>
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[record.tag].colour }}">{{ data.v3t3.tags[record.tag].name }}</strong></td>
       <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
       <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/v2/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
+        <a class="nhsuk-link" href="/v3/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
       </td>
     </tr>
     {% endfor %}
