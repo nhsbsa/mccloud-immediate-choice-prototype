@@ -18,6 +18,7 @@ const type = 'type-3';
 router.get(`/${version}/${type}/batch/:id`, function (req, res) {
   const data = req.session.data;
   const batchStatus = req.params.id;
+  data.v3t3.currentBatch = batchStatus;
 
   // Set active nav states
   data.v3t3.user.navigation.items.forEach(navItem => {
