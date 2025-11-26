@@ -29,7 +29,7 @@
 {% endif %}
 
 <form method="post" action="search-results" class="nhsuk-form">
-  <div class="nhsuk-form-group nhsuk-form-group--error">
+  <div class="nhsuk-form-group {% if data.searchErrors %}nhsuk-form-group--error{% endif %}">
     <h1 class="nhsuk-label-wrapper">
       <label class="nhsuk-label nhsuk-label--xl" for="full-name">{{ pageName}}</label>
     </h1>
@@ -53,7 +53,7 @@
     {% endif %}
     {% endfor  %}
     {% endif %}
-    <input class="nhsuk-input nhsuk-input--width-10 nhsuk-input--error" id="memberSearch" name="memberSearch" type="text" aria-describedby="memberSearch-error">
+    <input class="nhsuk-input nhsuk-input--width-10 {% if data.searchErrors %}nhsuk-input--error{% endif %}" id="memberSearch" name="memberSearch" type="text" aria-describedby="memberSearch-error">
   </div>
   {{ button({
     text: "Find pensioner record"
