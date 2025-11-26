@@ -3,7 +3,7 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/v3/type-2/search"
+    href: "./search"
   }) }}
 {% endblock %}
 
@@ -11,29 +11,34 @@
 
 <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
-<p>Search results for: [search term]</p>
+<p>Search results for: <strong>{{ data.memberSearch }}</strong></p>
+
+<p>Showing 1 to {{ data.matches|length }} of {{ data.matches|length }} results</p>
 
 <table class="nhsuk-table">
   <caption class="nhsuk-table__caption">Found pensioners matching your search</caption>
   <thead class="nhsuk-table__head">
     <tr>
-      <th scope="col" class="nhsuk-table__header">Name</th>
       <th scope="col" class="nhsuk-table__header">Membership number</th>
+      <th scope="col" class="nhsuk-table__header">Name</th>
+      <th scope="col" class="nhsuk-table__header">Batch ID</th>
       <th scope="col" class="nhsuk-table__header">Status</th>
       <th scope="col" class="nhsuk-table__header">Action</th>
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v3t2.pensioners %}
+    {% for pensioner in data.matches %}
     <tr class="nhsuk-table__row">
-      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+      <td class="nhsuk-table__cell">???</td>
       <td class="nhsuk-table__cell">???</td>
       <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/v3/type-2/record/{{ id }}">Review record</a>
+        <a class="nhsuk-link" href="./record/{{ id }}">View record</a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
 {% endblock %}
