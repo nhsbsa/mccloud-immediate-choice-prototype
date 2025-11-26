@@ -33,7 +33,6 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 
   // No membership number provided
   if (!memberSearch) {
-    data.searchError = 'empty';
     searchErrors.push('empty');
     data.searchErrors = searchErrors;
     res.redirect(`/${version}/${type}/search`);
@@ -42,13 +41,11 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 
   // Invalid member number length
   if (memberSearch.length != 8) {
-    data.searchError = 'length';
     searchErrors.push('length');
   }
 
   // Invalid member number format
   if (isNaN(memberSearch)) {
-    data.searchError = 'nan';
     searchErrors.push('nan');
   }
 
@@ -59,16 +56,31 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   }
 
   // Search the pensioners data for the given membership number
-  // const matches = data.v3t1.pensioners.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
-  // console.log(`Matches: ${matches}`);
+  const matches = data.v3t1.pensioners2.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
+  console.log(`Matches num: ${matches.length}`);
 
-  res.render(`${version}/${type}/search-results`, { ...query });
+  if (matches.length == 0) {
+    // No matches found – go back to search with no results error?
+    // data.notfound = true;
+    searchErrors.push('not-found');
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  } else if (matches.length == 1) {
+    // One match found - redirect to pensioner record
+    const query = req.query;
+    res.render(`${version}/${type}/record`, { ...query });
+    return;
+  } else {
+    // Multiple matches found - show search results page
+    res.render(`${version}/${type}/search-results`, { ...query });
+  }
+
 });
 
 // Member record ---------------------------------------------------------------
 router.get(`/${version}/${type}/record`, function (req, res) {
   const query = req.query;
-  console.log(query);
   res.render(`${version}/${type}/record`, { ...query });
 });
 

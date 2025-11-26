@@ -21,6 +21,9 @@
         {% if error == 'nan' %}
         <li><a href="#memberSearch">Membership numbers must only contain numbers</a></li>
         {% endif %}
+        {% if error == 'not-found' %}
+        <li><a href="#memberSearch">No results found for the membership number {{ data.memberSearch }}</a></li>
+        {% endif %}
         {% endfor  %}
       </ul>
     </div>
@@ -49,6 +52,11 @@
     {% if error == 'nan' %}
     <span id="memberSearch-error" class="nhsuk-error-message">
       <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must only contain numbers
+    </span>
+    {% endif %}
+    {% if error == 'not-found' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> No results found for the membership number {{ data.memberSearch }}
     </span>
     {% endif %}
     {% endfor  %}
