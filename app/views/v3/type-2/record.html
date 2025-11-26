@@ -3,7 +3,7 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/v2/type-2/search"
+    href: "/v3/type-2/search"
   }) }}
 {% endblock %}
 
@@ -96,7 +96,7 @@
 
 {% if invalidRecords == 0 %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/v2/type-2/search">Find another record.</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/v3/type-2/search">Find another record.</a></p>
 {% endset %}
 
 {{ notificationBanner({
@@ -107,7 +107,7 @@
 
 {% if excluded %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been excluded. <a href="/v2/type-2/search">Find another record.</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been excluded. <a href="/v3/type-2/search">Find another record.</a></p>
 {% endset %}
 
 {{ notificationBanner({
