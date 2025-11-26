@@ -15,19 +15,67 @@ router.use((req, res, next) => {
 
 // Add your version 3 routes here - above the module.exports line
 
-router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
-  const batchId = req.params.id;
-  res.render(`${version}/${type}/batch-details`, { batch: batchId });
-});
-
+// Member search ---------------------------------------------------------------
 router.get(`/${version}/${type}/search`, function (req, res) {
   const query = req.query;
   res.render(`${version}/${type}/search`, { ...query });
 });
 
+// Search results --------------------------------------------------------------
+router.get(`/${version}/${type}/search-results`, function (req, res) {
+  delete req.session.data.searchErrors;
+  const data = req.session.data;
+  const query = req.query; // Is this used?
+
+  memberSearch = data.memberSearch;
+  console.log(`memberSearch:${memberSearch}`);
+  const searchErrors = data.searchErrors || [];
+
+  // No membership number provided
+  if (!memberSearch) {
+    data.searchError = 'empty';
+    searchErrors.push('empty');
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  }
+
+  // Invalid member number length
+  if (memberSearch.length != 8) {
+    data.searchError = 'length';
+    searchErrors.push('length');
+  }
+
+  // Invalid member number format
+  if (isNaN(memberSearch)) {
+    data.searchError = 'nan';
+    searchErrors.push('nan');
+  }
+
+  if (searchErrors.length > 0) {
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  }
+
+  // Search the pensioners data for the given membership number
+  // const matches = data.v3t1.pensioners.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
+  // console.log(`Matches: ${matches}`);
+
+  res.render(`${version}/${type}/search-results`, { ...query });
+});
+
+// Member record ---------------------------------------------------------------
 router.get(`/${version}/${type}/record`, function (req, res) {
   const query = req.query;
+  console.log(query);
   res.render(`${version}/${type}/record`, { ...query });
+});
+
+// Batch details ---------------------------------------------------------------
+router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
+  const batchId = req.params.id;
+  res.render(`${version}/${type}/batch-details`, { batch: batchId });
 });
 
 router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
