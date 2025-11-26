@@ -57,7 +57,6 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 
   // Search the pensioners data for the given membership number
   const matches = data.v3t1.pensioners2.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
-  req.session.data.matches = matches;
   console.log(`Matches num: ${matches.length}`);
 
   if (matches.length == 0) {
@@ -74,6 +73,7 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
     return;
   } else {
     // Multiple matches found - show search results page
+    data.matches = matches;
     res.render(`${version}/${type}/search-results`, { ...query });
   }
 
