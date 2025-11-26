@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set pageName = "Records that need reviewing for " + data.v2t1.batches.outstanding[batch].name %}
+{% set pageName = "Records that need reviewing for " + data.v3t1.batches.outstanding[batch].name %}
 
 {% block beforeContent %}
   {{ backLink({
@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<span class="nhsuk-caption-xl">{{ data.v2t1.batches.outstanding[batch].name }}</span>
+<span class="nhsuk-caption-xl">{{ data.v3t1.batches.outstanding[batch].name }}</span>
 <h1 class="nhsuk-heading-xl">Records that need reviewing</h1>
 <table class="nhsuk-table">
   <thead class="nhsuk-table__head">
@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v2t1.pensioners %}
+    {% for id, pensioner in data.v3t1.pensioners %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>

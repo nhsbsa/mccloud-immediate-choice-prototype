@@ -6,18 +6,18 @@
   }) }}
 {% endblock %}
 
-{% set pageName = "Warnings for " + data.v2t1.record[recordSet].title | lower %}
+{% set pageName = "Warnings for " + data.v3t1.record[recordSet].title | lower %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-xl">{{ data.v2t1.pensioner.name }}, {{ data.v2t1.pensioner.dob | formatRecord('date') }}</span>
+      <span class="nhsuk-caption-xl">{{ data.v3t1.pensioner.name }}, {{ data.v3t1.pensioner.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
       <p>Some entries in this record fall outside of expected values. You should check the values are correct before you continue.</p>
       <dl class="nhsuk-summary-list">
-        {% for id, record in data.v2t1.record[recordSet].items %}
+        {% for id, record in data.v3t1.record[recordSet].items %}
         {% if record.warning %}
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
