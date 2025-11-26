@@ -8,11 +8,6 @@ const router = express.Router()
 const version = 'v3';
 const type = 'type-3';
 
-// router.use((req, res, next) => {
-  //   console.log(`--- VERSION: ${version} | USER TYPE: ${type} ---`);
-  //   next();
-// });
-
 // Add your version 3 routes here - above the module.exports line
 
 router.get(`/${version}/${type}/batch/:id`, function (req, res) {
@@ -36,6 +31,7 @@ router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   });
 });
 
+// Member search ---------------------------------------------------------------
 router.get(`/${version}/${type}/search`, function (req, res) {
   const data = req.session.data;
   const query = req.query;

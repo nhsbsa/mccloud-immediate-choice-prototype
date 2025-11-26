@@ -1,61 +1,70 @@
 {% extends '../../layout.html' %}
 {% set pageName = "Find a pensioner by membership number" %}
-{% set notFoundText = "The is no pensioner with membership number 976834" %}
 
 {% block content %}
 
-{% if notfound %}
-{{ errorSummary({
-  titleText: "There is a problem",
-  errorList: [
-    {
-      text: notFoundText,
-      href: "#search"
-    }
-  ]
-}) }}
+{% if data.searchErrors %}
+<div class="nhsuk-error-summary" data-module="nhsuk-error-summary">
+  <div role="alert">
+    <h2 class="nhsuk-error-summary__title">There is a problem</h2>
+    <div class="nhsuk-error-summary__body">
+      <p>Describe the errors and how to correct them</p>
+      <ul class="nhsuk-list nhsuk-error-summary__list">
+        {% for error in data.searchErrors %}
+        {% if error == 'empty' %}
+        <li><a href="#memberSearch">Enter a membership number to search for</a></li>
+        {% endif %}
+        {% if error == 'length' %}
+        <li><a href="#memberSearch">Membership numbers must have 8 numbers</a></li>
+        {% endif %}
+        {% if error == 'nan' %}
+        <li><a href="#memberSearch">Membership numbers must only contain numbers</a></li>
+        {% endif %}
+        {% if error == 'not-found' %}
+        <li><a href="#memberSearch">No results found for the membership number {{ data.memberSearch }}</a></li>
+        {% endif %}
+        {% endfor  %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endif %}
 
-<form method="post" action="record" class="nhsuk-form">
-{{ input({
-  label: {
-    text: pageName,
-    classes: "nhsuk-label--xl",
-    isPageHeading: true
-  },
-  id: "search",
-  name: "search",
-  classes: "nhsuk-input--width-20",
-  errorMessage: {
-    text: notFoundText
-  } if notfound
-}) }}
-{{ button({
-  text: "View pensioner record"
-}) }}
+<form method="post" action="search-results" class="nhsuk-form">
+  <div class="nhsuk-form-group {% if data.searchErrors %}nhsuk-form-group--error{% endif %}">
+    <h1 class="nhsuk-label-wrapper">
+      <label class="nhsuk-label nhsuk-label--xl" for="full-name">{{ pageName}}</label>
+    </h1>
+    <div id="example-with-hint-text-hint" class="nhsuk-hint">Membership numbers have 8 numbers, for example 12345678.</div>
+    {% if data.searchErrors %}
+    {% for error in data.searchErrors %}
+    {% if error == 'empty' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> Enter a membership number to search for
+    </span>
+    {% endif %}
+    {% if error == 'length' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must have 8 numbers
+    </span>
+    {% endif %}
+    {% if error == 'nan' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must only contain numbers
+    </span>
+    {% endif %}
+    {% if error == 'not-found' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> No results found for the membership number {{ data.memberSearch }}
+    </span>
+    {% endif %}
+    {% endfor  %}
+    {% endif %}
+    <input class="nhsuk-input nhsuk-input--width-10 {% if data.searchErrors %}nhsuk-input--error{% endif %}" id="memberSearch" name="memberSearch" type="text" aria-describedby="memberSearch-error">
+  </div>
+  {{ button({
+    text: "Find pensioner record"
+  }) }}
 </form>
 
-{# <table class="nhsuk-table">
-  <caption class="nhsuk-table__caption">Pensioners</caption>
-  <thead class="nhsuk-table__head">
-    <tr>
-      <th scope="col" class="nhsuk-table__header">Name</th>
-      <th scope="col" class="nhsuk-table__header">Membership number</th>
-      <th scope="col" class="nhsuk-table__header">Status</th>
-      <th scope="col" class="nhsuk-table__header">Action</th>
-    </tr>
-  </thead>
-  <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v3t2.pensioners %}
-    <tr class="nhsuk-table__row">
-      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
-      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
-      <td class="nhsuk-table__cell">???</td>
-      <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/v2/type-2/record/{{ id }}?batch={{ batch }}">Review record</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table> #}
 {% endblock %}

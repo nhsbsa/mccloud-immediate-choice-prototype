@@ -8,11 +8,6 @@ const router = express.Router()
 const version = 'v3';
 const type = 'type-1';
 
-router.use((req, res, next) => {
-  console.log(`--- VERSION: ${version} | USER TYPE: ${type} ---`);
-  next();
-});
-
 // Add your version 3 routes here - above the module.exports line
 
 // Member search ---------------------------------------------------------------
@@ -28,7 +23,6 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   const query = req.query; // Is this used?
 
   memberSearch = data.memberSearch;
-  console.log(`memberSearch:${memberSearch}`);
   const searchErrors = data.searchErrors || [];
 
   // No membership number provided
@@ -56,12 +50,10 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   }
 
   // Search the pensioners data for the given membership number
-  const matches = data.v3t1.pensioners2.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
-  console.log(`Matches num: ${matches.length}`);
+  const matches = data.v3t1.pensioners.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
 
   if (matches.length == 0) {
     // No matches found – go back to search with no results error?
-    // data.notfound = true;
     searchErrors.push('not-found');
     data.searchErrors = searchErrors;
     res.redirect(`/${version}/${type}/search`);
@@ -91,6 +83,7 @@ router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   res.render(`${version}/${type}/batch-details`, { batch: batchId });
 });
 
+// Edit record -----------------------------------------------------------------
 router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
   console.log('Editing record set');
   const recordSetId = req.params.id;
