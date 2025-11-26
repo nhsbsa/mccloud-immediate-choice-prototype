@@ -43,4 +43,65 @@ router.get(`/${version}/${type}/search`, function (req, res) {
   res.render(`${version}/${type}/search`, { ...query });
 });
 
+// Search results --------------------------------------------------------------
+router.get(`/${version}/${type}/search-results`, function (req, res) {
+  delete req.session.data.searchErrors;
+  const data = req.session.data;
+  const query = req.query; // Is this used?
+
+  memberSearch = data.memberSearch;
+  const searchErrors = data.searchErrors || [];
+
+  // No membership number provided
+  if (!memberSearch) {
+    searchErrors.push('empty');
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  }
+
+  // Invalid member number length
+  if (memberSearch.length != 8) {
+    searchErrors.push('length');
+  }
+
+  // Invalid member number format
+  if (isNaN(memberSearch)) {
+    searchErrors.push('nan');
+  }
+
+  if (searchErrors.length > 0) {
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  }
+
+  // Search the pensioners data for the given membership number
+  const matches = data.v3t3.pensioners.filter((pensioner) => pensioner.membershipNumber === memberSearch) || [];
+
+  if (matches.length == 0) {
+    // No matches found – go back to search with no results error?
+    searchErrors.push('not-found');
+    data.searchErrors = searchErrors;
+    res.redirect(`/${version}/${type}/search`);
+    return;
+  } else if (matches.length == 1) {
+    // One match found - redirect to pensioner record
+    const query = req.query;
+    res.render(`${version}/${type}/record`, { ...query });
+    return;
+  } else {
+    // Multiple matches found - show search results page
+    data.matches = matches;
+    res.render(`${version}/${type}/search-results`, { ...query });
+  }
+
+});
+
+// Member record ---------------------------------------------------------------
+router.get(`/${version}/${type}/record`, function (req, res) {
+  const query = req.query;
+  res.render(`${version}/${type}/record`, { ...query });
+});
+
 module.exports = router
