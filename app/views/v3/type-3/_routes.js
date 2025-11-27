@@ -99,9 +99,11 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 });
 
 // Member record ---------------------------------------------------------------
-router.get(`/${version}/${type}/record`, function (req, res) {
-  const query = req.query;
-  res.render(`${version}/${type}/record`, { ...query });
+router.get(`/${version}/${type}/record/:id`, function (req, res) {
+  const data = req.session.data;
+  const member = data.v3t3.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
+  data.member = member;
+  res.render(`${version}/${type}/record`, { member });
 });
 
 module.exports = router

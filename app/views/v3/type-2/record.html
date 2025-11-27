@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set pageName = 'Pension record for ' + data.v3t2.pensioner.name %}
+{% set pageName = 'Pension record for ' + member.name %}
 
 {% block beforeContent %}
   {{ backLink({
@@ -60,7 +60,7 @@
         text: "Name"
       },
       value: {
-        text: data.v3t2.pensioner.name
+        text: member.name
       }
     },
     {
@@ -68,7 +68,7 @@
         text: "Membership number"
       },
       value: {
-        html: data.v3t2.pensioner.membershipNumber
+        html: member.membershipNumber
       }
     },
     {
@@ -76,7 +76,7 @@
         text: "Date of birth"
       },
       value: {
-        text: data.v3t2.pensioner.dob | niceDate
+        text: member.dob | niceDate
       }
     }
   ]
