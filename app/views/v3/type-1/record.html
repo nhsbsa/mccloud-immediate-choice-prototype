@@ -20,7 +20,7 @@
   <div class="mccloud-summary-card__title-wrapper">
     <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if totalErrors > 0 %} ({{ totalErrors }} {{ 'error' | plural(totalErrors) }}{% if totalWarnings > 0 %}, {{ totalWarnings }} {{ 'warning' | plural(totalWarnings) }}{% endif %}){% endif %}</h2>
     <span class="record-actions">
-      {% if data.v3t1.record[recordSet].canDelete %}<a class="mccloud-summary-card__action" href="#">Delete <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> record</a>&nbsp;|&nbsp; {% endif %}
+      {% if recordSet.canDelete %}<a class="mccloud-summary-card__action" href="#">Delete <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> section</a> | {% endif %}
       <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
     </span>
   </div>
