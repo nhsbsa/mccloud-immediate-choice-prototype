@@ -60,21 +60,21 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
     return;
   } else if (matches.length == 1) {
     // One match found - redirect to pensioner record
-    const query = req.query;
-    res.render(`${version}/${type}/record`, { ...query });
+    data.matches = matches;
+    res.redirect(`/${version}/${type}/record/${matches[0].id}`);
     return;
   } else {
     // Multiple matches found - show search results page
-    data.matches = matches;
-    res.render(`${version}/${type}/search-results`, { ...query });
+    data.matches = matches; // And pass to render
+    res.render(`${version}/${type}/search-results`, { matches });
   }
 
 });
 
 // Member record ---------------------------------------------------------------
-router.get(`/${version}/${type}/record`, function (req, res) {
-  const query = req.query;
-  res.render(`${version}/${type}/record`, { ...query });
+router.get(`/${version}/${type}/record/:id`, function (req, res) {
+  console.log(`id: `, req.params.id);
+  res.render(`${version}/${type}/record`);
 });
 
 // Batch details ---------------------------------------------------------------

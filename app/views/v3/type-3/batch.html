@@ -11,9 +11,12 @@
   <thead class="nhsuk-table__head">
     <tr>
       <th scope="col" class="nhsuk-table__header">Batch ID</th>
-      <th scope="col" class="nhsuk-table__header">Total records</th>
+      <th scope="col" class="nhsuk-table__header">{{ "Completed records" if data.v3t3.currentBatch == "completed" else "Total records" }}</th>
       {% if data.v3t3.currentBatch == "outstanding" %}
       <th scope="col" class="nhsuk-table__header">Invalid records</th>
+      {% endif %}
+      {% if data.v3t3.currentBatch == "completed" %}
+      <th scope="col" class="nhsuk-table__header">Excluded records</th>
       {% endif %}
       <th scope="col" class="nhsuk-table__header">Status</th>
       <th scope="col" class="nhsuk-table__header">Created</th>
@@ -25,7 +28,7 @@
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ record.name }}</td>
       <td class="nhsuk-table__cell">{{ record.count }}</td>
-      {% if data.v3t3.currentBatch == "outstanding" %}
+      {% if data.v3t3.currentBatch == "outstanding" or data.v3t3.currentBatch == "completed" %}
       <td class="nhsuk-table__cell">{{ (record.count / [5,7,9,12,14,19] | random) | int }}</td>
       {% endif %}
       <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[record.tag].colour }}">{{ data.v3t3.tags[record.tag].name }}</strong></td>
