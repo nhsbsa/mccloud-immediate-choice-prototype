@@ -61,11 +61,13 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   } else if (matches.length == 1) {
     // One match found - redirect to pensioner record
     data.matches = matches;
+    data.v3t1.record.address.items.addresseeName.value = matches[0].name; // Replace record name with matched member name
     res.redirect(`/${version}/${type}/record/${matches[0].id}`);
     return;
   } else {
     // Multiple matches found - show search results page
     data.matches = matches; // And pass to render
+    data.v3t1.record.address.items.addresseeName.value = matches[0].name; // Replace record name with matched member name
     res.render(`${version}/${type}/search-results`, { matches });
   }
 
