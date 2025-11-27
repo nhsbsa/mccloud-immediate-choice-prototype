@@ -78,6 +78,7 @@ router.get(`/${version}/${type}/record/:id`, function (req, res) {
   const data = req.session.data;
   const member = data.v3t1.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
   data.member = member;
+  console.log(data.v3t1.record.splitBenefit1764256611675);
   res.render(`${version}/${type}/record`, { member });
 });
 

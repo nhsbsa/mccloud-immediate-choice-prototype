@@ -1231,6 +1231,43 @@ module.exports = {
             type: 'currency'
           }
         }
+      },
+      splitBenefit: {
+        canDelete: false,
+        title: "Option A split benefit",
+        id: "splitBenefit",
+        items: {
+          deemedDate: {
+            title: "Deemed Date",
+            type: "date",
+            value: "2025-02-02",
+            required: false
+          },
+          lumpSum: {
+            title: "Lump Sum",
+            type: "currency",
+            value: "1234",
+            required: true
+          },
+          pension: {
+            title: "Pension",
+            type: "currency",
+            value: "5432",
+            required: true
+          },
+          protectedPayAmount: {
+            title: "Protected Pay Amount",
+            type: "currency",
+            value: "9876",
+            required: true
+          },
+          protectedPayDate: {
+            title: "Protected Pay Date",
+            type: "date",
+            value: "2025-01-01",
+            required: false
+          }
+        }
       }
     }
   },
