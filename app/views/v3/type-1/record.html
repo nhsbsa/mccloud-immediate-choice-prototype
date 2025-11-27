@@ -19,7 +19,7 @@
 <div class="mccloud-summary-card" id="{{ recordSet.id }}">
   <div class="mccloud-summary-card__title-wrapper">
     <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if totalErrors > 0 %} ({{ totalErrors }} {{ 'error' | plural(totalErrors) }}{% if totalWarnings > 0 %}, {{ totalWarnings }} {{ 'warning' | plural(totalWarnings) }}{% endif %}){% endif %}</h2>
-      <a class="mccloud-summary-card__action" href="./edit-record-set/{{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
+      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
   </div>
 
   <div class="mccloud-summary-card__content">
@@ -131,7 +131,7 @@
 <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-2">{{ pageName }}</h1>
 <div class="nhsuk-button-group">
   <a href="#">Exclude this pensioner</a>
-  <a href="./split-benefit">Add a split benefit</a>
+  <a href="../split-benefit">Add a split benefit</a>
 </div>
 
 {{ personalDetailsHtml | safe }}

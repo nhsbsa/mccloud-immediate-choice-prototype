@@ -113,6 +113,7 @@ router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
   });
 });
 
+// Edit record -----------------------------------------------------------------
 router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
   const submitted = req.body;
   const recordSetId = req.params.id;
@@ -160,11 +161,12 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
       res.redirect(`/${version}/${type}/warn-about-record-set/${recordSetId}`);
     } else {
       // no warnings, go back to the batch details page
-      res.redirect(`/${version}/${type}/record?complete=${recordSetId}`);
+      res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
     }
   }
 });
 
+// Split benefit ---------------------------------------------------------------
 router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   //process the form submission
   const submitted = req.body;
@@ -217,10 +219,11 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   data.v3t1.record[newId] = newSplitBenefit;
 
   //redirect to the record page, indicating the new record set is complete
-  res.redirect(`/${version}/${type}/record?newSplit=${newId}`);
+  res.redirect(`/${version}/${type}/record/${data.member.id}?newSplit=${newId}`);
 
 });
 
+// Warn about record set -------------------------------------------------------
 router.get(`/${version}/${type}/warn-about-record-set/:id`, function (req, res) {
   const recordSetId = req.params.id;
   res.render(`${version}/${type}/warn-about-record-set`, {
@@ -228,4 +231,7 @@ router.get(`/${version}/${type}/warn-about-record-set/:id`, function (req, res) 
     ...req.query
   });
 });
+
+// -----------------------------------------------------------------------------
+
 module.exports = router

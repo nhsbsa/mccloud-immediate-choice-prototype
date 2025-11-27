@@ -19,7 +19,7 @@
         }) }}
       {% endif %}
 
-      <span class="nhsuk-caption-xl">{{ data.v3t1.pensioner.name }}, {{ data.v3t1.pensioner.dob | formatRecord('date') }}</span>
+      <span class="nhsuk-caption-xl">{{ data.member.name }}, {{ data.member.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[recordSet].title }}</h1>
 
       {{ data.v3t1.record[recordSet].title | log }}
