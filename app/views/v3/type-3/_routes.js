@@ -88,12 +88,12 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   } else if (matches.length == 1) {
     // One match found - redirect to pensioner record
     const query = req.query;
-    res.render(`${version}/${type}/record`, { ...query });
+    res.redirect(`/${version}/${type}/record/${matches[0].id}`);
     return;
   } else {
     // Multiple matches found - show search results page
-    data.matches = matches;
-    res.render(`${version}/${type}/search-results`, { ...query });
+    data.matches = matches; // And pass to render
+    res.render(`${version}/${type}/search-results`, { matches });
   }
 
 });

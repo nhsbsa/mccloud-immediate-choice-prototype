@@ -42,7 +42,7 @@
 {# end ignore #}
 
 <table class="nhsuk-table">
-  <caption class="nhsuk-table__caption">Showing {{ data.v3t2.pensioners | length }} pensioners in this batch</caption>
+  <caption class="nhsuk-table__caption">Showing {{ data.v3t3.pensioners | length }} pensioners in this batch</caption>
   <thead class="nhsuk-table__head">
     <tr>
       <th scope="col" class="nhsuk-table__header">Name</th>
@@ -52,7 +52,7 @@
     </tr>
   </thead>
   <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v3t2.pensioners %}
+    {% for id, pensioner in data.v3t3.pensioners %}
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
