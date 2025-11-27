@@ -73,8 +73,12 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 
 // Member record ---------------------------------------------------------------
 router.get(`/${version}/${type}/record/:id`, function (req, res) {
-  console.log(`id: `, req.params.id);
-  res.render(`${version}/${type}/record`);
+  // console.log(`id: `, req.params.id);
+  const data = req.session.data;
+  const member = data.v3t1.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
+  console.log(member);
+  data.member = member;
+  res.render(`${version}/${type}/record`, { member });
 });
 
 // Batch details ---------------------------------------------------------------
