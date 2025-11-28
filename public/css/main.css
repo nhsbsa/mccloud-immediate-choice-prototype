@@ -10883,6 +10883,12 @@ b {
     padding: 16px;
   }
 }
+.mccloud-summary-card__title-wrapper .record-actions a {
+  margin: 0 5px;
+}
+.mccloud-summary-card__title-wrapper .record-actions a:last-of-type {
+  margin-right: 0;
+}
 .mccloud-summary-card__content {
   padding: 8px;
 }

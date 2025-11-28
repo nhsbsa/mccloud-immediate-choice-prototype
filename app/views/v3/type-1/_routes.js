@@ -167,6 +167,26 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
   }
 });
 
+// Delete record ---------------------------------------------------------------
+router.get(`/${version}/${type}/delete-record-set/:id`, (req, res) => {
+  const recordSetId = req.params.id;
+
+  // look up the schema for the current record set
+  const data = req.session.data;
+  const schema = data.v3t1.record[recordSetId].items;
+
+  const doDelete = false;
+
+  if (doDelete) {
+    // Delete the record set from the session data
+    delete data.v3t1.record[recordSetId];
+    res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
+  } else {
+    // Display the record set deletion confirmation page
+    res.render(`${version}/${type}/delete-record-set`, { schema });
+  }
+});
+
 // Split benefit ---------------------------------------------------------------
 router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   //process the form submission

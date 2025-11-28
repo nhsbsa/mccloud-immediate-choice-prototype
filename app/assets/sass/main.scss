@@ -38,6 +38,15 @@
     flex-wrap: nowrap;
     @include nhsuk-responsive-padding(3, all);
     background-color: map-get($nhsuk-colours, "grey-5");
+
+    .record-actions {
+      a {
+        margin: 0 5px;
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   &__content {

@@ -6,7 +6,7 @@
   }) }}
 {% endblock %}
 
-{% set pageName = "Correct values for " + data.v3t1.record[recordSet].title | lower %}
+{% set pageName = "Delete split benefit for " + data.v3t1.record[recordSet].title | lower %}
 
 {% block content %}
 
@@ -22,7 +22,18 @@
       <span class="nhsuk-caption-xl">{{ data.member.name }}, {{ data.member.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[recordSet].title }}</h1>
 
+      <div class="nhsuk-warning-callout">
+        <h3 class="nhsuk-warning-callout__label"> <span role="text">
+            <span class="nhsuk-u-visually-hidden">Important: </span>
+            Work in progress
+          </span> </h3>
+        <p>The delete split benefit functionality is not yet complete in the prototype.</p>
+      </div>
+
+      <p>Display the split benefit details here</p>
+
       {{ data.v3t1.record[recordSet].title | log }}
+      {{ schema | log }}
 
       <form method="post" action="../edit-record-set/{{ recordSet }}" class="nhsuk-form">
         <input type="hidden" name="recordSet" value="{{ recordSet }}">
@@ -131,9 +142,12 @@
         {% endfor %}
 
         <div class="nhsuk-button-group">
-        {{ button({
-          text: "Save and continue"
-        }) }}
+          {{ button({
+            text: "Delete split benefit",
+            href: "#",
+            classes: "nhsuk-button--warning"
+          }) }}
+          <a href="#" class="nhsuk-link">Cancel and return to member</a>
         </div>
       </form>
 
