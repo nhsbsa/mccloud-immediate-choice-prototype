@@ -78,7 +78,7 @@ router.get(`/${version}/${type}/record/:id`, function (req, res) {
   const data = req.session.data;
   const member = data.v3t1.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
   data.member = member;
-  console.log(data.v3t1.record.splitBenefit1764256611675);
+  delete data.deletedRecordSetTitle; // Clear any deleted record set title
   res.render(`${version}/${type}/record`, { member });
 });
 
@@ -89,13 +89,13 @@ router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
 });
 
 // Edit record -----------------------------------------------------------------
-router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
-  console.log('Editing record set');
-  const recordSetId = req.params.id;
+router.get(`/${version}/${type}/edit-record-set`, function (req, res) {
+  const recordSet = req.query.recordSet;
+  const query = req.query;
 
   //pre-validate the records in this set
   const data = req.session.data;
-  const schema = data.v3t1.record[recordSetId].items;
+  const schema = data.v3t1.record[recordSet].items;
 
   const errors = {};
   const errorsList = [];
@@ -108,7 +108,7 @@ router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
   }
 
   res.render(`${version}/${type}/edit-record-set`, {
-    recordSet: recordSetId,
+    recordSet: recordSet,
     errors: errors,
     errorsList: (errorsList.length > 0) ? errorsList : null
   });
@@ -116,6 +116,7 @@ router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
 
 // Edit record -----------------------------------------------------------------
 router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
+  // @todo: Update this to use hidden field or query – same as edit
   const submitted = req.body;
   const recordSetId = req.params.id;
 
@@ -168,19 +169,23 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
 });
 
 // Delete record ---------------------------------------------------------------
-router.get(`/${version}/${type}/delete-record-set/:id`, (req, res) => {
-  const recordSetId = req.params.id;
+router.all(`/${version}/${type}/delete-record-set`, (req, res) => {
+  // @todo: Update this to use hidden field or query – same as edit
+  const recordSet = req.query.recordSet;
+  const query = req.query;
 
   // look up the schema for the current record set
   const data = req.session.data;
-  const schema = data.v3t1.record[recordSetId].items;
+  const schema = data.v3t1.record[recordSet].items;
 
-  const doDelete = false;
+  const doDelete = data.doDelete || false;
 
   if (doDelete) {
     // Delete the record set from the session data
-    delete data.v3t1.record[recordSetId];
-    res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
+    data.deletedRecordSetTitle = data.v3t1.record[recordSet].title;
+    delete data.doDelete;
+    delete data.v3t1.record[recordSet];
+    res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSet}`);
   } else {
     // Display the record set deletion confirmation page
     res.render(`${version}/${type}/delete-record-set`, { schema });

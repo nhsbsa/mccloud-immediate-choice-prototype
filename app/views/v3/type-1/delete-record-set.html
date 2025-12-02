@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% from "includes/recordSummary.njk" import recordSummary %}
 
 {% block beforeContent %}
   {{ backLink({
@@ -6,7 +7,7 @@
   }) }}
 {% endblock %}
 
-{% set pageName = "Delete split benefit for " + data.v3t1.record[recordSet].title | lower %}
+{% set pageName = "Delete split benefit for " + data.v3t1.record[data.recordSet].title | lower %}
 
 {% block content %}
 
@@ -20,137 +21,25 @@
       {% endif %}
 
       <span class="nhsuk-caption-xl">{{ data.member.name }}, {{ data.member.dob | formatRecord('date') }}</span>
-      <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[recordSet].title }}</h1>
+      <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[data.recordSet].title }}</h1>
 
-      <div class="nhsuk-warning-callout">
-        <h3 class="nhsuk-warning-callout__label"> <span role="text">
-            <span class="nhsuk-u-visually-hidden">Important: </span>
-            Work in progress
-          </span> </h3>
-        <p>The delete split benefit functionality is not yet complete in the prototype.</p>
-      </div>
+      <p>Delete the split benefit?</p>
 
-      <p>Display the split benefit details here</p>
-
-      {{ data.v3t1.record[recordSet].title | log }}
-      {{ schema | log }}
-
-      <form method="post" action="../edit-record-set/{{ recordSet }}" class="nhsuk-form">
-        <input type="hidden" name="recordSet" value="{{ recordSet }}">
-
-        {# Loop over each record in this record set #}
-        {% for recordId, record in data.v3t1.record[recordSet].items %}
-
-          {% if record.required %}<input type="hidden" name="{{ recordId + '-required'}}" value="true">{% endif %}
-
-          {# This is verbose, but is at least easy to read... #}
-          {% if record.type == "text" %}
-            {{ input({
-              label: {
-                text: record.title
-              },
-              name: recordId,
-              value: record.value,
-              errorMessage: {
-                text: errors[recordId]
-              } if errors[recordId]
-            }) }}
-          {% elif record.type == "number" %}
-            {{ input({
-              label: {
-                text: record.title
-              },
-              value: record.value,
-              name: recordId,
-              classes: "nhsuk-input--width-5",
-              inputmode: "numeric",
-              errorMessage: {
-                text: errors[recordId]
-              } if errors[recordId]
-            }) }}
-          {% elif record.type == "currency" %}
-            {{ input({
-              label: {
-                  text: record.title
-              },
-              name: recordId,
-              prefix: "£",
-              value: record.value,
-              classes: "nhsuk-input--width-5",
-              errorMessage: {
-                text: errors[recordId]
-              } if errors[recordId]
-            }) }}
-          {% elif record.type == "date" %}
-            {{ dateInput({
-              fieldset: {
-                legend: {
-                  text: record.title
-                }
-              },
-              id: recordId,
-              name: recordId,
-              errorMessage: {
-                text: errors[recordId]
-              } if errors[recordId],
-              items: [
-                {
-                  name: "day",
-                  classes: "nhsuk-input--width-2",
-                  value: record.value | splitString(2)
-                },
-                {
-                  name: "month",
-                  classes: "nhsuk-input--width-2",
-                  value: record.value | splitString(1)
-                },
-                {
-                  name: "year",
-                  classes: "nhsuk-input--width-4",
-                  value: record.value | splitString(0)
-                }
-              ]
-            }) }}
-          {% elif record.type == "daysAndYears" %}
-            {{ dateInput({
-              fieldset: {
-                legend: {
-                  text: record.title
-                }
-              },
-              id: recordId,
-              namePrefix: recordId,
-              errorMessage: {
-                text: errors[recordId]
-              } if errors[recordId],
-              items: [
-                {
-                  name: "years",
-                  classes: "nhsuk-input--width-2",
-                  value: record.value | splitString(1)
-                },
-                {
-                  name: "days",
-                  classes: "nhsuk-input--width-3",
-                  value: record.value | splitString(0)
-                }
-              ]
-            }) }}
-          {% else %}
-            <p class="nhsuk-body">Unknown record type '{{ record.type }}' for record '{{ record.title }}'</p>
-          {% endif %}
-        {% endfor %}
-
+      <form method="post" action="delete-record-set?recordSet={{ data.recordSet }}" class="nhsuk-form">
+        <input type="hidden" name="recordSet" value="{{ data.recordSet }}">
+        <input type="hidden" name="doDelete" value="true">
+        <div class="nhsuk-form-group">
+          {{ recordSummary(data.v3t1.record[data.recordSet], '', '') }}
+        </div>
         <div class="nhsuk-button-group">
           {{ button({
             text: "Delete split benefit",
-            href: "#",
-            classes: "nhsuk-button--warning"
+            classes: "nhsuk-button--warning",
+            preventDoubleClick: true
           }) }}
-          <a href="#" class="nhsuk-link">Cancel and return to member</a>
+          <a href="record/{{ data.member.id }}" class="nhsuk-link">Cancel and return to member</a>
         </div>
       </form>
-
 
   </div>
 </div>

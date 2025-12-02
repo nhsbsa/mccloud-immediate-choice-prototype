@@ -6,7 +6,7 @@
   }) }}
 {% endblock %}
 
-{% set pageName = "Correct values for " + data.v3t1.record[recordSet].title | lower %}
+{% set pageName = "Correct values for " + data.v3t1.record[data.recordSet].title | lower %}
 
 {% block content %}
 
@@ -20,15 +20,15 @@
       {% endif %}
 
       <span class="nhsuk-caption-xl">{{ data.member.name }}, {{ data.member.dob | formatRecord('date') }}</span>
-      <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[recordSet].title }}</h1>
+      <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[data.recordSet].title }}</h1>
 
-      {{ data.v3t1.record[recordSet].title | log }}
+      {{ data.v3t1.record[data.recordSet].title | log }}
 
-      <form method="post" action="../edit-record-set/{{ recordSet }}" class="nhsuk-form">
-        <input type="hidden" name="recordSet" value="{{ recordSet }}">
+      <form method="post" action="edit-record-set/{{ data.recordSet }}" class="nhsuk-form">
+        <input type="hidden" name="recordSet" value="{{ data.recordSet }}">
 
         {# Loop over each record in this record set #}
-        {% for recordId, record in data.v3t1.record[recordSet].items %}
+        {% for recordId, record in data.v3t1.record[data.recordSet].items %}
 
           {% if record.required %}<input type="hidden" name="{{ recordId + '-required'}}" value="true">{% endif %}
 

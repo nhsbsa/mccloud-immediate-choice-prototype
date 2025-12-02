@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+{% from "includes/recordSummary.njk" import recordSummary %}
+
 {% set pageName = 'Pension record for ' + member.name %}
 
 {% block beforeContent %}
@@ -6,56 +8,6 @@
     href: "/v3/type-1/search"
   }) }}
 {% endblock %}
-
-{% macro recordSummary(recordSet, tab) %}
-{# Calculate how many missing values there are in this record set #}
-{% set totalErrors = 0 %}
-{% set totalWarnings = 0 %}
-{% for id, record in recordSet.items %}
-  {% if record.valid == false %}{% set totalErrors = totalErrors + 1 %}{% endif %}
-  {% if record.warning %}{% set totalWarnings = totalWarnings + 1 %}{% endif %}
-{% endfor %}
-
-<div class="mccloud-summary-card" id="{{ recordSet.id }}">
-  <div class="mccloud-summary-card__title-wrapper">
-    <h2 class="mccloud-summary-card__title">{{ recordSet.title }}{% if totalErrors > 0 %} ({{ totalErrors }} {{ 'error' | plural(totalErrors) }}{% if totalWarnings > 0 %}, {{ totalWarnings }} {{ 'warning' | plural(totalWarnings) }}{% endif %}){% endif %}</h2>
-    <span class="record-actions">
-      {% if recordSet.canDelete %}
-      <a class="mccloud-summary-card__action" href="../delete-record-set/{{ recordSet.id }}">Delete <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> split benefit</a> |
-      {% endif %}
-      {% if recordSet.title == "Address" %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit address</a>
-      {% elif recordSet.title == "Scheme details" %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit scheme details</a>
-      {% elif "legacy scheme benefit" in recordSet.title %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit legacy scheme benefit</a>
-      {% elif "split benefit" in recordSet.title %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit split benefit</a>
-      {% else %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set/{{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
-      {%endif %}
-    </span>
-  </div>
-
-  <div class="mccloud-summary-card__content">
-
-    <dl class="nhsuk-summary-list">
-      {% for id, record in recordSet.items %}
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">{{ record.title }}</dt>
-        <dd class="nhsuk-summary-list__value">
-          {{ record.value | formatRecord(record.type) }}
-          {% if record.value == '' %}<span class="mccloud-record-no-value">No value</span>{% endif %}
-          {% if (record.error and record.valid == false) %}<br><span class="mccloud-record-error">Error: {{ record.error }}</span>{% endif %}
-          {% if record.warning %}<br><span class="mccloud-record-warning">Warning: {{ record.warning }}</span>{% endif %}
-        </dd>
-      </div>
-      {% endfor %}
-    </dl>
-
-  </div>
-</div>
-{% endmacro %}
 
 {% block content %}
 {% set personalDetailsHtml %}
@@ -143,6 +95,16 @@
 }) }}
 {% endif %}
 
+{% if data.deletedRecordSetTitle %}
+{% set html %}
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Deleted {{ data.deletedRecordSetTitle }}</a></p>
+{% endset %}
+
+{{ notificationBanner({
+  html: html
+}) }}
+{% endif %}
+
 <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-2">{{ pageName }}</h1>
 <div class="nhsuk-button-group">
   <a href="#">Exclude this pensioner</a>
@@ -169,7 +131,7 @@
 </nav>
 
 {% for recordId, recordSet in data.v3t1.record %}
-{{ recordSummary(recordSet, '') }}
+{{ recordSummary(recordSet, '', true) }}
 {% endfor %}
 
 {% endblock %}
