@@ -79,6 +79,9 @@ router.get(`/${version}/${type}/record/:id`, function (req, res) {
   const member = data.v3t1.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
   data.member = member;
   delete data.deletedRecordSetTitle; // Clear any deleted record set title
+  delete data.complete; // Clear any completed record messages
+  delete data.excluded; // Clear any excluded record messages
+  delete data.newSplit; // Clear any newSplit messages
   res.render(`${version}/${type}/record`, { member });
 });
 

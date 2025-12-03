@@ -51,58 +51,59 @@
 }) }}
 {% endset %}
 
-{% if (complete and invalidRecords > 0) %}
-{% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in the section “{{ data.v3t1.record[complete].title }}” are complete.</p>
-{% endset %}
+{% if (data.complete and invalidRecords > 0) %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items for “{{ data.v3t1.record[data.complete].title }}” are complete.</p>
+  {% endset %}
 
-{{ notificationBanner({
-  html: html,
-  type: "success"
-}) }}
+  {{ notificationBanner({
+    html: html,
+    type: "success"
+  }) }}
 {% endif %}
 
 {% if invalidRecords == 0 %}
-{% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="./search">Find another record.</a></p>
-{% endset %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/v3/type-1/search">Find another record.</a></p>
+  {% endset %}
 
-{{ notificationBanner({
-  html: html,
-  titleText: "Record status"
-}) }}
+  {{ notificationBanner({
+    html: html,
+    titleText: "Record status"
+  }) }}
 {% endif %}
 
-{% if excluded %}
-{% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been excluded. <a href="./search">Find another record.</a></p>
-{% endset %}
+{% if data.excluded %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This record has been excluded. <a href="/v3/type-1/search">Find another record.</a></p>
+  {% endset %}
 
-{{ notificationBanner({
-  html: html,
-  titleText: "Record status"
-}) }}
+  {{ notificationBanner({
+    html: html,
+    titleText: "Record status"
+  }) }}
 {% endif %}
 
-{% if newSplit %}
-{% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added <a href="#{{ newSplit }}">{{ data.v3t1.record[newSplit].title }}</a></p>
-{% endset %}
+{% if data.newSplit %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added "<a href="#{{ newSplit }}">{{ data.v3t1.record[data.newSplit].title }}</a>"</p>
+  {% endset %}
 
-{{ notificationBanner({
-  html: html,
-  type: "success"
-}) }}
+  {{ notificationBanner({
+    html: html,
+    type: "success"
+  }) }}
 {% endif %}
 
 {% if data.deletedRecordSetTitle %}
-{% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Deleted {{ data.deletedRecordSetTitle }}</a></p>
-{% endset %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Deleted "{{ data.deletedRecordSetTitle }}"</a></p>
+  {% endset %}
 
-{{ notificationBanner({
-  html: html
-}) }}
+  {{ notificationBanner({
+    html: html,
+    type: "success"
+  }) }}
 {% endif %}
 
 <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-2">{{ pageName }}</h1>
