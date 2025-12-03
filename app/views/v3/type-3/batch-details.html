@@ -13,7 +13,7 @@
 
     <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
-    {% if batchStatus == "awaitingApproval" %}
+    {% if data.batchStatus == "awaitingApproval" %}
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
         <h2 class="nhsuk-heading-m">Generate letters from this batch</h2>
@@ -23,6 +23,7 @@
     </div>
     {% endif %}
 
+    {% if data.batchStatus == "outstanding" %}
     <div class="nhsuk-form-group">
       <label class="nhsuk-label" for="select-1">Filter by status</label>
       <select class="nhsuk-select" id="select-1" name="select-1">
@@ -32,6 +33,7 @@
         {% endfor %}
       </select>
     </div>
+    {% endif %}
 
     {# faux logic for tags, ignore this, it's just to make the prototype work #}
     {% set currentTagId = 7 %}
@@ -67,6 +69,60 @@
         {% endfor %}
       </tbody>
     </table>
+
+    {% from 'pagination/macro.njk' import pagination %}
+
+    {{ pagination({
+      next: {
+        href: "#"
+      },
+      items: [
+        {
+          number: 1,
+          href: "#",
+          current: true
+        },
+        {
+          number: 2,
+          href: "#"
+        },
+        {
+          number: 3,
+          href: "#"
+        },
+        {
+          number: 4,
+          href: "#"
+        },
+        {
+          number: 5,
+          href: "#"
+        },
+        {
+          number: 6,
+          href: "#"
+        },
+        {
+          number: 7,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 12,
+          href: "#"
+        },
+        {
+          number: 13,
+          href: "#"
+        },
+        {
+          number: 14,
+          href: "#"
+        }
+      ]
+    }) }}
 
   </div>
 </div>
