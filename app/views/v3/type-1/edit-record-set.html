@@ -24,7 +24,7 @@
 
       {{ data.v3t1.record[data.recordSet].title | log }}
 
-      <form method="post" action="edit-record-set/{{ data.recordSet }}" class="nhsuk-form">
+      <form method="post" action="edit-record-set?recordSet={{ data.recordSet }}" class="nhsuk-form">
         <input type="hidden" name="recordSet" value="{{ data.recordSet }}">
 
         {# Loop over each record in this record set #}

@@ -91,7 +91,6 @@ router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
 // Edit record -----------------------------------------------------------------
 router.get(`/${version}/${type}/edit-record-set`, function (req, res) {
   const recordSet = req.query.recordSet;
-  const query = req.query;
 
   //pre-validate the records in this set
   const data = req.session.data;
@@ -115,17 +114,17 @@ router.get(`/${version}/${type}/edit-record-set`, function (req, res) {
 });
 
 // Edit record -----------------------------------------------------------------
-router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
+router.post(`/${version}/${type}/edit-record-set`, (req, res) => {
   // @todo: Update this to use hidden field or query – same as edit
   const submitted = req.body;
-  const recordSetId = req.params.id;
+  const recordSet = req.query.recordSet;
 
   const errors = {};
   const errorsList = [];
 
   // look up the schema for the current record set
   const data = req.session.data;
-  const schema = data.v3t1.record[recordSetId].items;
+  const schema = data.v3t1.record[recordSet].items;
 
   for (const [recordId, record] of Object.entries(schema)) {
 
@@ -140,11 +139,12 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
       record.value = userValue;
       record.valid = true;
     }
+
   }
 
   if (Object.keys(errors).length > 0) {
     res.render(`${version}/${type}/edit-record-set`, {
-      recordSet: recordSetId,
+      recordSet: recordSet,
       errors: errors,
       errorsList: errorsList
     });
@@ -160,10 +160,11 @@ router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
 
     if (hasWarnings) {
       // redirect to a warning page
-      res.redirect(`/${version}/${type}/warn-about-record-set/${recordSetId}`);
+      res.redirect(`/${version}/${type}/warn-about-record-set?recordSet=${recordSet}`);
     } else {
       // no warnings, go back to the batch details page
-      res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
+      // res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
+      res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSet}`);
     }
   }
 });
@@ -250,10 +251,10 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
 });
 
 // Warn about record set -------------------------------------------------------
-router.get(`/${version}/${type}/warn-about-record-set/:id`, function (req, res) {
-  const recordSetId = req.params.id;
+router.get(`/${version}/${type}/warn-about-record-set`, function (req, res) {
+  const recordSet = req.query.recordSet;
   res.render(`${version}/${type}/warn-about-record-set`, {
-    recordSet: recordSetId,
+    recordSet: recordSet,
     ...req.query
   });
 });
