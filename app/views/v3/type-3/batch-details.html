@@ -61,7 +61,7 @@
           <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
           <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[currentTagId].colour }}">{{ data.v3t3.tags[currentTagId].name }}</strong></td>
           <td class="nhsuk-table__cell">
-            <a class="nhsuk-link" href="#">Review record</a>
+            <a class="nhsuk-link" href="/v3/type-3/record/{{ pensioner.id }}">Review record</a>
           </td>
         </tr>
         {% endfor %}
