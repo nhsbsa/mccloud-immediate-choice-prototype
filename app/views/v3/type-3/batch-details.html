@@ -8,60 +8,66 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
-
-{% if batchStatus == "awaitingApproval" %}
 <div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
-    <h2 class="nhsuk-heading-m">Generate letters from this batch</h2>
-    <p>If the information in the batch is correct, you should approve it to generate the letters.</p>
-    <a href="#" class="nhsuk-button">Approve and print</a>
+  <div class="nhsuk-grid-column-full">
+
+    <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+
+    {% if batchStatus == "awaitingApproval" %}
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        <h2 class="nhsuk-heading-m">Generate letters from this batch</h2>
+        <p>If the information in the batch is correct, you should approve it to generate the letters.</p>
+        <a href="#" class="nhsuk-button">Approve and print</a>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label" for="select-1">Filter by status</label>
+      <select class="nhsuk-select" id="select-1" name="select-1">
+        <option value="0">All records</option>
+        {% for i in range(7, 11) %}
+        <option value="{{ i }}">{{ data.v3t3.tags[i].name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    {# faux logic for tags, ignore this, it's just to make the prototype work #}
+    {% set currentTagId = 7 %}
+    {% if batchStatus == 'awaitingApproval' %}
+    {% set currentTagId = 8 %}
+    {% elseif batchStatus == 'completed' %}
+    {% set currentTagId = 8 %}
+    {% elseif batchStatus == 'rejected' %}
+    {% set currentTagId = 9 %}
+    {% endif %}
+    {# end ignore #}
+
+    <table class="nhsuk-table">
+      <caption class="nhsuk-table__caption">Showing {{ data.v3t3.pensioners | length }} pensioners in this batch</caption>
+      <thead class="nhsuk-table__head">
+        <tr>
+          <th scope="col" class="nhsuk-table__header">Name</th>
+          <th scope="col" class="nhsuk-table__header">Membership number</th>
+          <th scope="col" class="nhsuk-table__header">Status</th>
+          <th scope="col" class="nhsuk-table__header">Action</th>
+        </tr>
+      </thead>
+      <tbody class="nhsuk-table__body">
+        {% for id, pensioner in data.v3t3.pensioners %}
+        <tr class="nhsuk-table__row">
+          <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
+          <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
+          <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[currentTagId].colour }}">{{ data.v3t3.tags[currentTagId].name }}</strong></td>
+          <td class="nhsuk-table__cell">
+            <a class="nhsuk-link" href="#">Review record</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
   </div>
 </div>
-{% endif %}
-
-<div class="nhsuk-form-group">
-  <label class="nhsuk-label" for="select-1">Filter by status</label>
-  <select class="nhsuk-select" id="select-1" name="select-1">
-    <option value="0">All records</option>
-    {% for i in range(7, 11) %}
-    <option value="{{ i }}">{{ data.v3t3.tags[i].name }}</option>
-    {% endfor %}
-  </select>
-</div>
-
-{# faux logic for tags, ignore this, it's just to make the prototype work #}
-{% set currentTagId = 7 %}
-{% if batchStatus == 'awaitingApproval' %}
-{% set currentTagId = 8 %}
-{% elseif batchStatus == 'completed' %}
-{% set currentTagId = 8 %}
-{% elseif batchStatus == 'rejected' %}
-{% set currentTagId = 9 %}
-{% endif %}
-{# end ignore #}
-
-<table class="nhsuk-table">
-  <caption class="nhsuk-table__caption">Showing {{ data.v3t3.pensioners | length }} pensioners in this batch</caption>
-  <thead class="nhsuk-table__head">
-    <tr>
-      <th scope="col" class="nhsuk-table__header">Name</th>
-      <th scope="col" class="nhsuk-table__header">Membership number</th>
-      <th scope="col" class="nhsuk-table__header">Status</th>
-      <th scope="col" class="nhsuk-table__header">Action</th>
-    </tr>
-  </thead>
-  <tbody class="nhsuk-table__body">
-    {% for id, pensioner in data.v3t3.pensioners %}
-    <tr class="nhsuk-table__row">
-      <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
-      <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
-      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[currentTagId].colour }}">{{ data.v3t3.tags[currentTagId].name }}</strong></td>
-      <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="#">Review record</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 {% endblock %}

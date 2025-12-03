@@ -2,55 +2,107 @@
 {% set pageName = data.v3t3.batches[batchStatus].title %}
 
 {% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
 
-<h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+    <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
 
-<p>Showing 1 to 10 of {{ [2,3,4,5,6]|random * 9 }} results</p>
+    <p>Showing 1 to 10 of {{ [2,3,4,5,6]|random * 9 }} results</p>
 
-<table class="nhsuk-table">
-  <thead class="nhsuk-table__head">
-    <tr>
-      <th scope="col" class="nhsuk-table__header">Batch ID</th>
-      {% if data.v3t3.currentBatch == "outstanding" %}
-      <th scope="col" class="nhsuk-table__header">Total records</th>
-      <th scope="col" class="nhsuk-table__header">Invalid records</th>
-      {% elif data.v3t3.currentBatch == "rejected" %}
-      <th scope="col" class="nhsuk-table__header">Rejected records</th>
-      {% elif data.v3t3.currentBatch == "completed" %}
-      <th scope="col" class="nhsuk-table__header">Completed records</th>
-      <th scope="col" class="nhsuk-table__header">Excluded records</th>
-      {% else %}
-      <th scope="col" class="nhsuk-table__header">Total records</th>
-      {% endif %}
-      <th scope="col" class="nhsuk-table__header">Status</th>
-      <th scope="col" class="nhsuk-table__header">Created</th>
-      <th scope="col" class="nhsuk-table__header">Action</th>
-    </tr>
-  </thead>
-  <tbody class="nhsuk-table__body">
-    {% for id, record in data.v3t3.batches[batchStatus].items %}
-    {% set random = (record.count / [5,7,9,12,14,19] | random) | int %}
-    <tr class="nhsuk-table__row">
-      <td class="nhsuk-table__cell">{{ record.name }}</td>
-      {% if data.v3t3.currentBatch == "outstanding" %}
-      <td class="nhsuk-table__cell">{{ record.count - random }}</td>
-      <td class="nhsuk-table__cell">{{ random }}</td>
-      {% elif data.v3t3.currentBatch == "rejected" %}
-      <td class="nhsuk-table__cell">{{ record.count }}</td>
-      {% elif data.v3t3.currentBatch == "completed" %}
-      <td class="nhsuk-table__cell">{{ record.count - random }}</td>
-      <td class="nhsuk-table__cell">{{ random }}</td>
-      {% else %}
-      <td class="nhsuk-table__cell">{{ record.count }}</td>
-      {% endif %}
-      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[record.tag].colour }}">{{ data.v3t3.tags[record.tag].name }}</strong></td>
-      <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
-      <td class="nhsuk-table__cell">
-        <a class="nhsuk-link" href="/v3/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <table class="nhsuk-table">
+      <thead class="nhsuk-table__head">
+        <tr>
+          <th scope="col" class="nhsuk-table__header">Batch ID</th>
+          {% if data.v3t3.currentBatch == "outstanding" %}
+          <th scope="col" class="nhsuk-table__header">Total records</th>
+          <th scope="col" class="nhsuk-table__header">Invalid records</th>
+          {% elif data.v3t3.currentBatch == "rejected" %}
+          <th scope="col" class="nhsuk-table__header">Rejected records</th>
+          {% elif data.v3t3.currentBatch == "completed" %}
+          <th scope="col" class="nhsuk-table__header">Completed records</th>
+          <th scope="col" class="nhsuk-table__header">Excluded records</th>
+          {% else %}
+          <th scope="col" class="nhsuk-table__header">Total records</th>
+          {% endif %}
+          <th scope="col" class="nhsuk-table__header">Status</th>
+          <th scope="col" class="nhsuk-table__header">Created</th>
+          <th scope="col" class="nhsuk-table__header">Action</th>
+        </tr>
+      </thead>
+      <tbody class="nhsuk-table__body">
+        {% for id, record in data.v3t3.batches[batchStatus].items %}
+        {% set random = (record.count / [5,7,9,12,14,19] | random) | int %}
+        <tr class="nhsuk-table__row">
+          <td class="nhsuk-table__cell">{{ record.name }}</td>
+          {% if data.v3t3.currentBatch == "outstanding" %}
+          <td class="nhsuk-table__cell">{{ record.count - random }}</td>
+          <td class="nhsuk-table__cell">{{ random }}</td>
+          {% elif data.v3t3.currentBatch == "rejected" %}
+          <td class="nhsuk-table__cell">{{ record.count }}</td>
+          {% elif data.v3t3.currentBatch == "completed" %}
+          <td class="nhsuk-table__cell">{{ record.count - random }}</td>
+          <td class="nhsuk-table__cell">{{ random }}</td>
+          {% else %}
+          <td class="nhsuk-table__cell">{{ record.count }}</td>
+          {% endif %}
+          <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ data.v3t3.tags[record.tag].colour }}">{{ data.v3t3.tags[record.tag].name }}</strong></td>
+          <td class="nhsuk-table__cell">{{ record.date | niceDate }}</td>
+          <td class="nhsuk-table__cell">
+            <a class="nhsuk-link" href="/v3/type-3/batch-details/{{ id }}?batchStatus={{ batchStatus }}">View batch</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
+    {% from 'pagination/macro.njk' import pagination %}
+
+    {{ pagination({
+      previous: {
+        href: "#"
+      },
+      next: {
+        href: "#"
+      },
+      items: [
+        {
+          number: 1,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 8,
+          href: "#"
+        },
+        {
+          number: 9,
+          href: "#"
+        },
+        {
+          number: 10,
+          href: "#",
+          current: true
+        },
+        {
+          number: 11,
+          href: "#"
+        },
+        {
+          number: 12,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 42,
+          href: "#"
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
 {% endblock %}
