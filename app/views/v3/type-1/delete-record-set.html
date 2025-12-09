@@ -23,7 +23,7 @@
       <span class="nhsuk-caption-xl">{{ data.member.name }}, {{ data.member.dob | formatRecord('date') }}</span>
       <h1 class="nhsuk-heading-xl">{{ data.v3t1.record[data.recordSet].title }}</h1>
 
-      <p>Delete the split benefit?</p>
+      <h2>Delete the split benefit?</h2>
 
       <form method="post" action="delete-record-set?recordSet={{ data.recordSet }}" class="nhsuk-form">
         <input type="hidden" name="recordSet" value="{{ data.recordSet }}">
