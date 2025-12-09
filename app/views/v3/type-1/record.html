@@ -86,7 +86,7 @@
 
 {% if data.newSplit %}
   {% set html %}
-    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added "<a href="#{{ newSplit }}">{{ data.v3t1.record[data.newSplit].title }}</a>"</p>
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added "<a href="#{{ data.newSplit }}">{{ data.v3t1.record[data.newSplit].title }}</a>"</p>
   {% endset %}
 
   {{ notificationBanner({

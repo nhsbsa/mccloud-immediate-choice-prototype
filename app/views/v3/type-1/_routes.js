@@ -166,7 +166,6 @@ router.post(`/${version}/${type}/edit-record-set`, (req, res) => {
       res.redirect(`/${version}/${type}/warn-about-record-set?recordSet=${recordSet}`);
     } else {
       // no warnings, go back to the batch details page
-      // res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSetId}`);
       res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSet}`);
     }
   }
@@ -189,7 +188,8 @@ router.all(`/${version}/${type}/delete-record-set`, (req, res) => {
     data.deletedRecordSetTitle = data.v3t1.record[recordSet].title;
     delete data.doDelete;
     delete data.v3t1.record[recordSet];
-    res.redirect(`/${version}/${type}/record/${data.member.id}?complete=${recordSet}`);
+    delete data.complete;
+    res.redirect(`/${version}/${type}/record/${data.member.id}`);
   } else {
     // Display the record set deletion confirmation page
     res.render(`${version}/${type}/delete-record-set`, { schema });
