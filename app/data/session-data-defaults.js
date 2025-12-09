@@ -1590,6 +1590,8 @@ module.exports = {
       8: { name: 'Data complete', colour: 'blue' },
       9: { name: 'Rejected', colour: 'red'},
       10: { name: 'Cannot be processed', colour: 'grey' },
+      11: { name: 'Excluded', colour: 'red' },
+      12: { name: 'Sent to print', colour: 'green'}
     },
     batches: {
       outstanding: {
@@ -1621,8 +1623,8 @@ module.exports = {
         items: {
           10: {name: 'Batch 010', date: '2025-09-18T10:30', count: 300, tag: 5 },
           11: {name: 'Batch 011', date: '2025-09-17T11:45', count: 150, tag: 5 },
-          12: {name: 'Batch 012', date: '2025-09-16T14:00', count: 275, tag: 4  },
-          13: {name: 'Batch 013', date: '2025-09-15T09:30', count: 400, tag: 4  }
+          12: {name: 'Batch 012', date: '2025-09-16T14:00', count: 275, tag: 5  },
+          13: {name: 'Batch 013', date: '2025-09-15T09:30', count: 400, tag: 5  }
         }
       }
     },
