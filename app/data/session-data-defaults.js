@@ -1057,6 +1057,27 @@ module.exports = {
             valid: false,
             error: 'Reason for retirement cannot be blank'
           },
+          reasonForRetirement2: {
+            title: 'Reason for retirement',
+            value: '',
+            required: true,
+            type: 'select',
+            valid: false,
+            error: 'Reason for retirement cannot be blank',
+            options: [
+              { text: '', value: '' },
+              { text: 'Age', value: 'age' },
+              { text: 'Actuarially reduced', value: 'actuariallyReduced' },
+              { text: 'Early payment of preserved (Act Red)', value: 'earlyPaymentOfPreservedActRed' },
+              { text: 'Ill health - Tier 1 benefits', value: 'illHealthTier_1Benefits' },
+              { text: 'Ill health - Tier 2 benefits', value: 'illHealthTier_2Benefits' },
+              { text: 'Incapacity', value: 'incapacity' },
+              { text: 'Partial retirement', value: 'partialRetirement' },
+              { text: 'Preserved into payment', value: 'preservedIntoPayment' },
+              { text: 'Redundancy', value: 'redundancy' },
+              { text: 'Trivial commutation', value: 'trivialCommutation' }
+            ]
+          },
           pension: {
             title: 'Pension',
             value: '',

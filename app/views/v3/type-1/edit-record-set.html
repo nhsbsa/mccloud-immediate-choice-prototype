@@ -60,7 +60,7 @@
           {% elif record.type == "currency" %}
             {{ input({
               label: {
-                  text: record.title
+                text: record.title
               },
               name: recordId,
               prefix: "£",
@@ -99,6 +99,19 @@
                   value: record.value | splitString(0)
                 }
               ]
+            }) }}
+          {% elif record.type == "select" %}
+            {{ select({
+              label: {
+                text: record.title
+              },
+              id: recordId,
+              name: recordId,
+              value: record.value,
+              errorMessage: {
+                text: errors[recordId]
+              } if errors[recordId],
+              items: record.options
             }) }}
           {% elif record.type == "daysAndYears" %}
             {{ dateInput({
