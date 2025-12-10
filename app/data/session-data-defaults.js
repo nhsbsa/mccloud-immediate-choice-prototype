@@ -1053,14 +1053,6 @@ module.exports = {
             title: 'Reason for retirement',
             value: '',
             required: true,
-            type: 'text',
-            valid: false,
-            error: 'Reason for retirement cannot be blank'
-          },
-          reasonForRetirement2: {
-            title: 'Reason for retirement',
-            value: '',
-            required: true,
             type: 'select',
             valid: false,
             error: 'Reason for retirement cannot be blank',
@@ -1116,15 +1108,25 @@ module.exports = {
             title: 'Benefit scheme',
             value: '',
             required: true,
-            type: 'text',
+            type: 'radios',
             valid: false,
-            error: 'Benefit scheme cannot be blank'
+            error: 'Benefit scheme cannot be blank',
+            options: [
+              { text: '1995', value: '1995' },
+              { text: '2008', value: '2008' },
+              { text: '2015', value: '2015' }
+            ]
           },
           commutationType: {
             title: 'Commutation type',
             value: 'maximum',
             required: false,
-            type: 'text'
+            type: 'radios',
+            options: [
+              { text: 'None', value: 'none' },
+              { text: 'Maximum', value: 'maximum' },
+              { text: 'Specific', value: 'specific' }
+            ]
           },
           commutationAmount: {
             title: 'Commutation amount',

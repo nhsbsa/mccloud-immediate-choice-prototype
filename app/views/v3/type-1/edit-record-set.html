@@ -113,6 +113,26 @@
               } if errors[recordId],
               items: record.options
             }) }}
+          {% elif record.type == "radios" %}
+            {{ radios({
+              fieldset: {
+                legend: {
+                  text: record.title,
+                  isPageHeading: false
+                }
+              },
+              label: {
+                text: record.title
+              },
+              id: recordId,
+              idPrefix: recordId,
+              name: recordId,
+              value: record.value,
+              errorMessage: {
+                text: errors[recordId]
+              } if errors[recordId],
+              items: record.options
+            }) }}
           {% elif record.type == "daysAndYears" %}
             {{ dateInput({
               fieldset: {
