@@ -31,8 +31,12 @@
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
-      <td class="nhsuk-table__cell">???</td>
-      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">{{ [3,17,31,33,37]|random * 9 }}</td>
+      {% if ([0,1]|random) == 0 %}
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--orange">Invalid data</strong></td>
+      {% else %}
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--blue">Data complete</strong></td>
+      {% endif %}
       <td class="nhsuk-table__cell">
         <a class="nhsuk-link" href="./record/{{ pensioner.id }}">View record</a>
       </td>
