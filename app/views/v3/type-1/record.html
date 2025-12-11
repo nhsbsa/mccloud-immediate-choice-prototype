@@ -108,7 +108,7 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-full">
-    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' %}nhsuk-u-margin-bottom-2{% endif %}">{{ pageName }}</h1>
+    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' or data.ui is undefined %}nhsuk-u-margin-bottom-2{% endif %}">{{ pageName }}</h1>
     {% if data.ui == "default" or data.ui is undefined %}
     <div class="nhsuk-button-group">
       <a href="#">Exclude this pensioner</a>
