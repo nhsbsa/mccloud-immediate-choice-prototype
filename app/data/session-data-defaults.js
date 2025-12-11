@@ -1132,26 +1132,22 @@ module.exports = {
             required: false,
             type: 'radios',
             options: [
-              { text: 'None', value: 'none' },
-              { text: 'Maximum', value: 'maximum' },
-              { text: 'Specific', value: 'specific' }
+              {
+                text: 'None',
+                value: 'none'
+              },
+              {
+                text: 'Maximum',
+                value: 'maximum'
+              },
+              {
+                value: "specific",
+                text: "Specific",
+                conditional: {
+                  html: "<label class=\"nhsuk-label\" for=\"commutationAmount\">Commutation amount</label><div class=\"nhsuk-input-wrapper\"><div class=\"nhsuk-input__prefix\" aria-hidden=\"true\">£</div><input class=\"nhsuk-input nhsuk-input--width-5\" id=\"commutationAmount\" name=\"commutationAmount\" type=\"text\" value=\"\"></div>"
+                }
+              }
             ]
-          },
-          commutationAmount: {
-            title: 'Commutation amount',
-            value: '198373.98',
-            required: false,
-            type: 'currency'
-          },
-          commutationAmount2: {
-            conditional: {
-              field: "commutationType",
-              value: "specific"
-            },
-            title: 'Commutation amount',
-            value: '198373.98',
-            required: false,
-            type: 'currency'
           },
           LTABCEDate: {
             title: 'LTA BCE date',

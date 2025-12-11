@@ -32,14 +32,6 @@
 
         {% if record.required %}<input type="hidden" name="{{ recordId + '-required'}}" value="true">{% endif %}
 
-        {% if record.conditional %}
-          <p>
-            <strong>Conditional field!</strong><br/>
-            Target field = value: {{ record.conditional.field }} = {{ record.conditional.value }}<br/>
-            Actual field = value: {{ data.v3t1.record[data.recordSet].items[record.conditional.field].title }} = {{ data.v3t1.record[data.recordSet].items[record.conditional.field].value }}
-          </p>
-        {% endif %}
-
         {% if record.type == "text" %}
           {{ input({
             label: {
