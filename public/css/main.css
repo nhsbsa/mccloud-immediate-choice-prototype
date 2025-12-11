@@ -11383,6 +11383,10 @@ b {
   }
 }
 
+.nhsuk-summary-list.dt-40 dt {
+  width: 40%;
+}
+
 .mccloud-record-error {
   color: #d5281b;
 }

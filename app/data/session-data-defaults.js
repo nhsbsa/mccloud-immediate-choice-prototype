@@ -1135,7 +1135,10 @@ module.exports = {
             type: 'currency'
           },
           commutationAmount2: {
-            conditional: true,
+            conditional: {
+              field: "commutationType",
+              value: "specific"
+            },
             title: 'Commutation amount',
             value: '198373.98',
             required: false,

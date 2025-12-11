@@ -108,12 +108,12 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-full">
-    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' or data.ui is undefined %}nhsuk-u-margin-bottom-2{% endif %}">{{ pageName }}</h1>
+    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' or data.ui is undefined %}nhsuk-u-margin-bottom-4{% endif %}">{{ pageName }}</h1>
     {% if data.ui == "default" or data.ui is undefined %}
     <div class="nhsuk-button-group">
-      <a href="#">Exclude this pensioner</a>
-      <a href="../split-benefit">Add a split benefit</a>
-      <a href="?ui=alt">Toggle UI</a>
+      <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="#">Exclude this pensioner</a>
+      <a class="nhsuk-button nhsuk-u-margin-bottom-2" href="../split-benefit">Add a split benefit</a>
+      <a class="nhsuk-link nhsuk-link--no-visited-state" href="?ui=alt">Toggle UI</a>
     </div>
     {% endif %}
   </div>
@@ -141,9 +141,9 @@
   <div class="nhsuk-grid-column-one-third">
     <h3 class="nhsuk-heading-xs nhsuk-u-margin-bottom-2">Actions</h3>
     <ul class="nhsuk-list">
-      <li><a href="#">Exclude this pensioner</a></li>
-      <li><a href="../split-benefit">Add a split benefit</a></li>
-      <li><a href="?ui=default">Toggle UI</a></li>
+      <li><a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="#">Exclude this pensioner</a></li>
+      <li><a class="nhsuk-button nhsuk-u-margin-bottom-2" href="../split-benefit">Add a split benefit</a></li>
+      <li><a class="nhsuk-link nhsuk-link--no-visited-state" href="?ui=default">Toggle UI</a></li>
     </ul>
     <div class="nhsuk-button-group">
     </div>
