@@ -21,7 +21,7 @@
 {% endfor %}
 
 {{ summaryList({
-  classes: 'nhsuk-summary-list--no-border',
+  classes: 'nhsuk-summary-list--no-border dt-40',
   rows: [
     {
       key: {
@@ -106,33 +106,57 @@
   }) }}
 {% endif %}
 
-<h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-2">{{ pageName }}</h1>
-<div class="nhsuk-button-group">
-  <a href="#">Exclude this pensioner</a>
-  <a href="../split-benefit">Add a split benefit</a>
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' %}nhsuk-u-margin-bottom-2{% endif %}">{{ pageName }}</h1>
+    {% if data.ui == "default" or data.ui is undefined %}
+    <div class="nhsuk-button-group">
+      <a href="#">Exclude this pensioner</a>
+      <a href="../split-benefit">Add a split benefit</a>
+      <a href="?ui=alt">Toggle UI</a>
+    </div>
+    {% endif %}
+  </div>
+  <div class="nhsuk-grid-column-two-thirds">
+    {{ personalDetailsHtml | safe }}
+
+    <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
+      <h2 class="nhsuk-heading-m">Sections in this record</h2>
+      <ol class="nhsuk-contents-list__list">
+        {% for recordId, recordSet in data.v3t1.record %}
+        {% set missingValues = 0 %}
+        {% set warningValues = 0 %}
+        {% for id, record in recordSet.items %}
+        {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+        {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+        {% endfor %}
+        <li class="nhsuk-contents-list__item">
+          <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}</a>{% if missingValues > 0 %} ({{ missingValues }} {{ 'error' | plural(missingValues) }}{% if warningValues > 0 %}, {{ warningValues }} {{ 'warning' | plural(warningValues)}}{% endif %}){% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+  {% if data.ui == "alt" %}
+    <div class="nhsuk-grid-column-one-third">
+      <h3 class="nhsuk-heading-xs nhsuk-u-margin-bottom-2">Actions</h3>
+      <ul class="nhsuk-list">
+        <li><a href="#">Exclude this pensioner</a></li>
+        <li><a href="../split-benefit">Add a split benefit</a></li>
+        <li><a href="?ui=default">Toggle UI</a></li>
+      </ul>
+      <div class="nhsuk-button-group">
+      </div>
+    </div>
+    {% endif %}
 </div>
 
-{{ personalDetailsHtml | safe }}
-
-<nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
-  <h2 class="nhsuk-heading-m">Sections in this record</h2>
-  <ol class="nhsuk-contents-list__list">
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
     {% for recordId, recordSet in data.v3t1.record %}
-    {% set missingValues = 0 %}
-    {% set warningValues = 0 %}
-    {% for id, record in recordSet.items %}
-      {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
-      {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+    {{ recordSummary(recordSet, '', true) }}
     {% endfor %}
-    <li class="nhsuk-contents-list__item">
-      <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}</a>{% if missingValues > 0 %} ({{ missingValues }} {{ 'error' | plural(missingValues) }}{% if warningValues > 0 %}, {{ warningValues }} {{ 'warning' | plural(warningValues)}}{% endif %}){% endif %}
-    </li>
-    {% endfor %}
-  </ol>
-</nav>
-
-{% for recordId, recordSet in data.v3t1.record %}
-{{ recordSummary(recordSet, '', true) }}
-{% endfor %}
+  </div>
+</div>
 
 {% endblock %}
