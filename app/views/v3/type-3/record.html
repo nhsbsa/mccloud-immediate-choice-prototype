@@ -51,63 +51,36 @@
 }) }}
 {% endset %}
 
-<h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-2">{{ pageName }}</h1>
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1 class="nhsuk-heading-xl {% if data.ui == 'default' %}nhsuk-u-margin-bottom-2{% endif %}">{{ pageName }}</h1>
+    {{ personalDetailsHtml | safe }}
 
-{{ personalDetailsHtml | safe }}
+    <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
+      <h2 class="nhsuk-heading-m">Sections in this record</h2>
+      <ol class="nhsuk-contents-list__list">
+        {% for recordId, recordSet in data.v3t3.record %}
+        {% set missingValues = 0 %}
+        {% set warningValues = 0 %}
+        {% for id, record in recordSet.items %}
+          {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+          {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+        {% endfor %}
+        <li class="nhsuk-contents-list__item">
+          <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}</a>{% if missingValues > 0 %} ({{ missingValues }} {{ 'error' | plural(missingValues) }}{% if warningValues > 0 %}, {{ warningValues }} {{ 'warning' | plural(warningValues)}}{% endif %}){% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+</div>
 
-<nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
-  <h2 class="nhsuk-heading-m">Sections in this record</h2>
-  <ol class="nhsuk-contents-list__list">
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
     {% for recordId, recordSet in data.v3t3.record %}
-    {% set missingValues = 0 %}
-    {% set warningValues = 0 %}
-    {% for id, record in recordSet.items %}
-      {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
-      {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+    {{ recordSummary(recordSet, '') }}
     {% endfor %}
-    <li class="nhsuk-contents-list__item">
-      <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}</a>{% if missingValues > 0 %} ({{ missingValues }} {{ 'error' | plural(missingValues) }}{% if warningValues > 0 %}, {{ warningValues }} {{ 'warning' | plural(warningValues)}}{% endif %}){% endif %}
-    </li>
-    {% endfor %}
-  </ol>
-</nav>
+  </div>
+</div>
 
-{% for recordId, recordSet in data.v3t3.record %}
-{{ recordSummary(recordSet, '') }}
-{% endfor %}
-
-{# {{ tabs({
-  items: [
-    {
-      label: "Personal details",
-      id: "personal-details",
-      panel: {
-        html: personalDetailsHtml
-      }
-    },
-    {
-      label: "Current scheme",
-      id: "current-scheme",
-      panel: {
-        html:
-          recordSummary(data.v3t3.record.schemeDetails, 'current-scheme') +
-          recordSummary(data.v3t3.record.currentLegacySchemeBenefit, 'current-scheme')
-      }
-    },
-    {
-      label: "Option A",
-      id: "options-a",
-      panel: {
-        html: recordSummary(data.v3t3.record.optionALegacySchemeBenefit, 'options-a')
-      }
-    },
-    {
-      label: "Option B",
-      id: "options-b",
-      panel: {
-        html: "<p>Test</p>"
-      }
-    }
-  ]
-}) }} #}
 {% endblock %}
