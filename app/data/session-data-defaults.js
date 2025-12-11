@@ -1032,17 +1032,26 @@ module.exports = {
         id: 'schemeDetails',
         items: {
           legacyScheme: {
-            title: 'Legacy scheme',
-            value: '1955',
+            title: 'Legacy Scheme',
+            value: '1995',
             required: true,
-            type: 'text'
+            type: 'radios',
+            options: [
+              { text: '1995', value: '1995' },
+              { text: '2008', value: '2008' }
+            ]
           },
           protectionType: {
             title: 'Protection type',
-            value: 'full',
+            value: 'fullProtection',
             required: false,
-            type: 'text'
-          }
+            type: 'radios',
+            options: [
+              { text: 'No protection', value: 'noProtection' },
+              { text: 'Tapered protection', value: 'taperedProtection' },
+              { text: 'Full protection', value: 'fullProtection' }
+            ]
+          },
         }
       },
       currentLegacySchemeBenefit: {
