@@ -1157,9 +1157,9 @@ module.exports = {
           },
           LTA: {
             title: 'LTA',
-            value: '1073100',
+            value: '105.34',
             required: false,
-            type: 'currency'
+            type: 'percent'
           },
           trivialLumpSumTaxable: {
             title: 'Trivial lump sum taxable',

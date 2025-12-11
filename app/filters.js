@@ -32,6 +32,9 @@ module.exports = function (env) {
           minimumFractionDigits: 2
         })
       }
+      case 'percent': {
+        return value + '%'
+      }
       case 'date':
         return filters.niceDate(value)
       case 'daysAndYears': {
@@ -82,7 +85,7 @@ module.exports = function (env) {
   }
 
   filters.plural = (string, count, singular = '', plural = 's') => {
-    return (count === 1) ? string + singular : string + plural 
+    return (count === 1) ? string + singular : string + plural
   }
 
 
