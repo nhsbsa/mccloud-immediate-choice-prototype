@@ -13,18 +13,18 @@
     {% if hideActions %}
     <span class="record-actions">
       {% if recordSet.canDelete %}
-      <a class="mccloud-summary-card__action" href="../delete-record-set?recordSet={{ recordSet.id }}">Delete <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> split benefit</a> |
+      <a class="nhsuk-button nhsuk-button--warning nhsuk-button--small" href="../delete-record-set?recordSet={{ recordSet.id }}">Delete <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> split benefit</a>
       {% endif %}
       {% if recordSet.title == "Address" %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit address</a>
+      <a class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit address</a>
       {% elif recordSet.title == "Scheme details" %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit scheme details</a>
+      <a class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit scheme details</a>
       {% elif "legacy scheme benefit" in recordSet.title %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit legacy scheme benefit</a>
+      <a class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit legacy scheme benefit</a>
       {% elif "split benefit" in recordSet.title %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit split benefit</a>
+      <a class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit split benefit</a>
       {% else %}
-      <a class="mccloud-summary-card__action" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
+      <a class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" href="../edit-record-set?recordSet={{ recordSet.id }}">Edit <span class="nhsuk-u-visually-hidden">{{ recordSet.title | lower }}</span> records</a>
       {%endif %}
     </span>
     {%endif %}
