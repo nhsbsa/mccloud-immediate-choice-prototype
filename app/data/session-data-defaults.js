@@ -1134,6 +1134,13 @@ module.exports = {
             required: false,
             type: 'currency'
           },
+          commutationAmount2: {
+            conditional: true,
+            title: 'Commutation amount',
+            value: '198373.98',
+            required: false,
+            type: 'currency'
+          },
           LTABCEDate: {
             title: 'LTA BCE date',
             value: '2025-09-27',
