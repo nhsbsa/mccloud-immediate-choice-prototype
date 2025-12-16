@@ -18,7 +18,7 @@
     <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
       <h2 class="nhsuk-heading-m">Sections in this record</h2>
       <ol class="nhsuk-contents-list__list">
-        {% for recordId, recordSet in data.v3t2.record %}
+        {% for recordId, recordSet in data.v3t2.calculations %}
         {% set missingValues = 0 %}
         {% set warningValues = 0 %}
         {% for id, record in recordSet.items %}
@@ -36,7 +36,7 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-full">
-    {% for recordId, recordSet in data.v3t2.record %}
+    {% for recordId, recordSet in data.v3t2.calculations %}
     {{ recordSummary(recordSet, '') }}
     {% endfor %}
   </div>

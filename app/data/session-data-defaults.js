@@ -1600,6 +1600,123 @@ module.exports = {
           }
         }
       }
+    },
+    calculations: {
+      basicInformation: {
+        title: 'Basic information',
+        id: 'basicInformation',
+        items: {
+          line1: {
+            title: 'Calculation ID',
+            value: '2LzEwEFpG3proj4JBmgwf',
+            required: true,
+            type: 'text'
+          },
+          line2: {
+            title: 'Line 2',
+            value: 'ul6PVcO4gKuK',
+            required: true,
+            type: 'text'
+          },
+          line3: {
+            title: 'Batch ID',
+            value: 'GEnln7pN',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
+      currentTotals: {
+        title: 'Current totals',
+        id: 'currentTotals',
+        items: {
+          legacyScheme: {
+            title: 'Legacy scheme',
+            value: '1955',
+            required: true,
+            type: 'text'
+          },
+          protectionType: {
+            title: 'Protection type',
+            value: 'full',
+            required: false,
+            type: 'text'
+          }
+        }
+      },
+      optionALegacySchemeResults: {
+        title: 'Option A - Legacy scheme results',
+        id: 'optionALegacySchemeResults',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: '',
+            required: true,
+            type: 'text',
+            error: 'Reason for retirement cannot be blank'
+          }
+        }
+      },
+      optionAInterestCalculations: {
+        title: 'Option A - Interest calculations',
+        id: 'optionAInterestCalculations',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: 'Age',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
+      optionANetOverpaid: {
+        title: 'Option A - Net overpaid pension by year',
+        id: 'optionANetOverpaid',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: 'Age',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
+      memberDebt: {
+        title: 'Member debt',
+        id: 'optionALegacySchemeBenefit',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: 'Age',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
+      optionBReformedSchemeResults: {
+        title: 'Option B - Reformed scheme results',
+        id: 'optionBReformedSchemeResults',
+        items: {
+          reasonForRetirement: {
+            title: 'Reason for retirement',
+            value: 'Age',
+            required: true,
+            type: 'text'
+          }
+        }
+      },
+      optionBMemberDebt: {
+        title: 'Option B - Member debt',
+        id: 'optionBMemberDebt',
+        items: {
+          reasonForRetirement: {
+            title: 'Total owed by member',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          }
+        }
+      },
     }
   },
   v3t3: {
