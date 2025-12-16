@@ -1787,34 +1787,49 @@ module.exports = {
       outstanding: {
         title: "Outstanding batches",
         items: {
-          1: {name: 'Batch 001', date: '2025-09-27T11:08', count: 328, tag: 3 },
-          2: {name: 'Batch 002', date: '2025-09-26T14:22', count: 145, tag: 3 },
-          3: {name: 'Batch 003', date: '2025-09-25T09:15', count: 289, tag: 3 },
-          4: {name: 'Batch 004', date: '2025-09-24T16:45', count: 512, tag: 3 },
-          5: {name: 'Batch 005', date: '2025-09-23T10:30', count: 76, tag: 3 }
+          1: {name: 'r12gT9Kq', date: '2025-09-27T11:08', count: 328, tag: 3 },
+          2: {name: 'dlckb9h4', date: '2025-09-26T14:22', count: 145, tag: 3 },
+          3: {name: '2QmCSuUv', date: '2025-09-25T09:15', count: 289, tag: 3 },
+          4: {name: 'Sh6OPWTJ', date: '2025-09-24T16:45', count: 512, tag: 3 },
+          5: {name: 'XfeyYq7o', date: '2025-09-23T10:30', count: 76, tag: 3 },
+          6: {name: 'Lp0NzxRd', date: '2025-09-22T13:50', count: 199, tag: 3},
+          7: {name: 'Vg3HwEmJ', date: '2025-09-21T15:25', count: 87, tag: 3},
+          8: {name: 'Yt5QrXnF', date: '2025-09-20T12:10', count: 234, tag: 3},
+          9: {name: 'Nb8LsCwZ', date: '2025-09-19T09:40', count: 156, tag: 3},
+          10: {name: 'Qp4DvGkS', date: '2025-09-18T11:55', count: 301, tag: 3},
+          11: {name: 'Wz7JtUaV', date: '2025-09-17T14:05', count: 422, tag: 3},
+          12: {name: 'Er1XoYbN', date: '2025-09-16T10:20', count: 178, tag: 3},
+          13: {name: 'Hm9PcZqL', date: '2025-09-15T15:35', count: 114, tag: 3},
+          14: {name: 'Tj2RfSdK', date: '2025-09-14T13:15', count: 213, tag: 3},
+          15: {name: 'Ux6VgWeM', date: '2025-09-13T16:50', count: 134, tag: 3},
+          16: {name: 'Io8YhXnO', date: '2025-09-12T12:30', count: 267, tag: 3},
+          17: {name: 'Pq0ZkAlP', date: '2025-09-11T09:55', count: 189, tag: 3},
+          18: {name: 'Rs3BmCnQ', date: '2025-09-10T11:20', count: 345, tag: 3},
+          19: {name: 'Vt5DnEpR', date: '2025-09-09T14:40', count: 158, tag: 3},
+          20: {name: 'Yw7FpGqS', date: '2025-09-08T10:10', count: 276, tag: 3}
         }
       },
       awaitingApproval: {
         title: "Batches awaiting approval",
         items: {
-          6: {name: 'Batch 006', date: '2025-09-22T11:08', count: 210, tag: 2 },
-          7: {name: 'Batch 007', date: '2025-09-21T14:22', count: 98, tag: 2 }
+          6: {name: 'mifmm2vu', date: '2025-09-22T11:08', count: 210, tag: 2 },
+          7: {name: 'gMiN1A1Y', date: '2025-09-21T14:22', count: 98, tag: 2 }
         }
       },
       rejected: {
         title: "Rejected batches",
         items: {
-          8: {name: 'Batch 008', date: '2025-09-20T09:15', count: 45, tag: 6 },
-          9: {name: 'Batch 009', date: '2025-09-19T16:45', count: 123, tag: 6 }
+          8: {name: 'tkPdvBPF', date: '2025-09-20T09:15', count: 45, tag: 6 },
+          9: {name: 'jYgHVeUe', date: '2025-09-19T16:45', count: 123, tag: 6 }
         }
       },
       completed: {
         title: "Completed batches",
         items: {
-          10: {name: 'Batch 010', date: '2025-09-18T10:30', count: 300, tag: 5 },
-          11: {name: 'Batch 011', date: '2025-09-17T11:45', count: 150, tag: 5 },
-          12: {name: 'Batch 012', date: '2025-09-16T14:00', count: 275, tag: 5  },
-          13: {name: 'Batch 013', date: '2025-09-15T09:30', count: 400, tag: 5  }
+          10: {name: 'rZ2fw4EY', date: '2025-09-18T10:30', count: 300, tag: 5 },
+          11: {name: 'D1qFVVYy', date: '2025-09-17T11:45', count: 150, tag: 5 },
+          12: {name: '1YP9WFy0', date: '2025-09-16T14:00', count: 275, tag: 5  },
+          13: {name: '6DGohyHN', date: '2025-09-15T09:30', count: 400, tag: 5  }
         }
       }
     },
