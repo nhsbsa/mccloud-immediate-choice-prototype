@@ -1296,7 +1296,7 @@ module.exports = {
           protectedPayAmount: {
             title: "Protected Pay Amount",
             type: "currency",
-            value: "9876",
+            value: "",
             required: true
           },
           protectedPayDate: {
