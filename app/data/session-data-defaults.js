@@ -1630,17 +1630,17 @@ module.exports = {
         title: 'Current totals',
         id: 'currentTotals',
         items: {
-          legacyScheme: {
-            title: 'Legacy scheme',
-            value: '1955',
+          currentTotalPension: {
+            title: 'Current total pension',
+            value: '5081.39',
             required: true,
-            type: 'text'
+            type: 'currency'
           },
-          protectionType: {
-            title: 'Protection type',
-            value: 'full',
-            required: false,
-            type: 'text'
+          currentTotalLumpSum: {
+            title: 'Current total lump sum',
+            value: '33875.92',
+            required: true,
+            type: 'currency'
           }
         }
       },
@@ -1648,12 +1648,17 @@ module.exports = {
         title: 'Option A - Legacy scheme results',
         id: 'optionALegacySchemeResults',
         items: {
-          reasonForRetirement: {
-            title: 'Reason for retirement',
-            value: '',
+          legacyCommutationAfterPension: {
+            title: 'Legacy commutation after pension',
+            value: '5165.01',
             required: true,
-            type: 'text',
-            error: 'Reason for retirement cannot be blank'
+            type: 'currency'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
+            required: true,
+            type: 'text'
           }
         }
       },
@@ -1661,9 +1666,15 @@ module.exports = {
         title: 'Option A - Interest calculations',
         id: 'optionAInterestCalculations',
         items: {
-          reasonForRetirement: {
-            title: 'Reason for retirement',
-            value: 'Age',
+          underpaidLumpSumInterest: {
+            title: 'Underpaid lump sum interest',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
             required: true,
             type: 'text'
           }
@@ -1673,9 +1684,15 @@ module.exports = {
         title: 'Option A - Net overpaid pension by year',
         id: 'optionANetOverpaid',
         items: {
-          reasonForRetirement: {
-            title: 'Reason for retirement',
-            value: 'Age',
+          yr201516: {
+            title: '2015-16',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
             required: true,
             type: 'text'
           }
@@ -1690,6 +1707,12 @@ module.exports = {
             value: 'Age',
             required: true,
             type: 'text'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
+            required: true,
+            type: 'text'
           }
         }
       },
@@ -1700,6 +1723,12 @@ module.exports = {
           reasonForRetirement: {
             title: 'Reason for retirement',
             value: 'Age',
+            required: true,
+            type: 'text'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
             required: true,
             type: 'text'
           }
@@ -1714,6 +1743,12 @@ module.exports = {
             value: '9999.00',
             required: true,
             type: 'currency'
+          },
+          moreRows: {
+            title: 'More rows',
+            value: '9 more rows continue here',
+            required: true,
+            type: 'text'
           }
         }
       },

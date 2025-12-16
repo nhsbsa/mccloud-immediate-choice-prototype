@@ -42,4 +42,19 @@
   </div>
 </div>
 
+{% call details({
+  summaryText: "View calculation decision log (215 entries)"
+}) %}
+  <p>Not sure what this UI looks like!</p>
+  <ul>
+    <li>Decision log entry 1</li>
+    <li>Decision log entry 2</li>
+    <li>Decision log entry 3</li>
+  </ul>
+{% endcall %}
+
+<p class="nhsuk-body">
+  <a href="/v3/type-2/record/{{ data.member.id }}" class="nhsuk-link">Back to pension record for {{ data.member.name }}</a>
+</p>
+
 {% endblock %}
