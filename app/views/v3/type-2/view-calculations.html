@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% from "includes/recordSummary.njk" import recordSummary %}
+
+{% set pageName = 'Calculations for ' + data.member.name %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "/v3/type-2/record/" + data.member.id
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1 class="nhsuk-heading-xl {% if data.ui == 'original' %}nhsuk-u-margin-bottom-4{% endif %}">{{ pageName }}</h1>
+  </div>
+  <div class="nhsuk-grid-column-two-thirds">
+    <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this record">
+      <h2 class="nhsuk-heading-m">Sections in this record</h2>
+      <ol class="nhsuk-contents-list__list">
+        {% for recordId, recordSet in data.v3t2.record %}
+        {% set missingValues = 0 %}
+        {% set warningValues = 0 %}
+        {% for id, record in recordSet.items %}
+        {% if record.valid == false %}{% set missingValues = missingValues + 1 %}{% endif %}
+        {% if record.warning %}{% set warningValues = warningValues + 1 %}{% endif %}
+        {% endfor %}
+        <li class="nhsuk-contents-list__item">
+          <a class="nhsuk-contents-list__link" href="#{{ recordSet.id }}">{{ recordSet.title }}</a>{% if missingValues > 0 %} ({{ missingValues }} {{ 'error' | plural(missingValues) }}{% if warningValues > 0 %}, {{ warningValues }} {{ 'warning' | plural(warningValues)}}{% endif %}){% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    {% for recordId, recordSet in data.v3t2.record %}
+    {{ recordSummary(recordSet, '') }}
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
