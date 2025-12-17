@@ -1144,33 +1144,8 @@ module.exports = {
                 value: "specific",
                 text: "Specific",
                 conditional: {
-                  html: "<label class=\"nhsuk-label\" for=\"commutationAmount\">Commutation amount</label><div class=\"nhsuk-input-wrapper\"><div class=\"nhsuk-input__prefix\" aria-hidden=\"true\">£</div><input class=\"nhsuk-input nhsuk-input--width-5\" id=\"commutationAmount\" name=\"commutationAmount\" type=\"text\" value=\"\"></div>"
-                }
-              }
-            ]
-          },
-          commutationTypeTest: {
-            title: 'Commutation type',
-            value: 'maximum',
-            required: false,
-            type: 'commutationTypeConditional',
-            options: [
-              {
-                text: 'None',
-                value: 'none'
-              },
-              {
-                text: 'Maximum',
-                value: 'maximum'
-              },
-              {
-                value: "specific",
-                text: "Specific",
-                conditional: {
-                  title: 'Trivial lump sum taxable',
-                  value: '0.00',
-                  required: false,
-                  type: 'currency'
+                  html: "<label class=\"nhsuk-label\" for=\"commutationAmount\">Commutation amount</label><div class=\"nhsuk-input-wrapper\"><div class=\"nhsuk-input__prefix\" aria-hidden=\"true\">£</div><input class=\"nhsuk-input nhsuk-input--width-5\" id=\"commutationAmount\" name=\"commutationAmount\" type=\"text\" value=\"\"></div>",
+                  value: ""
                 }
               }
             ]
@@ -1203,9 +1178,7 @@ module.exports = {
             title: 'Age at payable date',
             value: '',
             required: true,
-            valid: false,
-            type: 'number',
-            error: 'Age at payable date must be a number between 55 and 75'
+            type: 'number'
           }
         }
       },
@@ -1323,7 +1296,9 @@ module.exports = {
             title: "Protected Pay Amount",
             type: "currency",
             value: "",
-            required: true
+            required: true,
+            valid: false,
+            error: 'Protected pay amount cannot be blank',
           },
           protectedPayDate: {
             title: "Protected Pay Date",
