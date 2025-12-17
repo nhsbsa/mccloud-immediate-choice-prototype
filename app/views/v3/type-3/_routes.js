@@ -11,6 +11,8 @@ const type = 'type-3';
 // Member search ---------------------------------------------------------------
 
 router.get(`/${version}/${type}/search`, function (req, res) {
+  delete req.session.data.v3t3.currentBatch;
+
   const data = req.session.data;
   const query = req.query;
 
@@ -102,7 +104,10 @@ router.get(`/${version}/${type}/batch/:id`, function (req, res) {
 // Batch details ---------------------------------------------------------------
 
 router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
+  const data = req.session.data;
   const batchId = req.params.id;
+  data.v3t3.currentBatchNum = batchId;
+
   res.render(`${version}/${type}/batch-details`, {
     batchId: batchId,
     ...req.query

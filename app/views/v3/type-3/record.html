@@ -5,7 +5,7 @@
 
 {% block beforeContent %}
   {{ backLink({
-    href: "/v3/type-3/search"
+    href: "/v3/type-3/batch-details/" + data.v3t3.currentBatchNum + "?batchStatus=" + data.v3t3.currentBatch if data.v3t3.currentBatch else "/v3/type-3/search"
   }) }}
 {% endblock %}
 
