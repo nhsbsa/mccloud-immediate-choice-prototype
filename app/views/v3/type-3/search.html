@@ -12,14 +12,13 @@
         {% for error in data.searchErrors %}
         {% if error == 'empty' %}
         <li><a href="#memberSearch">Enter a membership number to search for</a></li>
-        {% endif %}
-        {% if error == 'length' %}
-        <li><a href="#memberSearch">Membership numbers must be 8 numbers</a></li>
-        {% endif %}
-        {% if error == 'nan' %}
-        <li><a href="#memberSearch">Membership numbers must only include numbers</a></li>
-        {% endif %}
-        {% if error == 'not-found' %}
+        {% elif error == 'lengthAndNan' %}
+        <li><a href="#memberSearch">Membership numbers must be 8 numbers and only include numbers, like 12345678</a></li>
+        {% elif error == 'length' %}
+        <li><a href="#memberSearch">Membership numbers must be 8 numbers, like 12345678</a></li>
+        {% elif error == 'nan' %}
+        <li><a href="#memberSearch">Membership numbers must only include numbers, like 12345678</a></li>
+        {% elif error == 'not-found' %}
         <li><a href="#memberSearch">No results found for the membership number {{ data.memberSearch }}</a></li>
         {% endif %}
         {% endfor  %}
@@ -41,18 +40,19 @@
     <span id="memberSearch-error" class="nhsuk-error-message">
       <span class="nhsuk-u-visually-hidden">Error:</span> Enter a membership number to search for
     </span>
-    {% endif %}
-    {% if error == 'length' %}
+    {% elif error == 'lengthAndNan' %}
     <span id="memberSearch-error" class="nhsuk-error-message">
-      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must be 8 numbers
+      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must be 8 numbers and only include numbers, like 12345678
     </span>
-    {% endif %}
-    {% if error == 'nan' %}
+    {% elif error == 'length' %}
     <span id="memberSearch-error" class="nhsuk-error-message">
-      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must only include numbers
+      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must be 8 numbers, like 12345678
     </span>
-    {% endif %}
-    {% if error == 'not-found' %}
+    {% elif error == 'nan' %}
+    <span id="memberSearch-error" class="nhsuk-error-message">
+      <span class="nhsuk-u-visually-hidden">Error:</span> Membership numbers must only include numbers, like 12345678
+    </span>
+    {% elif error == 'not-found' %}
     <span id="memberSearch-error" class="nhsuk-error-message">
       <span class="nhsuk-u-visually-hidden">Error:</span> No results found for the membership number {{ data.memberSearch }}
     </span>

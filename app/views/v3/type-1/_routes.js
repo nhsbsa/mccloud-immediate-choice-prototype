@@ -8,15 +8,15 @@ const router = express.Router()
 const version = 'v3';
 const type = 'type-1';
 
-// Add your version 3 routes here - above the module.exports line
-
 // Member search ---------------------------------------------------------------
+
 router.get(`/${version}/${type}/search`, function (req, res) {
   const query = req.query;
   res.render(`${version}/${type}/search`, { ...query });
 });
 
 // Search results --------------------------------------------------------------
+
 router.get(`/${version}/${type}/search-results`, function (req, res) {
   delete req.session.data.searchErrors;
   const data = req.session.data;
@@ -25,21 +25,17 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
   memberSearch = data.memberSearch;
   const searchErrors = data.searchErrors || [];
 
-  // No membership number provided
   if (!memberSearch) {
+    // No membership number provided
     searchErrors.push('empty');
-    data.searchErrors = searchErrors;
-    res.redirect(`/${version}/${type}/search`);
-    return;
-  }
-
-  // Invalid member number length
-  if (memberSearch.length != 8) {
+  } else if (memberSearch.length != 8 && isNaN(memberSearch)) {
+    // Invalid member number length
+    searchErrors.push('lengthAndNan');
+  } else if (memberSearch.length != 8) {
+    // Invalid member number length
     searchErrors.push('length');
-  }
-
-  // Invalid member number format
-  if (isNaN(memberSearch)) {
+  } else if (isNaN(memberSearch)) {
+    // Invalid member number format
     searchErrors.push('nan');
   }
 
@@ -74,6 +70,7 @@ router.get(`/${version}/${type}/search-results`, function (req, res) {
 });
 
 // Member record ---------------------------------------------------------------
+
 router.get(`/${version}/${type}/record/:id`, function (req, res) {
   const data = req.session.data;
   const member = data.v3t1.pensioners.filter((pensioner) => pensioner.id === req.params.id)[0] || [];
@@ -86,12 +83,14 @@ router.get(`/${version}/${type}/record/:id`, function (req, res) {
 });
 
 // Batch details ---------------------------------------------------------------
+
 router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
   const batchId = req.params.id;
   res.render(`${version}/${type}/batch-details`, { batch: batchId });
 });
 
 // Edit record -----------------------------------------------------------------
+
 router.get(`/${version}/${type}/edit-record-set`, function (req, res) {
   const recordSet = req.query.recordSet;
 
@@ -117,6 +116,7 @@ router.get(`/${version}/${type}/edit-record-set`, function (req, res) {
 });
 
 // Edit record -----------------------------------------------------------------
+
 router.post(`/${version}/${type}/edit-record-set`, (req, res) => {
   // @todo: Update this to use hidden field or query – same as edit
   const submitted = req.body;
@@ -172,6 +172,7 @@ router.post(`/${version}/${type}/edit-record-set`, (req, res) => {
 });
 
 // Delete record ---------------------------------------------------------------
+
 router.all(`/${version}/${type}/delete-record-set`, (req, res) => {
   // @todo: Update this to use hidden field or query – same as edit
   const recordSet = req.query.recordSet;
@@ -197,6 +198,7 @@ router.all(`/${version}/${type}/delete-record-set`, (req, res) => {
 });
 
 // Split benefit ---------------------------------------------------------------
+
 router.post(`/${version}/${type}/split-benefit`, function (req, res) {
   //process the form submission
   const submitted = req.body;
@@ -254,6 +256,7 @@ router.post(`/${version}/${type}/split-benefit`, function (req, res) {
 });
 
 // Warn about record set -------------------------------------------------------
+
 router.get(`/${version}/${type}/warn-about-record-set`, function (req, res) {
   const recordSet = req.query.recordSet;
   res.render(`${version}/${type}/warn-about-record-set`, {

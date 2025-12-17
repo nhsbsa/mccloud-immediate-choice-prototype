@@ -40,7 +40,7 @@
   {% if data.ui == "default" or data.ui is undefined %}
   <div class="nhsuk-grid-column-one-third">
     <ul class="nhsuk-list">
-      <li><a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="../remove-member">Remove member</a></li>
+      <li><a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/record/{{ data.member.id }}">Reject member</a></li>
     </ul>
   </div>
   {% endif %}
@@ -65,8 +65,9 @@
   </ul>
 {% endcall %}
 
-<p class="nhsuk-body">
-  <a href="/v3/type-2/record/{{ data.member.id }}" class="nhsuk-link">Back to pension record for {{ data.member.name }}</a>
-</p>
+<div class="nhsuk-button-group">
+  <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/record/{{ data.member.id }}">Reject member</a>
+  <a href="record/{{ data.member.id }}" class="nhsuk-link">Cancel and return to member</a>
+</div>
 
 {% endblock %}
