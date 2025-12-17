@@ -1149,6 +1149,32 @@ module.exports = {
               }
             ]
           },
+          commutationTypeTest: {
+            title: 'Commutation type',
+            value: 'maximum',
+            required: false,
+            type: 'commutationTypeConditional',
+            options: [
+              {
+                text: 'None',
+                value: 'none'
+              },
+              {
+                text: 'Maximum',
+                value: 'maximum'
+              },
+              {
+                value: "specific",
+                text: "Specific",
+                conditional: {
+                  title: 'Trivial lump sum taxable',
+                  value: '0.00',
+                  required: false,
+                  type: 'currency'
+                }
+              }
+            ]
+          },
           LTABCEDate: {
             title: 'LTA BCE date',
             value: '2025-09-27',
@@ -1612,8 +1638,8 @@ module.exports = {
             required: true,
             type: 'text'
           },
-          line2: {
-            title: 'Line 2',
+          pensionerDataId: {
+            title: 'Pensioner data ID',
             value: 'ul6PVcO4gKuK',
             required: true,
             type: 'text'
@@ -1648,17 +1674,65 @@ module.exports = {
         title: 'Option A - Legacy scheme results',
         id: 'optionALegacySchemeResults',
         items: {
-          legacyCommutationAfterPension: {
-            title: 'Legacy commutation after pension',
+          legacyPensionAfterCommutation: {
+            title: 'Legacy pension after commutation',
             value: '5165.01',
             required: true,
             type: 'currency'
           },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
+          reformPensionAfterCommutation: {
+            title: 'Reform pension after commutation',
+            value: '119.36',
             required: true,
-            type: 'text'
+            type: 'currency'
+          },
+          legacyLumpSumAfterCommutation: {
+            title: 'Legacy lump sum after commutation',
+            value: '33870.29',
+            required: true,
+            type: 'currency'
+          },
+          reformLumpSumAfterCommutation: {
+            title: 'Reform lump sum after commutation',
+            value: '0.00',
+            required: true,
+            type: 'currency'
+          },
+          totalLifetimeAllowance: {
+            title: 'Total lifetime allowance',
+            value: '0.00',
+            required: true,
+            type: 'percent'
+          },
+          annualPensionDifference: {
+            title: 'Annual pension difference',
+            value: '732.42',
+            required: true,
+            type: 'currency'
+          },
+          lumpSumDifference: {
+            title: 'Lump sum difference',
+            value: '-5.63',
+            required: true,
+            type: 'currency'
+          },
+          totalOwedToMember: {
+            title: 'Total owed to member',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          totalPension: {
+            title: 'Total pension',
+            value: '5284.37',
+            required: true,
+            type: 'currency'
+          },
+          totalLumpSum: {
+            title: 'Total lump sum',
+            value: '5284.37',
+            required: true,
+            type: 'currency'
           }
         }
       },
@@ -1672,12 +1746,30 @@ module.exports = {
             required: true,
             type: 'currency'
           },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
+          underpaidPensionArrearsInterest: {
+            title: 'Underpaid pension arrears interest',
+            value: '9999.00',
             required: true,
-            type: 'text'
-          }
+            type: 'currency'
+          },
+          overpaidLumpSumInterest: {
+            title: 'Overpaid lump sum interest',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          overpaidPensionInterest: {
+            title: 'Overpaid pension interest',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          taxDueOnLumpSumInterest: {
+            title: 'Tax due on lump sum interest',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
         }
       },
       optionANetOverpaid: {
@@ -1690,29 +1782,71 @@ module.exports = {
             required: true,
             type: 'currency'
           },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
+          yr201617: {
+            title: '2016-17',
+            value: '9999.00',
             required: true,
-            type: 'text'
+            type: 'currency'
+          },
+          yr201718: {
+            title: '2017-18',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr201819: {
+            title: '2018-19',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr201920: {
+            title: '2019-20',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr202021: {
+            title: '2020-21',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr202122: {
+            title: '2021-22',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr202223: {
+            title: '2022-23',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr202324: {
+            title: '2023-24',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          yr202425: {
+            title: '2024-25',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
           }
         }
       },
-      memberDebt: {
-        title: 'Member debt',
-        id: 'optionALegacySchemeBenefit',
+      optionAMemberDebt: {
+        title: 'Option A - Member debt',
+        id: 'optionAMemberDebt',
         items: {
-          reasonForRetirement: {
-            title: 'Reason for retirement',
-            value: 'Age',
+          totalOwedByMember: {
+            title: 'Total owed by member',
+            value: '9999.00',
             required: true,
-            type: 'text'
-          },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
-            required: true,
-            type: 'text'
+            type: 'currency'
           }
         }
       },
@@ -1720,17 +1854,65 @@ module.exports = {
         title: 'Option B - Reformed scheme results',
         id: 'optionBReformedSchemeResults',
         items: {
-          reasonForRetirement: {
-            title: 'Reason for retirement',
-            value: 'Age',
+          legacyPensionAfterCommutation: {
+            title: 'Legacy pension after commutation',
+            value: '4018.10',
             required: true,
-            type: 'text'
+            type: 'currency'
           },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
+          reformPensionAfterCommutation: {
+            title: 'Reform pension after commutation',
+            value: '1063.29',
             required: true,
-            type: 'text'
+            type: 'currency'
+          },
+          legacyLumpSumAfterCommutation: {
+            title: 'Legacy lump sum after commutation',
+            value: '26787.35',
+            required: true,
+            type: 'currency'
+          },
+          reformLumpSumAfterCommutation: {
+            title: 'Reform lump sum after commutation',
+            value: '7088.57',
+            required: true,
+            type: 'currency'
+          },
+          totalLifetimeAllowance: {
+            title: 'Total lifetime allowance',
+            value: '12.64',
+            required: true,
+            type: 'percent'
+          },
+          annualPensionDifference: {
+            title: 'Annual pension difference',
+            value: '0.00',
+            required: true,
+            type: 'currency'
+          },
+          lumpSumDifference: {
+            title: 'Lump sum difference',
+            value: '0.00',
+            required: true,
+            type: 'currency'
+          },
+          totalOwedToMember: {
+            title: 'Total owed to member',
+            value: '9999.00',
+            required: true,
+            type: 'currency'
+          },
+          totalPension: {
+            title: 'Total pension',
+            value: '5081.39',
+            required: true,
+            type: 'currency'
+          },
+          totalLumpSum: {
+            title: 'Total lump sum',
+            value: '33875.92',
+            required: true,
+            type: 'currency'
           }
         }
       },
@@ -1738,20 +1920,14 @@ module.exports = {
         title: 'Option B - Member debt',
         id: 'optionBMemberDebt',
         items: {
-          reasonForRetirement: {
+          totalOwedByMember: {
             title: 'Total owed by member',
             value: '9999.00',
             required: true,
             type: 'currency'
-          },
-          moreRows: {
-            title: 'More rows',
-            value: '9 more rows continue here',
-            required: true,
-            type: 'text'
           }
         }
-      },
+      }
     }
   },
   v3t3: {
