@@ -46,8 +46,6 @@
     {% set currentTagId = 12 %}
     {% elseif batchStatus == 'rejected' %}
     {% set currentTagId = 9 %}
-    {% else %}
-    {% set currentTagId = 7 %}
     {% endif %}
 
     <table class="nhsuk-table">
@@ -63,7 +61,7 @@
       <tbody class="nhsuk-table__body">
         {% for pensioner in data.v3t3.pensioners %}
         {% if batchStatus == 'outstanding' %}
-        {% set currentTagId = [7,8] | random %}
+        {% set currentTagId = pensioner.status.id %}
         {% elseif batchStatus == 'awaitingApproval' %}
         {% set currentTagId = [7,11] | random %}
         {% endif %}

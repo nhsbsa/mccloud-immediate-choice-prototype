@@ -46,6 +46,14 @@
       value: {
         text: member.dob | niceDate
       }
+    },
+    {
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: "<strong class=\"nhsuk-tag nhsuk-tag--" + member.status.tag + "\">" + member.status.text + "</strong>"
+      }
     }
   ]
 }) }}
