@@ -31,8 +31,8 @@
     <tr class="nhsuk-table__row">
       <td class="nhsuk-table__cell">{{ pensioner.membershipNumber }}</td>
       <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
-      <td class="nhsuk-table__cell">???</td>
-      <td class="nhsuk-table__cell">???</td>
+      <td class="nhsuk-table__cell">{{ [3,17,31,33,37]|random * 9 }}</td>
+      <td class="nhsuk-table__cell"><strong class="nhsuk-tag nhsuk-tag--{{ pensioner.status.tag }}">{{ pensioner.status.text }}</strong></td>
       <td class="nhsuk-table__cell">
         <a class="nhsuk-link" href="./record/{{ pensioner.id }}">View record</a>
       </td>
