@@ -1325,18 +1325,18 @@ module.exports = {
       }
     },
     pensioners: [
-      { id: 'Tv1hWbn38UirIROgNeb4oQ', name: 'Mr J Smith', membershipNumber: '12345678', dob: '1955-06-15', status: { tag: 'orange', text: 'Invalid data' } },
-      { id: 'Xy2jXcn49VjsJSPgOef5pR', name: 'Mrs A Johnson', membershipNumber: '87654321', dob: '1960-11-22', status: { tag: 'blue', text: 'Data complete' } },
-      { id: 'Yz3kYdo50WktKQTgPfg6qS', name: 'Ms L Brown', membershipNumber: '11223344', dob: '1970-03-30', status: { tag: 'orange', text: 'Invalid data' } },
-      { id: 'Za4lZep61XluLURgQgh7rT', name: 'Mr M Taylor', membershipNumber: '44332211', dob: '1958-08-05', status: { tag: 'blue', text: 'Data complete' } },
-      { id: 'Ab5mAfq72YmvMVSgRhi8sU', name: 'Mrs S Wilson', membershipNumber: '55667788', dob: '1965-12-12', status: { tag: 'orange', text: 'Invalid data' } },
-      { id: 'Bc6nBgr83ZnwNWTgSij9tV', name: 'Ms K Davis', membershipNumber: '99887766', dob: '1975-04-18', status: { tag: 'blue', text:'Data complete' } },
-      { id: 'CsTfxaXmoSBybYCAvZWvfJ', name: 'Mrs A Johnson', membershipNumber: '87654321', dob: '1960-11-22', status: { tag: 'orange', text: 'Invalid data' } },
-      { id: 'Cd7oChs94AoxOXUgTjk0uW', name: 'Mr P Moore', membershipNumber: '66778899', dob: '1952-09-09', status: { tag: 'blue', text: 'Data complete' } },
-      { id: 'De8pDit05BpyPYVhUkl1vX', name: 'Mrs R Jackson', membershipNumber: '33445566', dob: '1968-01-25', status: { tag: 'orange', text: 'Invalid data' } },
-      { id: 'Ef9qEju16CqzQZWjVlm2wY', name: 'Ms T White', membershipNumber: '22113344', dob: '1972-07-14', status: { tag: 'blue', text:'Data complete' } },
-      { id: 'Fg0rFkv27Dr0RAXkWmn3xZ', name: 'Mr G Harris', membershipNumber: '44556677', dob: '1959-10-03', status: { tag: 'orange', text:'Invalid data' } },
-      { id: 'Gh1sGlw38Es1SBYlXno4y0', name: 'Mrs L Martin', membershipNumber: '77889900', dob: '1963-05-21', status: { tag: 'blue', text: 'Data complete' } }
+      { id: 'Tv1hWbn38UirIROgNeb4oQ', name: 'Mr J Smith', membershipNumber: '12345678', dob: '1955-06-15', status: { id: 7, tag: 'orange', text: 'Invalid data' } },
+      { id: 'Xy2jXcn49VjsJSPgOef5pR', name: 'Mrs A Johnson', membershipNumber: '87654321', dob: '1960-11-22', status: { id: 8, tag: 'blue', text: 'Data complete' } },
+      { id: 'Yz3kYdo50WktKQTgPfg6qS', name: 'Ms L Brown', membershipNumber: '11223344', dob: '1970-03-30', status: { id: 7, tag: 'orange', text: 'Invalid data' } },
+      { id: 'Za4lZep61XluLURgQgh7rT', name: 'Mr M Taylor', membershipNumber: '44332211', dob: '1958-08-05', status: { id: 7, tag: 'orange', text: 'Invalid data' } },
+      { id: 'Ab5mAfq72YmvMVSgRhi8sU', name: 'Mrs S Wilson', membershipNumber: '55667788', dob: '1965-12-12', status: { id: 7, tag: 'orange', text: 'Invalid data' } },
+      { id: 'Bc6nBgr83ZnwNWTgSij9tV', name: 'Ms K Davis', membershipNumber: '99887766', dob: '1975-04-18', status: { id: 8, tag: 'blue', text: 'Data complete' } },
+      { id: 'CsTfxaXmoSBybYCAvZWvfJ', name: 'Mrs A Johnson', membershipNumber: '87654321', dob: '1960-11-22', status: { id: 8, tag: 'blue', text: 'Data complete' } },
+      { id: 'Cd7oChs94AoxOXUgTjk0uW', name: 'Mr P Moore', membershipNumber: '66778899', dob: '1952-09-09', status: { id: 8, tag: 'blue', text: 'Data complete' } },
+      { id: 'De8pDit05BpyPYVhUkl1vX', name: 'Mrs R Jackson', membershipNumber: '33445566', dob: '1968-01-25', status: { id: 8, tag: 'blue', text: 'Data complete' } },
+      { id: 'Ef9qEju16CqzQZWjVlm2wY', name: 'Ms T White', membershipNumber: '22113344', dob: '1972-07-14', status: { id : 8, tag:'blue', text:'Data complete' } },
+      { id: 'Fg0rFkv27Dr0RAXkWmn3xZ', name: 'Mr G Harris', membershipNumber: '44556677', dob: '1959-10-03', status: { id : 7, tag:'orange', text:'Invalid data' } },
+      { id: 'Gh1sGlw38Es1SBYlXno4y0', name: 'Mrs L Martin', membershipNumber: '77889900', dob: '1963-05-21', status: { id: 8, tag: 'blue', text: 'Data complete' } }
     ],
     pensioner: {
       name: 'Mr J Smith',

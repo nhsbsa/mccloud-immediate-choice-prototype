@@ -11,6 +11,8 @@ const type = 'type-2';
 // Member search ---------------------------------------------------------------
 
 router.get(`/${version}/${type}/search`, function (req, res) {
+  const data = req.session.data;
+  delete data.memberRejected;
   const query = req.query;
   res.render(`${version}/${type}/search`, { ...query });
 });
@@ -78,158 +80,25 @@ router.get(`/${version}/${type}/record/:id`, function (req, res) {
   res.render(`${version}/${type}/record`, { member });
 });
 
-// Batch details ---------------------------------------------------------------
+// View calculations -----------------------------------------------------------
 
-router.get(`/${version}/${type}/batch-details/:id`, function (req, res) {
-  const batchId = req.params.id;
-  res.render(`${version}/${type}/batch-details`, { batch: batchId });
-});
-
-// Edit record -----------------------------------------------------------------
-
-router.get(`/${version}/${type}/edit-record-set/:id`, function (req, res) {
-  console.log('Editing record set');
-  const recordSetId = req.params.id;
-
-  //pre-validate the records in this set
+router.get(`/${version}/${type}/view-calculations`, function (req, res) {
   const data = req.session.data;
-  const schema = data.v3t2.record[recordSetId].items;
+  const reject = req.query.action === 'reject' ? true : false;
 
-  const errors = {};
-  const errorsList = [];
+  if (reject) {
+    const pensionersIndex = data.v3t2.pensioners.findIndex((pensioner) => pensioner.id === data.member.id);
 
-  for (const [recordId, record] of Object.entries(schema)) {
-    if (record.required && !record.value) {
-      errorsList.push({ text: record.error || `${record.title} is required`, href: `#${recordId}` });
-      errors[recordId] = record.error || `${record.title} is required`;
-    }
-  }
+    data.memberRejected = true;
+    data.v3t2.pensioners[pensionersIndex].status.id = 9;
+    data.v3t2.pensioners[pensionersIndex].status.tag = "red";
+    data.v3t2.pensioners[pensionersIndex].status.text = "Rejected";
 
-  res.render(`${version}/${type}/edit-record-set`, {
-    recordSet: recordSetId,
-    errors: errors,
-    errorsList: (errorsList.length > 0) ? errorsList : null
-  });
-});
-
-router.post(`/${version}/${type}/edit-record-set/:id`, (req, res) => {
-  const submitted = req.body;
-  const recordSetId = req.params.id;
-
-  const errors = {};
-  const errorsList = [];
-
-  // look up the schema for the current record set
-  const data = req.session.data;
-  const schema = data.v3t2.record[recordSetId].items;
-
-  for (const [recordId, record] of Object.entries(schema)) {
-
-    const userValue = (submitted[recordId] || '').trim();
-
-    if (record.required && !userValue) {
-      errorsList.push({ text: record.error || `${record.title} is required`, href: `#${recordId}` });
-      errors[recordId] = record.error || `${record.title} is required`;
-    }
-    //if the user has provided a value, mark it as valid
-    if (userValue) {
-      record.value = userValue;
-      record.valid = true;
-    }
-  }
-
-  if (Object.keys(errors).length > 0) {
-    res.render(`${version}/${type}/edit-record-set`, {
-      recordSet: recordSetId,
-      errors: errors,
-      errorsList: errorsList
-    });
+    res.redirect(`/${version}/${type}/record/${data.member.id}`);
   } else {
-    // work out if any of the records have warnings
-    let hasWarnings = false;
-    for (const record of Object.values(schema)) {
-      if (record.warning) {
-        hasWarnings = true;
-        break;
-      }
-    }
-
-    if (hasWarnings) {
-      // redirect to a warning page
-      res.redirect(`/${version}/${type}/warn-about-record-set/${recordSetId}`);
-    } else {
-      // no warnings, go back to the batch details page
-      res.redirect(`/${version}/${type}/record?complete=${recordSetId}`);
-    }
+    delete data.memberRejected;
+    res.render(`${version}/${type}/view-calculations`);
   }
-});
-
-// Split benefit ---------------------------------------------------------------
-
-router.post(`/${version}/${type}/split-benefit`, function (req, res) {
-  //process the form submission
-  const submitted = req.body;
-
-  //generate a simple unique id for the new record set
-  const newId = `splitBenfit${Date.now()}`;
-
-  //log all submitted values
-  console.log(submitted);
-
-  const newSplitBenefit = {
-    title: `${submitted['scheme'] || 'Option A'} split benefit`,
-    id: newId,
-    canDelete: true,
-    items: {}
-  }
-
-  newSplitBenefit.items['protectedPayAmount'] = {
-    title: 'Protected Pay Amount',
-    value: submitted['protected-pay-amount'],
-    type: 'currency'
-  };
-
-  newSplitBenefit.items['protectedPayDate'] = {
-    title: 'Protected Pay Date',
-    value: `${submitted['protected-pay-date']['days']}-${submitted['protected-pay-date']['years']}`,
-    type: 'daysAndYears'
-  };
-
-  newSplitBenefit.items['pension'] = {
-    title: 'Pension',
-    value: submitted['pension'],
-    type: 'currency'
-  };
-
-  newSplitBenefit.items['lumpSum'] = {
-    title: 'Lump Sum',
-    value: submitted['lump-sum'],
-    type: 'currency'
-  };
-
-  newSplitBenefit.items['deemedDate'] = {
-    title: 'Deemed Date',
-    value: `${submitted['deemed-date']['days']}-${submitted['deemed-date']['years']}`,
-    type: 'daysAndYears'
-  };
-
-  //store the new record set in the session data
-  const data = req.session.data;
-  data.v3t2.record[newId] = newSplitBenefit;
-
-  //redirect to the record page, indicating the new record set is complete
-  res.redirect(`/${version}/${type}/record?newSplit=${newId}`);
-
-});
-
-// Warn about record -----------------------------------------------------------
-
-router.get(`/${version}/${type}/warn-about-record-set/:id`, function (req, res) {
-  const recordSetId = req.params.id;
-  res.render(`${version}/${type}/warn-about-record-set`, {
-    recordSet: recordSetId,
-    ...req.query
-  });
 });
 
 // -----------------------------------------------------------------------------

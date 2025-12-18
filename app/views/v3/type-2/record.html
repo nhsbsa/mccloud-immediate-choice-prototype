@@ -59,7 +59,7 @@
 }) }}
 {% endset %}
 
-{% if (complete and invalidRecords > 0) %}
+{% if (complete and invalidRecords > 0 and not data.memberRejected) %}
 {% set html %}
   <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in the section “{{ data.v3t2.record[complete].title }}” are complete.</p>
 {% endset %}
@@ -70,9 +70,9 @@
 }) }}
 {% endif %}
 
-{% if invalidRecords == 0 %}
+{% if invalidRecords == 0 and not data.memberRejected %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/v3/type-2/search">Find another record.</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a class="nhsuk-link--no-visited-state" href="/v3/type-2/search">Find another record.</a></p>
 {% endset %}
 
 {{ notificationBanner({
@@ -83,7 +83,7 @@
 
 {% if excluded %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been excluded. <a href="/v3/type-2/search">Find another record.</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been excluded.<br/><a class="nhsuk-link--no-visited-state" href="/v3/type-2/search">Find another record.</a></p>
 {% endset %}
 
 {{ notificationBanner({
@@ -94,13 +94,24 @@
 
 {% if newSplit %}
 {% set html %}
-  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added <a href="#{{ newSplit }}">{{ data.v3t2.record[newSplit].title }}</a></p>
+  <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added <a class="nhsuk-link--no-visited-state" href="#{{ newSplit }}">{{ data.v3t2.record[newSplit].title }}</a></p>
 {% endset %}
 
 {{ notificationBanner({
   html: html,
   type: "success"
 }) }}
+{% endif %}
+
+{% if data.memberRejected %}
+  {% set html %}
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This pension record has been rejected.<br><a class="nhsuk-link--no-visited-state" href="/v3/type-2/search">Find another record.</a></p>
+  {% endset %}
+
+  {{ notificationBanner({
+    html: html,
+    type: "success"
+  }) }}
 {% endif %}
 
 <div class="nhsuk-grid-row">

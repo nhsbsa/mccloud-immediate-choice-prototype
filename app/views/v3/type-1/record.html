@@ -72,7 +72,7 @@
 
 {% if invalidRecords == 0 %}
   {% set html %}
-    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a href="/v3/type-1/search">Find another record.</a></p>
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">All items in this record are complete.<br><a class="nhsuk-link--no-visited-state" href="/v3/type-1/search">Find another record.</a></p>
   {% endset %}
 
   {{ notificationBanner({
@@ -83,7 +83,7 @@
 
 {% if data.excluded %}
   {% set html %}
-    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This record has been excluded. <a href="/v3/type-1/search">Find another record.</a></p>
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">This record has been excluded.<br><a class="nhsuk-link--no-visited-state" href="/v3/type-1/search">Find another record.</a></p>
   {% endset %}
 
   {{ notificationBanner({
@@ -94,7 +94,7 @@
 
 {% if data.newSplit %}
   {% set html %}
-    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added "<a href="#{{ data.newSplit }}">{{ data.v3t1.record[data.newSplit].title }}</a>"</p>
+    <p class="nhsuk-notification-banner__heading" class="nhsuk-notification-banner__heading">Added "<a class="nhsuk-link--no-visited-state" href="#{{ data.newSplit }}">{{ data.v3t1.record[data.newSplit].title }}</a>"</p>
   {% endset %}
 
   {{ notificationBanner({

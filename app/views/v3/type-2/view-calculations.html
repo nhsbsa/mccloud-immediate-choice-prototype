@@ -15,7 +15,7 @@
     <h1 class="nhsuk-heading-xl {% if data.ui == 'original' %}nhsuk-u-margin-bottom-4{% endif %}">{{ pageName }}</h1>
     {% if data.ui == "original" %}
     <div class="nhsuk-button-group">
-      <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="../remove-member">Remove member</a>
+      <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/view-calculations?id={{ data.member.id }}&action=reject">Reject member</a>
     </div>
     {% endif %}
   </div>
@@ -40,7 +40,7 @@
   {% if data.ui == "default" or data.ui is undefined %}
   <div class="nhsuk-grid-column-one-third">
     <ul class="nhsuk-list">
-      <li><a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/record/{{ data.member.id }}">Reject member</a></li>
+      <li><a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/view-calculations?id={{ data.member.id }}&action=reject">Reject member</a></li>
     </ul>
   </div>
   {% endif %}
@@ -66,7 +66,7 @@
 {% endcall %}
 
 <div class="nhsuk-button-group">
-  <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/record/{{ data.member.id }}">Reject member</a>
+  <a class="nhsuk-button nhsuk-button--warning nhsuk-u-margin-bottom-2" href="/v3/type-2/view-calculations?id={{ data.member.id }}&action=reject">Reject member</a>
   <a href="record/{{ data.member.id }}" class="nhsuk-link">Cancel and return to member</a>
 </div>
 
