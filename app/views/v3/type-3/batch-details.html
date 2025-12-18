@@ -63,7 +63,7 @@
         {% if batchStatus == 'outstanding' %}
         {% set currentTagId = pensioner.status.id %}
         {% elseif batchStatus == 'awaitingApproval' %}
-        {% set currentTagId = [7,11] | random %}
+        {% set currentTagId = [8,11] | random %}
         {% endif %}
         <tr class="nhsuk-table__row">
           <td class="nhsuk-table__cell">{{ pensioner.name }}</td>
